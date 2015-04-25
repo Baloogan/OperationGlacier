@@ -179,7 +179,13 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\drop-theme-arrows-bounce-dark.css" />
+    <Content Include="Content\drop-theme-arrows-bounce.css" />
+    <Content Include="Content\drop-theme-arrows.css" />
+    <Content Include="Content\drop-theme-basic.css" />
+    <Content Include="Content\drop-theme-hubspot-popovers.css" />
     <Content Include="Content\leaflet.css" />
+    <Content Include="Content\welcome.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -187,6 +193,8 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\drop.js" />
+    <Content Include="Scripts\drop.min.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />

@@ -5,7 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Baloogan Campaign</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/drop-theme-basic.css")
+    @Styles.Render("~/Content/welcome.css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/Scripts/drop.min.js")
     <!-- Google Analytics -->
     <script>
         (function (i, s, o, g, r, a, m) {
@@ -20,17 +23,74 @@
 
     </script>
     <!-- End Google Analytics -->
+    <style>
+        .drop-target {
+            cursor: pointer;
+        }
+
+        .drop-content ul {
+            position: relative;
+            display: block;
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+            .drop-content ul li span:hover {
+                background: #909090;
+                color: white;
+                cursor: pointer;
+            }
+
+            .drop-content ul li span {
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                user-select: none;
+                width: 100%;
+                background: black;
+                line-height: 60px;
+                height: 60px;
+                padding: 0 30px 0 30px;
+                display: block;
+                color: inherit;
+                cursor: pointer;
+                font-size: 20px;
+                font-weight: normal;
+            }
+    </style>
 </head>
-<body>
+<body class="drop-open">
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
-            <div class="navbar-header" style="background-image: url(http://i.imgur.com/RXzCraP.png); background-repeat: no-repeat; background-size: contain;padding-left:55px">
+            <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Operation Glacier", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <div class="example">
+                    <a class="drop-target navbar-brand" style="background-image: url(https://i.imgur.com/RXzCraP.png); background-repeat: no-repeat; background-size: contain; padding-left: 55px">Operation Glacier</a>
+                    <div class="drop-content" style="display: none;">
+                        <ul style="background: black;">
+                            <li>
+                                <span>Some really cool stuff.</span>
+                            </li>
+                            <li>
+                                <span>Really cool.</span>
+                            </li>
+                            <li>
+                                <span>Options etc, filters.</span>
+                            </li>
+                            <li>
+                                <span>Stuff</span>
+                            </li>
+                            <li>
+                                <span>More stuff!</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -44,14 +104,55 @@
     </div>
     <div class="container body-content">
         @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Baloogan Campaign</p>
-        </footer>
+        <!--<hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Baloogan Campaign</p>
+            </footer>-->
     </div>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script>
+        (function () {
+            var init, isMobile, setupExamples, setupHero, _Drop;
+
+            _Drop = Drop.createContext({
+                classPrefix: 'drop'
+            });
+
+            isMobile = $(window).width() < 567;
+
+            init = function () {
+                //setupHero();
+                return setupExamples();
+            };
+
+            setupExamples = function () {
+                return $('.example').each(function () {
+                    var $example, $target, content, drop, openOn, theme;
+                    $example = $(this);
+                    // theme = $example.data('theme');
+                    openOn = 'click';
+                    $target = $example.find('.drop-target');
+                    //$target.addClass(theme);
+                    content = $example.find('.drop-content').html();
+                    return drop = new _Drop({
+                        target: $target[0],
+                        //classes: theme,
+                        position: 'bottom center',
+                        constrainToWindow: true,
+                        constrainToScrollParent: false,
+                        openOn: openOn,
+                        content: content
+                    });
+                });
+            };
+
+            init();
+
+        }).call(this);
+    </script>
 </body>
 </html>
