@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
+using Newtonsoft.Json;
 
 namespace WITPJSON
 {
@@ -17,6 +18,16 @@ namespace WITPJSON
         }
 
         public Side side;
+
+        public string side_initial
+        {
+            get
+            {
+                if (side == Side.Allies) return "a";
+                else return "j";
+            }
+        }
+
         public DateTime date;
 
         public List<CombatEvent> CombatEvents;
@@ -24,7 +35,7 @@ namespace WITPJSON
         public List<SigInt> SigInts;
         public List<OperationReport> OperationReports;
 
-        public string date_string { get { return string.Format("{0}{1}{2}", date.Year, date.Month, date.Day); } }
+        public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year, date.Month, date.Day); } }
 
         public string output_directory { get { return Path.Combine(Program.output_directory, side.ToString(), date_string); } }
         public string output_filename { get { return Path.Combine(this.output_directory, "Turn.json"); } }
@@ -43,11 +54,12 @@ namespace WITPJSON
         }
         public string CombatEvents_filename { get { return Path.Combine(archive_directory, string.Format("Combat_Events_{0}.txt", date_string)); } }
         public string AfterActionReports_filename { get { return Path.Combine(archive_directory, string.Format("combatreport_{0}.txt", date_string)); } }
-        public string SigInts_filename { get { return Path.Combine(archive_directory, string.Format("asigint_{0}.txt", date_string)); } }
-        public string OperationReports_filename { get { return Path.Combine(archive_directory, string.Format("asigint_{0}.txt", date_string)); } }
+        public string SigInts_filename { get { return Path.Combine(archive_directory, string.Format("{0}sigint_{1}.txt", side_initial, date_string)); } }
+        public string OperationReports_filename { get { return Path.Combine(archive_directory, string.Format("{0}operationsreport_{1}.txt", side_initial, date_string)); } }
 
-        public Turn(DateTime date)
+        public Turn(Side side, DateTime date)
         {
+            this.side = side;
             this.date = date;
             ParseCombatEvents();
             ParseAfterActionReports();
@@ -78,7 +90,8 @@ namespace WITPJSON
         }
         public void Render()
         {
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(this);
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(this,Formatting.Indented);
+            Directory.CreateDirectory(output_directory);
             File.WriteAllText(output_filename, json);
         }
     }

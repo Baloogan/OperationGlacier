@@ -21,26 +21,30 @@ namespace WITPJSON
             {
                 case "STONEBURNER":
                     allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
+                    japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\App_Data\archive";
                     break;
                 case "WIN-QPCSS4CO8PJ":
                     allies_archive_directory = @"\\VBOXSVR\archive";
+                    japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\App_Data\archive";
-                    break;
+                    throw new PlatformNotSupportedException();
+                //break;
                 default:
                     throw new PlatformNotSupportedException();
             }
 
             ClearOutputDirectory();
 
-            var days = GetDays();
-            var turns = days.Select(t => new Turn(t));
-            //var json_turns = turns.Select(t => Newtonsoft.Json.JsonConvert.SerializeObject(t));
-            foreach (var turn in turns)
+            var allies_days = GetDays(allies_archive_directory);
+            var allies_turns = allies_days.Select(t => new Turn(Turn.Side.Allies, t));
+            var japan_days = GetDays(japan_archive_directory);
+            var japan_turns = allies_days.Select(t => new Turn(Turn.Side.Japan, t));
+            foreach (var turn in allies_turns.Concat(japan_turns))
             {
                 turn.Render();
             }
-            
+
         }
         static IEnumerable<DateTime> GetDays(string directory)
         {
@@ -49,17 +53,17 @@ namespace WITPJSON
             foreach (var filename in dir)
             {
                 var m = myRegex.Match(filename);
-                var year = int.Parse(m.Groups[0].Value);
-                var month = int.Parse(m.Groups[1].Value);
-                var day = int.Parse(m.Groups[2].Value);
+                var year = int.Parse(m.Groups[1].Value) + 1900;
+                var month = int.Parse(m.Groups[2].Value);
+                var day = int.Parse(m.Groups[3].Value);
                 yield return new DateTime(year, month, day);
             }
         }
         static void ClearOutputDirectory()
         {
-            Directory.Delete(archive_directory);
-            Directory.CreateDirectory(archive_directory);
+            Directory.Delete(output_directory);
+            Directory.CreateDirectory(output_directory);
         }
-        
+
     }
 }

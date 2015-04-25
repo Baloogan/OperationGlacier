@@ -19,14 +19,15 @@
     }
 </style>
 <script>
-    var map = L.map('map').setView([67, -76], 3);
+    var map = L.map('map').setView([68.7, -75], 3);
     L.tileLayer('https://secure.baloogancampaign.com:8081/map/render2/{z}/{x}/{y}.png', {
 
-        attribution: '',
-
+        attribution: '', 
         id: 'examples.map-i875mjb7',
         maxZoom: 6, minZoom: 3
     }).addTo(map);
-    map.zoomControl.setPosition('topright')
+    
+    map.zoomControl.setPosition('topright');
+    map.setMaxBounds([[0, -200], [110, 50]]);
 </script>
 
