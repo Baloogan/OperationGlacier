@@ -61,7 +61,7 @@ namespace WITPJSON
         }
         static void ClearOutputDirectory()
         {
-            Directory.Delete(output_directory);
+            new DirectoryInfo(output_directory).Delete(true);
             Directory.CreateDirectory(output_directory);
         }
 
