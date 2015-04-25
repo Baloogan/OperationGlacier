@@ -1,1 +1,8 @@
 C:\Dropbox\OperationGlacier\WITPJSON\bin\Debug\WITPJSON.exe.config
+C:\Dropbox\OperationGlacier\WITPJSON\bin\Debug\WITPJSON.exe
+C:\Dropbox\OperationGlacier\WITPJSON\bin\Debug\WITPJSON.pdb
+C:\Dropbox\OperationGlacier\WITPJSON\bin\Debug\Newtonsoft.Json.dll
+C:\Dropbox\OperationGlacier\WITPJSON\bin\Debug\Newtonsoft.Json.xml
+C:\Dropbox\OperationGlacier\WITPJSON\obj\Debug\WITPJSON.csprojResolveAssemblyReference.cache
+C:\Dropbox\OperationGlacier\WITPJSON\obj\Debug\WITPJSON.exe
+C:\Dropbox\OperationGlacier\WITPJSON\obj\Debug\WITPJSON.pdb
