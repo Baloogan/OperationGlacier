@@ -10,7 +10,8 @@ namespace WITPJSON
 {
     class Program
     {
-        internal static string archive_directory = null;
+        internal static string allies_archive_directory = null;
+        internal static string japan_archive_directory = null;
         internal static string output_directory = null;
 
         static void Main(string[] args)
@@ -19,11 +20,11 @@ namespace WITPJSON
             switch (System.Environment.MachineName)
             {
                 case "STONEBURNER":
-                    archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
+                    allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\App_Data\archive";
                     break;
                 case "WIN-QPCSS4CO8PJ":
-                    archive_directory = @"\\VBOXSVR\archive";
+                    allies_archive_directory = @"\\VBOXSVR\archive";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\App_Data\archive";
                     break;
                 default:
@@ -41,9 +42,9 @@ namespace WITPJSON
             }
             
         }
-        static IEnumerable<DateTime> GetDays()
+        static IEnumerable<DateTime> GetDays(string directory)
         {
-            var dir = Directory.EnumerateFiles(archive_directory).ToList();
+            var dir = Directory.EnumerateFiles(directory).ToList();
             var myRegex = new Regex(@"_(\d\d)(\d\d)(\d\d)\.txt");
             foreach (var filename in dir)
             {
