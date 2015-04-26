@@ -22,12 +22,12 @@ namespace WITPJSON
                 case "STONEBURNER":
                     allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
-                    output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\App_Data\archive";
+                    output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
                     break;
                 case "WIN-QPCSS4CO8PJ":
                     allies_archive_directory = @"\\VBOXSVR\archive";
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
-                    output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\App_Data\archive";
+                    output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
                     throw new PlatformNotSupportedException();
                 //break;
                 default:

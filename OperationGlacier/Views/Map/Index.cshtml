@@ -19,6 +19,21 @@
         height: 100%;
     }
 </style>
+<style type="text/css">
+    html, body {
+        height: 100%;
+        margin: 0;
+    }
+
+    #wrapper {
+        min-height: 100%;
+    }
+</style>
+<style>
+    .leaflet-popup {
+        width: 500px;
+    }
+</style>
 <script>
     var map = L.map('map', {
         crs: L.CRS.Simple,
@@ -40,120 +55,54 @@
     map.setMaxBounds([[-138, 12], [-14, 170]]);
 </script>
 <script>
-    /*
- Graticule plugin for Leaflet powered maps.
-*/
-    L.Graticule = L.GeoJSON.extend({
+    L.Circle = L.Circle.extend({
+        projectLatlngs: function () {
+            //this._point = this._map.latLngToLayerPoint(this._latlng);
+            //this._radius = this._mRadius;
+            var lngRadius = this._mRadius,
+              latlng2 = new L.LatLng(this._latlng.lat, this._latlng.lng - lngRadius),
+              point2 = this._map.latLngToLayerPoint(latlng2);
 
-        options: {
-            style: {
-                color: '#333',
-                weight: 1
-            },
-            interval: 20
+            this._point = this._map.latLngToLayerPoint(this._latlng);
+            this._radius = Math.max(Math.round(this._point.x - point2.x), 1);
         },
 
-        initialize: function (options) {
-            L.Util.setOptions(this, options);
-            this._layers = {};
+        getBounds: function () {
+            var radius = this._mRadius,
+                latlng = this._latlng,
+                sw = new L.LatLng(latlng.lat - radius, latlng.lng - radius),
+                ne = new L.LatLng(latlng.lat + radius, latlng.lng + radius);
 
-            if (this.options.sphere) {
-                this.addData(this._getFrame());
-            } else {
-                this.addData(this._getGraticule());
-            }
-        },
-
-        _getFrame: function () {
-            return {
-                "type": "Polygon",
-                "coordinates": [
-                    this._getMeridian(-180).concat(this._getMeridian(180).reverse())
-                ]
-            };
-        },
-
-        _getGraticule: function () {
-            var features = [], interval = this.options.interval;
-
-            // Meridians
-            for (var lng = 0; lng <= 180; lng = lng + interval) {
-                features.push(this._getFeature(this._getMeridian(lng), {
-                    "name": (lng) ? lng.toString() + "° E" : "Prime meridian"
-                }));
-                if (lng !== 0) {
-                    features.push(this._getFeature(this._getMeridian(-lng), {
-                        "name": lng.toString() + "° W"
-                    }));
-                }
-            }
-
-            // Parallels
-            for (var lat = 0; lat <= 90; lat = lat + interval) {
-                features.push(this._getFeature(this._getParallel(lat), {
-                    "name": (lat) ? lat.toString() + "° N" : "Equator"
-                }));
-                if (lat !== 0) {
-                    features.push(this._getFeature(this._getParallel(-lat), {
-                        "name": lat.toString() + "° S"
-                    }));
-                }
-            }
-
-            return {
-                "type": "FeatureCollection",
-                "features": features
-            };
-        },
-
-        _getMeridian: function (lng) {
-            lng = this._lngFix(lng);
-            var coords = [];
-            for (var lat = -90; lat <= 90; lat++) {
-                coords.push([lng, lat]);
-            }
-            return coords;
-        },
-
-        _getParallel: function (lat) {
-            var coords = [];
-            for (var lng = -180; lng <= 180; lng++) {
-                coords.push([this._lngFix(lng), lat]);
-            }
-            return coords;
-        },
-
-        _getFeature: function (coords, prop) {
-            return {
-                "type": "Feature",
-                "geometry": {
-                    "type": "LineString",
-                    "coordinates": coords
-                },
-                "properties": prop
-            };
-        },
-
-        _lngFix: function (lng) {
-            if (lng >= 180) return 179.999999;
-            if (lng <= -180) return -179.999999;
-            return lng;
+            return new L.LatLngBounds(sw, ne);
         }
-
     });
+    function isEven(n) {
+        return n == parseFloat(n) ? !(n % 2) : void 0;
+    }
+    (function () {
+        var side = '@Ajax.JavaScriptStringEncode(ViewBag.Side)';
+        var date = '@Ajax.JavaScriptStringEncode(ViewBag.Date)';
+        var link = '/OperationGlacier/GameData/' + side + '/' + date + '/Turn.json';
+        var turn = $.getJSON(link).done(function (data) {
 
-    L.graticule = function (options) {
-        return new L.Graticule(options);
-    };
-</script>
-<script>
-    /*
-        // Specify bold red lines instead of thin grey lines
-        L.graticule({
-            style: {
-                color: '#f00',
-                weight: 10
-            }
-        }).addTo(map);
-    */
+            var aars = data.AfterActionReports;
+            $.each(aars, function(i, item) {
+
+                var x = item.x;
+                var y = item.y;
+                var report = item.report;
+                var lon = 0.6563 * x + 15.962;
+                var lat = -0.593 * y - 15.499;
+                if (isEven(y)) {
+                    lon = lon - 0.6563 / 2.0;
+                }
+                var circle = L.circle([lat, lon], 0.1, {
+                    color: 'red',
+                    fillColor: '#f03',
+                    fillOpacity: 0.5
+                }).addTo(map);
+                circle.bindPopup('<pre><span class="inner-pre" style="font-size: 11px;line-height: 10px;">' + report + '</span></pre>', { maxWidth: 500, maxHeight: 300, });
+            });
+        });
+    }).call(this);
 </script>

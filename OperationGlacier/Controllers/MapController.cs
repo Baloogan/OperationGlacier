@@ -8,8 +8,10 @@ namespace OperationGlacier.Controllers
 {
     public class MapController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string side, string date)
         {
+            ViewBag.Side = side;
+            ViewBag.Date = date;
             return View();
         }
 

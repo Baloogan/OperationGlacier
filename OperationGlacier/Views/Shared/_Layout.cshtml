@@ -34,6 +34,7 @@
             list-style-type: none;
             margin: 0;
             padding: 0;
+            min-width: 211px;
         }
 
             .drop-content ul li span:hover {
@@ -73,7 +74,7 @@
                     <div class="drop-content" style="display: none;">
                         <ul style="background: black;">
                             <li>
-                                <span>Some really cool stuff.</span>
+                                <span onclick="window.location='/OperationGlacier/Map'">Allied</span>
                             </li>
                             <li>
                                 <span>Really cool.</span>
@@ -102,6 +103,9 @@
             </div>
         </div>
     </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
     <div class="container body-content">
         @RenderBody()
         <!--<hr />
@@ -111,8 +115,6 @@
     </div>
 
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
     <script>
         (function () {
