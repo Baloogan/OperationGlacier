@@ -84,7 +84,6 @@ namespace WITPJSON
                     a.html = a.html + s.report + "\r\n";
                 }
                 a.color = "blue";
-                a.radius = 0.1F;
             }
             
             foreach (var s in OperationReports)
@@ -100,7 +99,6 @@ namespace WITPJSON
                     a.html = a.html + s.report + "\r\n";
                 }
                 a.color = "yellow";
-                a.radius = 0.1F;
             }
             foreach (var s in CombatEvents)
             {
@@ -115,7 +113,6 @@ namespace WITPJSON
                     a.html = a.html + s.report + "\r\n";
                 }
                 a.color = "orange";
-                a.radius = 0.1F;
             }
             foreach (var aar in AfterActionReports)
             {
@@ -130,14 +127,18 @@ namespace WITPJSON
                     a.html = a.html + aar.report + "\r\n";
                 }
                 a.color = "red";
-                a.fillOpacity = a.html.Length / 10000.0F;
-                if (a.fillOpacity < 0.1) a.fillOpacity = 0.1F;
-                if (a.fillOpacity > 1) a.fillOpacity = 1;
-                a.fillColor = "#f03";
-                a.radius = 0.1F;
+                
             }
 
             Hexes = Hexes.Where(h => h.x != -1 && h.y != -1).ToList();
+            foreach (var a in Hexes)
+            {
+                a.radius = 0.1F;
+                a.fillOpacity = a.html.Length / 1000.0F;
+                if (a.fillOpacity < 0.1) a.fillOpacity = 0.1F;
+                if (a.fillOpacity > 1) a.fillOpacity = 1;
+                a.fillColor = a.color;
+            }
         }
         private void ParseCombatEvents()
         {

@@ -2323,8 +2323,8 @@
       "html": "2/113th Infantry Regiment is loaded on a Std-D Cargo class xAK moving to Patani.\r\n42nd Infantry Regiment is loaded on a Japanese AK moving to Patani.\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.151
     },
     {
       "x": 95,
@@ -2332,8 +2332,8 @@
       "html": "2nd Ind.Mixed Brigade is located at Kalgan(95,37).\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 80,
@@ -2341,8 +2341,8 @@
       "html": "5/20th Infantry Regiment is planning for an attack on Mauban.\r\n16th Recon Regiment is planning for an attack on Mauban.\r\nxAKL Mauban sinks in port\r\nJapanese Fighter Bomber sighted over Mauban \r\nxAKL Mauban sinks....\r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.217
     },
     {
       "x": 64,
@@ -2350,8 +2350,8 @@
       "html": "Heavy Volume of Radio transmissions detected at Cam Ranh Bay (64,72).\r\nDo-24K-1 sighting report: Japanese CA at 64,72 near Cam Ranh Bay  , Moving West \r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.153
     },
     {
       "x": 86,
@@ -2359,8 +2359,8 @@
       "html": "115th Infantry Regiment is located at Foochow(86,60).\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 70,
@@ -2368,8 +2368,8 @@
       "html": "4th Ind.Mixed Regiment is located at Lang Son(70,56).\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 73,
@@ -2377,8 +2377,8 @@
       "html": "Radio call sign of xAKL Kennichi Maru detected at 73,87.\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 68,
@@ -2386,8 +2386,8 @@
       "html": "Radio call sign of xAKL Kennichi Maru detected at 68,95.\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 46,
@@ -2395,8 +2395,8 @@
       "html": "Radio transmissions detected at 46,98.\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 51,
@@ -2404,8 +2404,8 @@
       "html": "3/41st Infantry Regiment is loaded on a Yusen S Cargo class AK moving to Singora.\r\nDo-24K-1 sighting report: Japanese DD at 51,72 near Singora  , Moving West \r\nAfternoon Air attack on TF, near Singora at 51,72\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 1 NM, estimated altitude 11,000 feet.\r\nEstimated time to target is 0 minutes\r\n \r\nAllied aircraft\r\n      Hudson I x 4\r\n \r\nNo Allied losses\r\n \r\nJapanese Ships\r\n      DD Shirayuki\r\n \r\nAircraft Attacking:\r\n       4 x Hudson I bombing from 6000 feet\r\n               Naval Attack:  4 x 250 lb SAP Bomb\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Singora at 51,72\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 18 NM, estimated altitude 10,000 feet.\r\nEstimated time to target is 6 minutes\r\n \r\nAllied aircraft\r\n      Blenheim I x 4\r\n \r\nNo Allied losses\r\n \r\nJapanese Ships\r\n      DD Usugumo\r\n \r\nAircraft Attacking:\r\n       4 x Blenheim I bombing from 6000 feet\r\n               Naval Attack:  4 x 250 lb SAP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.979
     },
     {
       "x": 169,
@@ -2413,8 +2413,8 @@
       "html": "Radio transmissions detected at 169,117.\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 51,
@@ -2422,7 +2422,7 @@
       "html": "3/21st Infantry Regiment is loaded on a Japanese xAKL moving to Kota Bharu.\r\nSighting report: 3 Japanese ships at 51,75 near Kota Bharu  , Moving Southwest \r\nSighting report: 2 Japanese ships at 51,75 near Kota Bharu  , Moving West \r\nDo-24K-1 sighting report: 7 Japanese ships at 51,75 near Kota Bharu  , Moving Southwest\r\nDo-24K-1 sighting report: 4 Japanese ships at 51,75 near Kota Bharu  , Moving West\r\nAmphibious TF 85 offshore of Kota Bharu\r\nMorning Air attack on Kota Bharu , at 51,75 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 36 NM, estimated altitude 10,000 feet.\r\nEstimated time to target is 11 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 29\r\n \r\nAllied aircraft\r\n      Buffalo I x 1\r\n \r\nJapanese aircraft losses\r\n      Ki-27b Nate: 11 damaged\r\n      Ki-27b Nate: 1 destroyed by flak\r\n \r\nAllied aircraft losses\r\n      Hudson I: 1 destroyed on ground\r\n \r\nAirbase hits 10\r\nAirbase supply hits 1\r\nRunway hits 31\r\n \r\nAircraft Attacking:\r\n      26 x Ki-27b Nate bombing from 100 feet\r\n               Airfield Attack:  2 x 50 kg GP Bomb\r\n \r\nCAP engaged:\r\nNo.243 Sqn RAF Det with Buffalo I (1 airborne, 0 on standby, 0 scrambling)\r\n      1 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters between 0 and 10000.\r\n      Raid is overhead\r\n \r\n \r\n \r\n\r\nMorning Air attack on Kota Bharu , at 51,75 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 18 NM, estimated altitude 18,000 feet.\r\nEstimated time to target is 5 minutes\r\n \r\nJapanese aircraft\r\n      Ki-21-IIa Sally x 22\r\n \r\nNo Japanese losses\r\n \r\nAirbase supply hits 1\r\nRunway hits 6\r\n \r\nAircraft Attacking:\r\n      22 x Ki-21-IIa Sally bombing from 15000 feet * \r\n               Airfield Attack:  2 x 250 kg GP Bomb\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Kota Bharu at 51,75\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 9 NM, estimated altitude 6,000 feet.\r\nEstimated time to target is 2 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 26\r\n \r\nAllied aircraft\r\n      Hudson I x 3\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      Hudson I: 1 destroyed\r\n \r\nCAP engaged:\r\n1st Sentai with Ki-27b Nate (10 airborne, 0 on standby, 0 scrambling)\r\n      (10 plane(s) diverted to support CAP in hex.)\r\n      10 plane(s) intercepting now.\r\n      Group patrol altitude is 100 , scrambling fighters to 7000.\r\n      Raid is overhead\r\n11th Sentai with Ki-27b Nate (11 airborne, 0 on standby, 0 scrambling)\r\n      (11 plane(s) diverted to support CAP in hex.)\r\n      11 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters between 0 and 10000.\r\n      Raid is overhead\r\n      2 planes vectored on to bombers\r\n77th Sentai Det A with Ki-27b Nate (5 airborne, 0 on standby, 0 scrambling)\r\n      (5 plane(s) diverted to support CAP in hex.)\r\n      5 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters between 0 and 10000.\r\n      Raid is overhead\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Kota Bharu at 51,75\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 18 NM, estimated altitude 10,000 feet.\r\nEstimated time to target is 5 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 27\r\n \r\nAllied aircraft\r\n      Swordfish I x 2\r\n      Hudson I x 3\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      Swordfish I: 1 destroyed\r\n      Swordfish I: 1 destroyed by flak\r\n \r\nCAP engaged:\r\n11th Sentai with Ki-27b Nate (10 airborne, 0 on standby, 0 scrambling)\r\n      (4 plane(s) diverted to support CAP in hex.)\r\n      10 plane(s) intercepting now.\r\n      3 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 10000 , scrambling fighters to 3000.\r\n      Time for all group planes to reach interception is 19 minutes\r\n1st Sentai with Ki-27b Nate (3 airborne, 0 on standby, 0 scrambling)\r\n      3 plane(s) intercepting now.\r\n      6 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 100 , scrambling fighters between 3000 and 12000.\r\n      Time for all group planes to reach interception is 79 minutes\r\n77th Sentai Det A with Ki-27b Nate (4 airborne, 0 on standby, 0 scrambling)\r\n      4 plane(s) intercepting now.\r\n      1 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 10000 , scrambling fighters between 3000 and 10000.\r\n      Time for all group planes to reach interception is 19 minutes\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Kota Bharu at 51,75\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 16 NM, estimated altitude 7,000 feet.\r\nEstimated time to target is 5 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 28\r\n \r\nAllied aircraft\r\n      Hudson I x 3\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      Hudson I: 1 destroyed\r\n \r\nCAP engaged:\r\n11th Sentai with Ki-27b Nate (12 airborne, 0 on standby, 0 scrambling)\r\n      (4 plane(s) diverted to support CAP in hex.)\r\n      12 plane(s) intercepting now.\r\n      3 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 10000 , scrambling fighters between 3000 and 10000.\r\n      Time for all group planes to reach interception is 27 minutes\r\n1st Sentai with Ki-27b Nate (4 airborne, 0 on standby, 2 scrambling)\r\n      4 plane(s) intercepting now.\r\n      2 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 100 , scrambling fighters between 3000 and 12000.\r\n      Time for all group planes to reach interception is 34 minutes\r\n77th Sentai Det A with Ki-27b Nate (5 airborne, 0 on standby, 0 scrambling)\r\n      5 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters between 0 and 10000.\r\n      Raid is overhead\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Kota Bharu at 51,75\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 7 NM, estimated altitude 21,000 feet.\r\nEstimated time to target is 2 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 24\r\n \r\nAllied aircraft\r\n      Blenheim IV x 6\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      Blenheim IV: 1 destroyed\r\n \r\nCAP engaged:\r\n1st Sentai with Ki-27b Nate (1 airborne, 0 on standby, 2 scrambling)\r\n      1 plane(s) intercepting now.\r\n      3 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 100 , scrambling fighters between 3000 and 6000.\r\n      Time for all group planes to reach interception is 106 minutes\r\n11th Sentai with Ki-27b Nate (9 airborne, 0 on standby, 0 scrambling)\r\n      9 plane(s) intercepting now.\r\n      4 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 10000 , scrambling fighters between 3000 and 10000.\r\n      Time for all group planes to reach interception is 82 minutes\r\n77th Sentai Det A with Ki-27b Nate (4 airborne, 0 on standby, 0 scrambling)\r\n      4 plane(s) intercepting now.\r\n      1 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 10000 , scrambling fighters between 6000 and 10000.\r\n      Time for all group planes to reach interception is 23 minutes\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Kota Bharu at 51,75\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 2 NM, estimated altitude 10,000 feet.\r\nEstimated time to target is 1 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 22\r\n \r\nAllied aircraft\r\n      Vildebeest III x 3\r\n \r\nNo Japanese losses\r\n \r\nNo Allied losses\r\n \r\nJapanese Ships\r\n      BB Haruna, Bomb hits 1\r\n \r\nAircraft Attacking:\r\n       3 x Vildebeest III bombing from 5000 feet\r\n               Naval Attack:  2 x 500 lb GP Bomb\r\n \r\nCAP engaged:\r\n1st Sentai with Ki-27b Nate (0 airborne, 0 on standby, 5 scrambling)\r\n      1 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 100 , scrambling fighters between 3000 and 15000.\r\n      Time for all group planes to reach interception is 42 minutes\r\n11th Sentai with Ki-27b Nate (8 airborne, 0 on standby, 4 scrambling)\r\n      8 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters between 3000 and 10000.\r\n      Time for all group planes to reach interception is 32 minutes\r\n77th Sentai Det A with Ki-27b Nate (1 airborne, 0 on standby, 0 scrambling)\r\n      1 plane(s) intercepting now.\r\n      3 plane(s) not yet engaged, 0 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 10000 , scrambling fighters to 15000.\r\n      Time for all group planes to reach interception is 55 minutes\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Kota Bharu at 51,75\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 2 NM, estimated altitude 12,000 feet.\r\nEstimated time to target is 0 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 22\r\n \r\nAllied aircraft\r\n      Blenheim I x 3\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      Blenheim I: 2 destroyed\r\n \r\nJapanese Ships\r\n      CA Takao\r\n \r\nAircraft Attacking:\r\n       3 x Blenheim I bombing from 6000 feet\r\n               Naval Attack:  4 x 250 lb SAP Bomb\r\n \r\nCAP engaged:\r\n1st Sentai with Ki-27b Nate (1 airborne, 0 on standby, 5 scrambling)\r\n      1 plane(s) intercepting now.\r\n      Group patrol altitude is 100 , scrambling fighters between 3000 and 6000.\r\n      Time for all group planes to reach interception is 39 minutes\r\n11th Sentai with Ki-27b Nate (8 airborne, 0 on standby, 4 scrambling)\r\n      8 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters between 3000 and 10000.\r\n      Time for all group planes to reach interception is 30 minutes\r\n77th Sentai Det A with Ki-27b Nate (1 airborne, 0 on standby, 3 scrambling)\r\n      1 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters to 15000.\r\n      Time for all group planes to reach interception is 32 minutes\r\n \r\n \r\n \r\n\r\nPre-Invasion action off Kota Bharu (51,75)\r\n \r\n42 Coastal gun shots fired in defense.\r\n \r\nJapanese Ships\r\n      CL Sendai\r\n      DD Ayanami\r\n      DD Isonami\r\n      PB Tatsumiya Maru\r\n      SC Ch 9\r\n      SC Ch 7\r\n      AK Sasako Maru\r\n \r\nJapanese ground losses:\r\n      28 casualties reported\r\n         Squads: 0 destroyed, 0 disabled\r\n         Non Combat: 0 destroyed, 5 disabled\r\n         Engineers: 0 destroyed, 0 disabled\r\n \r\nCL Sendai firing at 8th Indian Brigade\r\nDD Ayanami firing at 8th Indian Brigade\r\nDD Isonami firing at 8th Indian Brigade\r\nPB Tatsumiya Maru fired at enemy troops\r\nSC Ch 9 fired at enemy troops\r\nSC Ch 7 fired at enemy troops\r\nDefensive Guns fire at approaching troops in landing craft at 4,000 yards\r\nDefensive Guns fire at approaching troops in landing craft at 1,000 yards\r\n \r\n \r\n\r\nAmphibious Assault at Kota Bharu (51,75)\r\n \r\nTF 85 troops unloading over beach at Kota Bharu, 51,75\r\n \r\nJapanese ground losses:\r\n      51 casualties reported\r\n         Squads: 2 destroyed, 0 disabled\r\n         Non Combat: 1 destroyed, 0 disabled\r\n         Engineers: 0 destroyed, 0 disabled\r\n \r\n10 Support troops accidentally lost during unload of 56th Infantry Rgt\r\n18 troops of a IJA Engineer Squad lost overboard during unload of 12th Engr Rgt\r\n18 troops of a IJA Engineer Squad accidentally lost during unload of 12th Engr Rgt /2\r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
+      "fillColor": "red",
       "fillOpacity": 1.0
     },
     {
@@ -2431,8 +2431,8 @@
       "html": "24th JAAF AF Bn  is located at Batan Island(85,70).\r\nSighting report: 2 Japanese ships at 85,70 near Batan Island  , Moving East \r\nSighting report: 3 Japanese ships at 85,70 near Batan Island  , Moving East \r\nSighting report: 2 Japanese ships at 85,70 near Batan Island  , Moving East \r\nJapanese forces CAPTURE Batan Island !!!\r\nPBY-4 Catalina sighting report: 5 Japanese ships at 85,70 near Batan Island  , Moving East\r\nPBY-4 Catalina sighting report: 2 Japanese ships at 85,70 near Batan Island  , Moving East\r\nPBY-4 Catalina sighting report: 8 Japanese ships at 85,70 near Batan Island  , Moving East\r\nAmphibious TF 90 offshore of Batan Island\r\nAmphibious TF 96 offshore of Batan Island\r\nJapanese forces CAPTURE Batan Island !!!\r\nAmphibious Assault at Batan Island (85,70)\r\n \r\nTF 90 troops unloading over beach at Batan Island, 85,70\r\n \r\nJapanese ground losses:\r\n      24 casualties reported\r\n         Squads: 1 destroyed, 0 disabled\r\n         Non Combat: 0 destroyed, 0 disabled\r\n         Engineers: 0 destroyed, 0 disabled\r\n \r\n17 troops of a SNLF Squad accidentally lost during unload of Sasebo 1st SNLF \r\n \r\n \r\n\r\nAmphibious Assault at Batan Island (85,70)\r\n \r\nTF 96 troops unloading over beach at Batan Island, 85,70\r\n \r\n \r\n \r\n\r\n \r\nGround combat at Batan Island (85,70)\r\n \r\nJapanese Shock attack\r\n \r\nAttacking force 2153 troops, 29 guns, 0 vehicles, Assault Value = 68\r\n \r\nDefending force 0 troops, 0 guns, 0 vehicles, Assault Value = 0\r\n \r\nJapanese adjusted assault: 44 \r\n \r\nAllied adjusted defense: 1 \r\n \r\nJapanese assault odds: 44 to 1 (fort level 0) \r\n \r\nJapanese forces CAPTURE Batan Island !!!\r\n \r\nCombat modifiers\r\nAttacker: shock(+)\r\n \r\nAssaulting units:\r\n    Sasebo 1st SNLF \r\n    24th JAAF AF Bn \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1722
+      "fillColor": "red",
+      "fillOpacity": 1.0
     },
     {
       "x": 90,
@@ -2440,8 +2440,8 @@
       "html": "1st Ind. Engineer Regiment is located at Babeldaob(90,97).\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 84,
@@ -2449,8 +2449,8 @@
       "html": "1st Formosa Inf. Regiment is located at Pescadores(84,63).\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 91,
@@ -2458,8 +2458,8 @@
       "html": "32nd Division is located at Suchow(91,47).\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 58,
@@ -2467,8 +2467,8 @@
       "html": "II./124th Infantry Battalion is planning for an attack on Kuching.\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 114,
@@ -2476,8 +2476,8 @@
       "html": "13th Border Defense Fortress is located at 114,31.\r\n",
       "radius": 0.1,
       "color": "blue",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "blue",
+      "fillOpacity": 0.1
     },
     {
       "x": 52,
@@ -2485,8 +2485,8 @@
       "html": "TF 420 sighted by H6K4 Mavis at 52,82 near Mersing\r\nTF 420 sighted by H6K4 Mavis at 52,82 near Mersing\r\nH6K4 Mavis has spotted a Repulse class BC at 52,82\r\nMorning Air attack on TF, near Mersing at 52,82\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 23 NM, estimated altitude 19,000 feet.\r\nEstimated time to target is 7 minutes\r\n \r\nJapanese aircraft\r\n      G4M1 Betty x 13\r\n \r\nJapanese aircraft losses\r\n      G4M1 Betty: 11 damaged\r\n \r\nAllied Ships\r\n      BC Repulse, Torpedo hits 2,  on fire\r\n      BB Prince of Wales\r\n \r\nAircraft Attacking:\r\n      13 x G4M1 Betty launching torpedoes at 200 feet\r\n               Naval Attack:  1 x 18in Type 91 Torpedo\r\n \r\n \r\n \r\n\r\nMorning Air attack on TF, near Mersing at 52,82\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid detected at 116 NM, estimated altitude 26,000 feet.\r\nEstimated time to target is 46 minutes\r\n \r\nJapanese aircraft\r\n      G3M2 Nell x 18\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nJapanese aircraft losses\r\n      G3M2 Nell: 8 damaged\r\n      G3M2 Nell: 1 destroyed by flak\r\n \r\nAllied aircraft losses\r\n      Walrus II: 1 destroyed\r\n \r\nAllied Ships\r\n      BC Repulse, Torpedo hits 4, and is sunk\r\n      BB Prince of Wales, Torpedo hits 5, and is sunk\r\n \r\nAircraft Attacking:\r\n       8 x G3M2 Nell launching torpedoes at 200 feet\r\n               Naval Attack:  1 x 18in Type 91 Torpedo\r\n       8 x G3M2 Nell launching torpedoes at 200 feet\r\n               Naval Attack:  1 x 18in Type 91 Torpedo\r\n \r\n \r\n \r\n\r\nAfternoon Air attack on TF, near Mersing at 52,82\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 20 NM, estimated altitude 28,000 feet.\r\nEstimated time to target is 7 minutes\r\n \r\nJapanese aircraft\r\n      G3M2 Nell x 6\r\n \r\nAllied aircraft\r\n      Buffalo I x 2\r\n \r\nJapanese aircraft losses\r\n      G3M2 Nell: 3 destroyed, 1 damaged\r\n \r\nNo Allied losses\r\n \r\nAllied Ships\r\n      DD Vampire\r\n \r\nAircraft Attacking:\r\n       3 x G3M2 Nell launching torpedoes at 200 feet\r\n               Naval Attack:  1 x 18in Type 91 Torpedo\r\n \r\nCAP engaged:\r\nNo.243 Sqn RAF with Buffalo I (2 airborne, 0 on standby, 0 scrambling)\r\n      (2 plane(s) diverted to support CAP in hex.)\r\n      2 plane(s) intercepting now.\r\n      Group patrol altitude is 10000 , scrambling fighters between 0 and 10000.\r\n      Raid is overhead\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.2274
+      "fillColor": "red",
+      "fillOpacity": 1.0
     },
     {
       "x": 180,
@@ -2494,8 +2494,8 @@
       "html": "TF 417 sighted by Japanese Dive Bomber at 180,107 near Pearl Harbor\r\nAG Antares detects Japanese Fighter Bomber at 180,107 near Pearl Harbor\r\nAG Antares sights Japanese Carrier Aircraft at 180,107 near Pearl Harbor\r\nDD Ward detects Japanese Torpedo Bomber at 180,107 near Pearl Harbor\r\nCA Minneapolis arrives at Pearl Harbor\r\nDMS Hovey arrives at Pearl Harbor\r\nDMS Boggs arrives at Pearl Harbor\r\nDMS Lamberton arrives at Pearl Harbor\r\nDMS Chandler arrives at Pearl Harbor\r\nD Det USN Port Svc  arrives at Pearl Harbor\r\nObservers report something caught in nets at Pearl Harbor\r\nObservers report floating object near beach at Pearl Harbor\r\nObservers sight object in channel at Pearl Harbor\r\nObservers report something caught in nets at Pearl Harbor\r\nObservers report floating object near beach at Pearl Harbor\r\nTF 417 sighted by Japanese Dive Bomber at 180,107 near Pearl Harbor\r\nAG Antares detects Japanese Fighter Bomber at 180,107 near Pearl Harbor\r\nAG Antares sights Japanese Carrier Aircraft at 180,107 near Pearl Harbor\r\nDD Ward detects Japanese Torpedo Bomber at 180,107 near Pearl Harbor\r\nD3A1 Val has spotted a Admiralen Batch II class DD at 180,107\r\nD3A1 Val has spotted a Wickes DD class DD at 180,107\r\nD3A1 Val has spotted a Djember class AMc at 180,107\r\nD3A1 Val has spotted an Allied PT at 180,107\r\nD3A1 Val has spotted a Capella class AG at 180,107\r\nD3A1 Val has spotted an Allied AMc at 180,107\r\nD3A1 Val has spotted an Allied DD at 180,107\r\nD3A1 Val has spotted a Straits/Rahman class AMc at 180,107\r\nD3A1 Val has spotted an Allied AMc at 180,107\r\nMorning Air attack on Pearl Harbor , at 180,107 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid detected at 92 NM, estimated altitude 9,000 feet.\r\nEstimated time to target is 30 minutes\r\n \r\nJapanese aircraft\r\n      A6M2 Zero x 68\r\n      B5N2 Kate x 144\r\n      D3A1 Val x 126\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nJapanese aircraft losses\r\n      A6M2 Zero: 9 damaged\r\n      A6M2 Zero: 12 destroyed by flak\r\n      B5N2 Kate: 9 damaged\r\n      B5N2 Kate: 1 destroyed by flak\r\n      D3A1 Val: 10 damaged\r\n      D3A1 Val: 2 destroyed by flak\r\n \r\nAllied aircraft losses\r\n      PBY-5 Catalina: 136 damaged\r\n      PBY-5 Catalina: 21 destroyed on ground\r\n      B-17E Fortress: 19 damaged\r\n      B-17E Fortress: 1 destroyed on ground\r\n      B-18A Bolo: 49 damaged\r\n      B-18A Bolo: 6 destroyed on ground\r\n      B-17D Fortress: 38 damaged\r\n      B-17D Fortress: 3 destroyed on ground\r\n      P-36A Mohawk: 39 damaged\r\n      P-36A Mohawk: 2 destroyed on ground\r\n      SBD-1 Dauntless: 32 damaged\r\n      SBD-1 Dauntless: 2 destroyed on ground\r\n      P-40B Warhawk: 70 damaged\r\n      P-40B Warhawk: 10 destroyed on ground\r\n      A-20A Havoc: 34 damaged\r\n      A-20A Havoc: 5 destroyed on ground\r\n      R3D-2: 1 destroyed on ground\r\n      C-33: 1 destroyed on ground\r\n      O-47A: 11 damaged\r\n      O-47A: 1 destroyed on ground\r\n      F4F-3 Wildcat: 6 damaged\r\n      F4F-3 Wildcat: 2 destroyed on ground\r\n      SOC-1 Seagull: 1 destroyed\r\n      OS2U-3 Kingfisher: 4 destroyed\r\n \r\nAllied Ships\r\n      AV Wright\r\n      CM Oglala\r\n      BB Oklahoma, Bomb hits 2, Torpedo hits 5, and is sunk\r\n      BB Nevada, Bomb hits 5, Torpedo hits 4,  on fire,  heavy damage\r\n      BB Tennessee, Bomb hits 3, Torpedo hits 5, and is sunk\r\n      CL Helena, Bomb hits 3, Torpedo hits 1,  heavy fires,  heavy damage\r\n      BB Arizona, Bomb hits 9, Torpedo hits 4,  on fire,  heavy damage\r\n      BB Pennsylvania, Bomb hits 7, Torpedo hits 4,  on fire,  heavy damage\r\n      BB Maryland, Bomb hits 11, Torpedo hits 6,  heavy fires,  heavy damage\r\n      BB West Virginia, Torpedo hits 4, and is sunk\r\n      AV Curtiss, Bomb hits 1, Torpedo hits 1,  on fire,  heavy damage\r\n      AV Tangier\r\n      CL Phoenix, Bomb hits 2,  heavy fires\r\n      xAK Laida\r\n      BB California, Bomb hits 1, Torpedo hits 4,  on fire,  heavy damage\r\n      AVP Swan, Bomb hits 1, and is sunk\r\n      DD Worden, Bomb hits 1,  on fire\r\n      DM Tracy, Bomb hits 1,  heavy fires,  heavy damage\r\n      CL Raleigh, Bomb hits 2, Torpedo hits 1,  on fire,  heavy damage\r\n      PC Tiger, Bomb hits 1,  heavy fires,  heavy damage\r\n      CA New Orleans, Bomb hits 2, Torpedo hits 1,  heavy fires\r\n      CL Honolulu, Bomb hits 1, Torpedo hits 1,  on fire,  heavy damage\r\n      CL St. Louis, Bomb hits 1, Torpedo hits 1,  on fire\r\n      CA San Francisco, Torpedo hits 1,  heavy damage\r\n      PT-25, Torpedo hits 1, and is sunk\r\n      CL Detroit, Bomb hits 1, Torpedo hits 3, and is sunk\r\n      DD Schley, Torpedo hits 1, and is sunk\r\n      AR Medusa, Bomb hits 1\r\n      AR Vestal, Bomb hits 1,  on fire\r\n      SS Narwhal, Torpedo hits 1,  heavy damage\r\n      AD Rigel, Torpedo hits 1,  on fire,  heavy damage\r\n      AD Whitney, Bomb hits 1,  on fire\r\n      AM Tern, Bomb hits 1,  on fire,  heavy damage\r\n      DM Montgomery, Torpedo hits 1, and is sunk\r\n      DD Cassin, Torpedo hits 1, and is sunk\r\n      AVD Thornton, Bomb hits 1,  heavy fires,  heavy damage\r\n      DM Ramsay, Torpedo hits 1, and is sunk\r\n \r\nAllied ground losses:\r\n      10 casualties reported\r\n         Squads: 0 destroyed, 0 disabled\r\n         Non Combat: 0 destroyed, 2 disabled\r\n         Engineers: 0 destroyed, 1 disabled\r\n \r\nRepair Shipyard hits 7\r\nAirbase hits 35\r\nAirbase supply hits 4\r\nRunway hits 97\r\n \r\nAircraft Attacking:\r\n       8 x D3A1 Val releasing from 2000'\r\n               City Attack:  1 x 250 kg GP Bomb\r\n      14 x B5N2 Kate bombing from 9000 feet\r\n               City Attack:  1 x 800 kg AP Bomb\r\n      10 x A6M2 Zero bombing from 100 feet\r\n               Airfield Attack:  2 x 60 kg GP Bomb\r\n       8 x D3A1 Val releasing from 3000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n      26 x B5N2 Kate launching torpedoes at 200 feet\r\n               Port Attack:  1 x 18in Type 91 Torpedo\r\n       4 x A6M2 Zero sweeping at 15000 feet\r\n      12 x D3A1 Val releasing from 3000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n      18 x B5N2 Kate launching torpedoes at 200 feet\r\n               Port Attack:  1 x 18in Type 91 Torpedo\r\n       4 x A6M2 Zero sweeping at 15000 feet\r\n       8 x D3A1 Val releasing from 1000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n      18 x B5N2 Kate launching torpedoes at 200 feet\r\n               Port Attack:  1 x 18in Type 91 Torpedo\r\n       1 x D3A1 Val releasing from 2000'\r\n               Airfield Attack:  1 x 250 kg GP Bomb\r\n      27 x B5N2 Kate bombing from 9000 feet\r\n               Airfield Attack:  2 x 250 kg GP Bomb\r\n      13 x D3A1 Val releasing from 3000'\r\n               Airfield Attack:  1 x 250 kg GP Bomb\r\n      27 x B5N2 Kate bombing from 9000 feet\r\n               Airfield Attack:  2 x 250 kg GP Bomb\r\n      13 x B5N2 Kate bombing from 9000 feet\r\n               Port Attack:  1 x 800 kg AP Bomb\r\n       8 x A6M2 Zero bombing from 100 feet\r\n               Airfield Attack:  2 x 60 kg GP Bomb\r\n       4 x D3A1 Val releasing from 3000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n      13 x D3A1 Val releasing from 2000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n       9 x D3A1 Val releasing from 2000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n      10 x D3A1 Val releasing from 3000'\r\n               Airfield Attack:  1 x 250 kg GP Bomb\r\n      14 x D3A1 Val releasing from 1000'\r\n               Airfield Attack:  1 x 250 kg GP Bomb\r\n       1 x D3A1 Val releasing from 1000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n       1 x D3A1 Val releasing from 10000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n      12 x D3A1 Val releasing from 1000'\r\n               Airfield Attack:  1 x 250 kg GP Bomb\r\n       4 x D3A1 Val releasing from 2000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n       4 x D3A1 Val releasing from 1000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n       4 x D3A1 Val releasing from 2000'\r\n               Port Attack:  1 x 250 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.7859
+      "fillColor": "red",
+      "fillOpacity": 1.0
     },
     {
       "x": 79,
@@ -2503,8 +2503,8 @@
       "html": "CA Houston observes Japanese Float Plane at 79,84 near Iloilo\r\nCA Houston observes Japanese Float Plane at 79,84 near Iloilo\r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.126
     },
     {
       "x": 77,
@@ -2512,8 +2512,8 @@
       "html": "TF 436 snooped by Japanese Fighter Bomber at 77,61 near Hong Kong\r\nJapanese Torpedo Bomber sighted over Hong Kong \r\nTF 436 snooped by Japanese Fighter Bomber at 77,61 near Hong Kong\r\nE13A1 Jake has spotted a BPB 60' MTB class MTB at 77,61\r\nMorning Air attack on Hong Kong Fortress, at 77,61 (Hong Kong)\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid detected at 107 NM, estimated altitude 15,000 feet.\r\nEstimated time to target is 37 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 7\r\n      Ki-36 Ida x 27\r\n      Ki-44 Tojo x 6\r\n      Ki-51 Sonia x 24\r\n \r\nJapanese aircraft losses\r\n      Ki-36 Ida: 1 damaged\r\n      Ki-51 Sonia: 1 destroyed by flak\r\n \r\nAircraft Attacking:\r\n      24 x Ki-51 Sonia bombing from 15000 feet\r\n               Ground Attack:  4 x 50 kg GP Bomb\r\n      27 x Ki-36 Ida bombing from 15000 feet\r\n               Ground Attack:  4 x 30 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.874
     },
     {
       "x": 79,
@@ -2521,8 +2521,8 @@
       "html": "Japanese Aircraft sighted over Clark Field \r\nKi-15-II Babs sighted over Clark Field \r\nC5M2 Babs sighted over Clark Field \r\nJapanese Aircraft sighted over Clark Field \r\nJapanese Recon sighted over Clark Field \r\nMorning Air attack on Clark Field , at 79,76 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid detected at 69 NM, estimated altitude 26,000 feet.\r\nEstimated time to target is 24 minutes\r\n \r\nJapanese aircraft\r\n      A6M2 Zero x 19\r\n      G3M2 Nell x 9\r\n      G4M1 Betty x 27\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      P-40B Warhawk: 3 destroyed, 3 damaged\r\n      P-40B Warhawk: 1 destroyed on ground\r\n      B-17D Fortress: 5 damaged\r\n      B-17D Fortress: 1 destroyed on ground\r\n      P-35A: 1 damaged\r\n      P-35A: 1 destroyed on ground\r\n \r\nAllied ground losses:\r\n      4 casualties reported\r\n         Squads: 0 destroyed, 0 disabled\r\n         Non Combat: 0 destroyed, 1 disabled\r\n         Engineers: 0 destroyed, 0 disabled\r\n \r\nAirbase hits 2\r\nRunway hits 15\r\n \r\nAircraft Attacking:\r\n      27 x G4M1 Betty bombing from 23000 feet\r\n               Airfield Attack:  2 x 250 kg GP Bomb,  4 x 60 kg GP Bomb\r\n       9 x G3M2 Nell bombing from 23000 feet\r\n               Airfield Attack:  2 x 250 kg GP Bomb,  4 x 60 kg GP Bomb\r\n \r\nCAP engaged:\r\n24th PG/20th PS with P-40B Warhawk (0 airborne, 0 on standby, 0 scrambling)\r\n      0 plane(s) not yet engaged, 7 being recalled, 0 out of immediate contact.\r\n      Group patrol altitude is 10000 , scrambling fighters between 0 and 10000.\r\n      Raid is overhead\r\n \r\nTraining flight from 24th PG/20th PS has been caught up in attack\r\n \r\n \r\n\r\nMorning Air attack on Clark Field , at 79,76 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid detected at 55 NM, estimated altitude 27,000 feet.\r\nEstimated time to target is 21 minutes\r\n \r\nJapanese aircraft\r\n      A6M2 Zero x 6\r\n      G3M2 Nell x 27\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      P-35A: 1 damaged\r\n \r\nAirbase hits 1\r\nRunway hits 2\r\n \r\nAircraft Attacking:\r\n      27 x G3M2 Nell bombing from 23000 feet\r\n               Airfield Attack:  2 x 250 kg GP Bomb,  4 x 60 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.2176
+      "fillColor": "red",
+      "fillOpacity": 1.0
     },
     {
       "x": 78,
@@ -2530,8 +2530,8 @@
       "html": "Japanese Fighter Bomber sighted over Iba \r\nJapanese Torpedo Bomber sighted over Iba \r\nJapanese Aircraft sighted over Iba \r\nC5M2 Babs sighted over Iba \r\nMorning Air attack on Iba , at 78,75 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 39 NM, estimated altitude 26,000 feet.\r\nEstimated time to target is 13 minutes\r\n \r\nJapanese aircraft\r\n      A6M2 Zero x 37\r\n      G4M1 Betty x 54\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      P-40E Warhawk: 2 damaged\r\n \r\nAirbase hits 1\r\nAirbase supply hits 1\r\nRunway hits 4\r\n \r\nAircraft Attacking:\r\n      27 x G4M1 Betty bombing from 23000 feet\r\n               Airfield Attack:  2 x 250 kg GP Bomb,  4 x 60 kg GP Bomb\r\n      27 x G4M1 Betty bombing from 23000 feet\r\n               Airfield Attack:  2 x 250 kg GP Bomb,  4 x 60 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.839
     },
     {
       "x": 82,
@@ -2539,8 +2539,8 @@
       "html": "Japanese Aircraft sighted over Tuguegarao \r\nMorning Air attack on Tuguegarao , at 82,74 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 16 NM, estimated altitude 15,000 feet.\r\nEstimated time to target is 4 minutes\r\n \r\nJapanese aircraft\r\n      Ki-48-Ib Lily x 27\r\n \r\nNo Japanese losses\r\n \r\nAirbase hits 2\r\nAirbase supply hits 1\r\nRunway hits 13\r\n \r\nAircraft Attacking:\r\n      27 x Ki-48-Ib Lily bombing from 15000 feet\r\n               Airfield Attack:  4 x 100 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.485
     },
     {
       "x": 82,
@@ -2548,8 +2548,8 @@
       "html": "Japanese Aircraft sighted over Aparri \r\nJapanese Aircraft sighted over Aparri \r\nJapanese Fighter sighted over Aparri \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.119
     },
     {
       "x": 81,
@@ -2557,8 +2557,8 @@
       "html": "Japanese Torpedo Bomber sighted over Laoag \r\nJapanese Aircraft sighted over Laoag \r\nJapanese Aircraft sighted over Laoag \r\nJapanese Fighter sighted over Laoag \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.161
     },
     {
       "x": 49,
@@ -2566,8 +2566,8 @@
       "html": "Japanese Aircraft sighted over Georgetown \r\nMorning Air attack on Georgetown , at 49,74 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 6 NM, estimated altitude 20,000 feet.\r\nEstimated time to target is 1 minutes\r\n \r\nJapanese aircraft\r\n      Ki-21-IIa Sally x 27\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      Buffalo I: 11 damaged\r\n      Buffalo I: 1 destroyed on ground\r\n      Blenheim IF: 1 damaged\r\n      Blenheim IF: 1 destroyed on ground\r\n \r\nAirbase hits 5\r\nAirbase supply hits 1\r\nRunway hits 13\r\n \r\nAircraft Attacking:\r\n      27 x Ki-21-IIa Sally bombing from 15000 feet * \r\n               Airfield Attack:  2 x 250 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.697
     },
     {
       "x": 49,
@@ -2575,8 +2575,8 @@
       "html": "Japanese Fighter Bomber sighted over Alor Star \r\nJapanese Aircraft sighted over Alor Star \r\nMorning Air attack on Alor Star , at 49,73 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 15 NM, estimated altitude 3,200 feet.\r\nEstimated time to target is 4 minutes\r\n \r\nJapanese aircraft\r\n      Ki-21-IIa Sally x 52\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nJapanese aircraft losses\r\n      Ki-21-IIa Sally: 1 damaged\r\n \r\nAllied aircraft losses\r\n      Blenheim I: 18 damaged\r\n      Blenheim I: 1 destroyed on ground\r\n \r\nAllied ground losses:\r\n      5 casualties reported\r\n         Squads: 0 destroyed, 0 disabled\r\n         Non Combat: 0 destroyed, 1 disabled\r\n         Engineers: 0 destroyed, 0 disabled\r\n \r\nAirbase hits 7\r\nAirbase supply hits 9\r\nRunway hits 43\r\n \r\nAircraft Attacking:\r\n      21 x Ki-21-IIa Sally bombing from 1200 feet * \r\n               Airfield Attack:  2 x 250 kg GP Bomb\r\n      31 x Ki-21-IIa Sally bombing from 1200 feet * \r\n               Airfield Attack:  2 x 250 kg GP Bomb\r\n \r\n \r\n \r\n\r\nMorning Air attack on Alor Star , at 49,73 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 13 NM, estimated altitude 17,000 feet.\r\nEstimated time to target is 3 minutes\r\n \r\nJapanese aircraft\r\n      Ki-43-Ib Oscar x 6\r\n      Ki-48-Ib Lily x 25\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nNo Japanese losses\r\n \r\nAllied aircraft losses\r\n      Blenheim I: 4 damaged\r\n \r\nAirbase hits 6\r\nAirbase supply hits 4\r\nRunway hits 10\r\n \r\nAircraft Attacking:\r\n      25 x Ki-48-Ib Lily bombing from 15000 feet\r\n               Airfield Attack:  4 x 100 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1568
+      "fillColor": "red",
+      "fillOpacity": 1.0
     },
     {
       "x": 84,
@@ -2584,8 +2584,8 @@
       "html": "Japanese Aircraft sighted over Babuyan \r\nJapanese Aircraft sighted over Babuyan \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 54,
@@ -2593,8 +2593,8 @@
       "html": "Japanese Recon sighted over Tavoy \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 51,
@@ -2602,8 +2602,8 @@
       "html": "Japanese Torpedo Bomber sighted over Victoria Point \r\nJapanese Fighter sighted over Victoria Point \r\nJapanese Torpedo Bomber sighted over Victoria Point \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.155
     },
     {
       "x": 55,
@@ -2611,8 +2611,8 @@
       "html": "Japanese Aircraft sighted over Moulmein \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 72,
@@ -2620,8 +2620,8 @@
       "html": "Ki-51 Sonia sighted over Pakhoi \r\nJapanese Light Bomber sighted over Pakhoi \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 78,
@@ -2629,8 +2629,8 @@
       "html": "Japanese Torpedo Bomber sighted over Bataan \r\nSOC-1 Seagull reports turbulence in water at 78, 77 near Bataan\r\nProvisional GMC Grp  arrives at Bataan\r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.151
     },
     {
       "x": 88,
@@ -2638,8 +2638,8 @@
       "html": "Japanese Torpedo Bomber sighted over Chengchow \r\nJapanese Aircraft sighted over Chengchow \r\nMorning Air attack on 40th Chinese Corps, at 88,44 (Chengchow)\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 2 NM, estimated altitude 19,000 feet.\r\nEstimated time to target is 0 minutes\r\n \r\nJapanese aircraft\r\n      Ki-30 Ann x 12\r\n \r\nNo Japanese losses\r\n \r\nAircraft Attacking:\r\n      12 x Ki-30 Ann bombing from 15000 feet\r\n               Ground Attack:  1 x 250 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.482
     },
     {
       "x": 84,
@@ -2647,8 +2647,8 @@
       "html": "Japanese Aircraft sighted over Camiguin \r\nKi-15-II Babs sighted over Camiguin \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 84,
@@ -2656,8 +2656,8 @@
       "html": "Japanese Aircraft sighted over Itbayat Island \r\nJapanese Fighter Bomber sighted over Itbayat Island \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.102
     },
     {
       "x": 79,
@@ -2665,8 +2665,8 @@
       "html": "Japanese Recon sighted over Manila Bay Defenses \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 82,
@@ -2674,8 +2674,8 @@
       "html": "Japanese Aircraft sighted over Changsha \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 53,
@@ -2683,8 +2683,8 @@
       "html": "SS KXI followed by Japanese Torpedo Bomber at 53,76 near Kota Bharu\r\nSS KXI followed by Japanese Torpedo Bomber at 53,76 near Kota Bharu\r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.138
     },
     {
       "x": 158,
@@ -2692,8 +2692,8 @@
       "html": "Sighting report: 1 Japanese ship at 158,91 near Midway Island  , Moving Southeast \r\nSighting report: 2 Japanese ships at 158,91 near Midway Island  , Moving Southeast \r\nPBY-4 Catalina sighting report: Japanese AO at 158,91 near Midway Island  , Moving Southeast \r\nPBY-4 Catalina sighting report: 2 Japanese ships at 158,91 near Midway Island  , Moving Southeast\r\nJapanese Ships Bombarding Midway Island\r\nNaval bombardment of Midway Island at 158,91\r\n \r\nAllied aircraft\r\n      no flights\r\n \r\nAllied aircraft losses\r\n      PBY-4 Catalina: 2 damaged\r\n \r\nJapanese Ships\r\n      DD Ushio\r\n      DD Sazanami\r\n \r\nAirbase hits 9\r\nAirbase supply hits 1\r\nRunway hits 20\r\n \r\nDD Ushio firing at Midway Island \r\nDD Sazanami firing at Midway Island \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.744
     },
     {
       "x": 84,
@@ -2701,8 +2701,8 @@
       "html": "PBY-4 Catalina from VP-101  has spotted a Japanese PG at 84,65\r\nPBY-4 Catalina sighting report: 2 Japanese ships at 84,65 near Takao  , Moving Southwest\r\nPBY-4 Catalina sighting report: 3 Japanese ships at 84,65 near Takao  , Moving Southwest\r\nPBY-4 Catalina sighting report: 3 Japanese ships at 84,65 near Takao  , Moving Southwest\r\nPBY-4 Catalina has spotted a Japanese PG at 84,65\r\nPBY-4 Catalina sighting report: 6 Japanese ships at 84,65 near Takao  , Moving Southwest\r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.475
     },
     {
       "x": 80,
@@ -2710,8 +2710,8 @@
       "html": "Ki-46-I Dinah sighted over Bayombong \r\nKi-46-II Dinah sighted over Bayombong \r\nJapanese Aircraft sighted over Bayombong \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.122
     },
     {
       "x": 81,
@@ -2719,8 +2719,8 @@
       "html": "Japanese Fighter Bomber sighted over Changteh \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 50,
@@ -2728,8 +2728,8 @@
       "html": "Japanese Aircraft sighted over Johore Bahru \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 49,
@@ -2737,8 +2737,8 @@
       "html": "Japanese Aircraft sighted over Kuala Lumpur \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 79,
@@ -2746,8 +2746,8 @@
       "html": "Japanese Fighter Bomber sighted over Batangas \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 51,
@@ -2755,8 +2755,8 @@
       "html": "Japanese Torpedo Bomber sighted over Kuantan \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 49,
@@ -2764,8 +2764,8 @@
       "html": "Japanese Fighter Bomber sighted over Taiping \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 51,
@@ -2773,8 +2773,8 @@
       "html": "Japanese Aircraft sighted over Mersing \r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 90,
@@ -2782,8 +2782,8 @@
       "html": "xAP Maori arrives at Sydney\r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 29,
@@ -2791,8 +2791,8 @@
       "html": "TK Inge Maersk arrives at Colombo\r\n2nd Ceylon H AA Regiment arrives at Colombo\r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 227,
@@ -2800,8 +2800,8 @@
       "html": "VP-71 arrives at Eastern USA\r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 227,
@@ -2809,8 +2809,8 @@
       "html": "204th Coast AA Regiment arrives at San Diego\r\nC Det USN Port Svc  arrives at San Diego\r\n",
       "radius": 0.1,
       "color": "yellow",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "yellow",
+      "fillOpacity": 0.1
     },
     {
       "x": 50,
@@ -2818,8 +2818,8 @@
       "html": "No.700 Sqn  FAA S-1 planes diverting to Singapore\r\nNo.700 Sqn FAA S-5 planes diverting to Singapore\r\nASW attack near Singapore  at 50,84\r\n \r\nJapanese Ships\r\n      SS I-121\r\n \r\nSS I-121 is sighted by escort\r\nI-121 bottoming out ....\r\nEscort abandons search for sub\r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.273
     },
     {
       "x": 183,
@@ -2827,8 +2827,8 @@
       "html": "PBY-5 Catalina sighting report: 2 Japanese ships at 183,106 near Lahaina  \r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.1
     },
     {
       "x": 68,
@@ -2836,8 +2836,8 @@
       "html": "PBY-4 Catalina sighting report: Japanese xAK at 68,65 near Samah  , Moving Southwest \r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.1
     },
     {
       "x": 85,
@@ -2845,8 +2845,8 @@
       "html": "PBY-4 Catalina sighting report: 4 Japanese ships at 85,84 near Catbalogan  , Moving Northwest\r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.1
     },
     {
       "x": 90,
@@ -2854,8 +2854,8 @@
       "html": "PBY-4 Catalina sighting report: Japanese CL at 90,96 near Babeldaob  , Moving West \r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.1
     },
     {
       "x": 83,
@@ -2863,8 +2863,8 @@
       "html": "PBY-4 Catalina sighting report: 4 Japanese ships at 83,65 near Takao  , Moving Southwest\r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.1
     },
     {
       "x": 111,
@@ -2872,8 +2872,8 @@
       "html": "6 x Blenheim IV from No.34 Sqn RAF flight failed to link up returning to base\r\n",
       "radius": 0.1,
       "color": "orange",
-      "fillColor": null,
-      "fillOpacity": 0.0
+      "fillColor": "orange",
+      "fillOpacity": 0.1
     },
     {
       "x": 79,
@@ -2881,8 +2881,8 @@
       "html": "Morning Air attack on Davao , at 79,91 \r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 10 NM, estimated altitude 6,000 feet.\r\nEstimated time to target is 4 minutes\r\n \r\nJapanese aircraft\r\n      B5N1 Kate x 12\r\n \r\nNo Japanese losses\r\n \r\nAllied Ships\r\n      AVD William B. Preston, Bomb hits 2,  heavy fires,  heavy damage\r\n      xAKL Montanes, Bomb hits 1,  heavy fires,  heavy damage\r\n      xAKL Mauban, Bomb hits 2,  heavy fires,  heavy damage\r\n \r\nAircraft Attacking:\r\n      12 x B5N1 Kate bombing from 5000 feet * \r\n               Port Attack:  2 x 250 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.58
     },
     {
       "x": 88,
@@ -2890,8 +2890,8 @@
       "html": "Morning Air attack on 16th Construction Regiment, at 88,56 (Chuhsien)\r\n \r\nWeather in hex: Clear sky\r\n \r\nRaid spotted at 19 NM, estimated altitude 19,000 feet.\r\nEstimated time to target is 6 minutes\r\n \r\nJapanese aircraft\r\n      Ki-27b Nate x 8\r\n      Ki-51 Sonia x 12\r\n \r\nNo Japanese losses\r\n \r\nAircraft Attacking:\r\n      12 x Ki-51 Sonia bombing from 15000 feet\r\n               Ground Attack:  4 x 50 kg GP Bomb\r\n \r\n \r\n \r\n\r\n",
       "radius": 0.1,
       "color": "red",
-      "fillColor": "#f03",
-      "fillOpacity": 0.1
+      "fillColor": "red",
+      "fillOpacity": 0.424
     }
   ],
   "side_initial": "a",
