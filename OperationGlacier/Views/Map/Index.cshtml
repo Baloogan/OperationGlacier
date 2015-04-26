@@ -85,12 +85,12 @@
         var link = '/OperationGlacier/GameData/' + side + '/' + date + '/Turn.json';
         var turn = $.getJSON(link).done(function (data) {
 
-            var aars = data.AfterActionReports;
+            var aars = data.Hexes;
             $.each(aars, function(i, item) {
 
                 var x = item.x;
                 var y = item.y;
-                var report = item.report;
+                var report = item.html;
                 var lon = 0.6563 * x + 15.962;
                 var lat = -0.593 * y - 15.499;
                 if (isEven(y)) {

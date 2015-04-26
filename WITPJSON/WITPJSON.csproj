@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AfterActionReport.cs" />
     <Compile Include="CombatEvent.cs" />
+    <Compile Include="Hex.cs" />
     <Compile Include="OperationReport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

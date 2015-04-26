@@ -34,8 +34,9 @@ namespace WITPJSON
         public List<AfterActionReport> AfterActionReports;
         public List<SigInt> SigInts;
         public List<OperationReport> OperationReports;
+        public List<Hex> Hexes;
 
-        public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year-1900, date.Month, date.Day); } }
+        public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year - 1900, date.Month, date.Day); } }
 
         public string output_directory { get { return Path.Combine(Program.output_directory, side.ToString(), date_string); } }
         public string output_filename { get { return Path.Combine(this.output_directory, "Turn.json"); } }
@@ -65,6 +66,23 @@ namespace WITPJSON
             ParseAfterActionReports();
             ParseSigInts();
             ParseOperationReports();
+            CompileHexes();
+        }
+        private void CompileHexes()
+        {
+            Hexes = new List<Hex>();
+            foreach (var aar in AfterActionReports)
+            {
+                var a = Hexes.FirstOrDefault(hex => hex.x == aar.x && hex.y == aar.y);
+                if (a == null)
+                {
+                    Hexes.Add(new Hex() {html = aar.report, x = aar.x, y = aar.y});
+                }
+                else
+                {
+                    a.html = a.html + aar.report;
+                }
+            }
         }
         private void ParseCombatEvents()
         {
@@ -75,9 +93,9 @@ namespace WITPJSON
         private void ParseAfterActionReports()
         {
             AfterActionReports = new List<AfterActionReport>();
-            
+
             string file = File.ReadAllText(AfterActionReports_filename);
-            
+
             var reports = file.Split(
                 new string[] { "--------------------------------------------------------------------------------\r\n" },
                 StringSplitOptions.None).Skip(1);
