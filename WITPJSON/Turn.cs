@@ -71,48 +71,119 @@ namespace WITPJSON
         private void CompileHexes()
         {
             Hexes = new List<Hex>();
+            foreach (var s in SigInts)
+            {
+                var a = Hexes.FirstOrDefault(hex => hex.x == s.x && hex.y == s.y);
+                if (a == null)
+                {
+                    a = new Hex() { html = s.report + "\r\n", x = s.x, y = s.y };
+                    Hexes.Add(a);
+                }
+                else
+                {
+                    a.html = a.html + s.report + "\r\n";
+                }
+                a.color = "blue";
+                a.radius = 0.1F;
+            }
+            
+            foreach (var s in OperationReports)
+            {
+                var a = Hexes.FirstOrDefault(hex => hex.x == s.x && hex.y == s.y);
+                if (a == null)
+                {
+                    a = new Hex() { html = s.report + "\r\n", x = s.x, y = s.y };
+                    Hexes.Add(a);
+                }
+                else
+                {
+                    a.html = a.html + s.report + "\r\n";
+                }
+                a.color = "yellow";
+                a.radius = 0.1F;
+            }
+            foreach (var s in CombatEvents)
+            {
+                var a = Hexes.FirstOrDefault(hex => hex.x == s.x && hex.y == s.y);
+                if (a == null)
+                {
+                    a = new Hex() { html = s.report + "\r\n", x = s.x, y = s.y };
+                    Hexes.Add(a);
+                }
+                else
+                {
+                    a.html = a.html + s.report + "\r\n";
+                }
+                a.color = "orange";
+                a.radius = 0.1F;
+            }
             foreach (var aar in AfterActionReports)
             {
                 var a = Hexes.FirstOrDefault(hex => hex.x == aar.x && hex.y == aar.y);
                 if (a == null)
                 {
-                    Hexes.Add(new Hex() {html = aar.report, x = aar.x, y = aar.y});
+                    a = new Hex() { html = aar.report + "\r\n", x = aar.x, y = aar.y };
+                    Hexes.Add(a);
                 }
                 else
                 {
-                    a.html = a.html + aar.report;
+                    a.html = a.html + aar.report + "\r\n";
                 }
+                a.color = "red";
+                a.fillOpacity = a.html.Length / 10000.0F;
+                if (a.fillOpacity < 0.1) a.fillOpacity = 0.1F;
+                if (a.fillOpacity > 1) a.fillOpacity = 1;
+                a.fillColor = "#f03";
+                a.radius = 0.1F;
             }
+
+            Hexes = Hexes.Where(h => h.x != -1 && h.y != -1).ToList();
         }
         private void ParseCombatEvents()
         {
             CombatEvents = new List<CombatEvent>();
 
+            string file = File.ReadAllText(CombatEvents_filename);
+
+            var reports = file.Split(
+                new string[] { "\r\n" },
+                StringSplitOptions.None).Skip(2);
+
+            CombatEvents = reports
+                .Where(s => !s.Contains(" arrives at ")) //this is duplicated in operation reports, WITP being WITP :/
+                .Select(s => new CombatEvent(s)).ToList();
         }
 
         private void ParseAfterActionReports()
         {
-            AfterActionReports = new List<AfterActionReport>();
-
             string file = File.ReadAllText(AfterActionReports_filename);
 
             var reports = file.Split(
                 new string[] { "--------------------------------------------------------------------------------\r\n" },
                 StringSplitOptions.None).Skip(1);
 
-            AfterActionReports.AddRange(reports.Select(s => new AfterActionReport(s)));
-
+            AfterActionReports = reports.Select(s => new AfterActionReport(s)).ToList();
         }
 
         private void ParseSigInts()
         {
-            SigInts = new List<SigInt>();
+            string file = File.ReadAllText(SigInts_filename);
 
+            var reports = file.Split(
+                new string[] { "\r\n" },
+                StringSplitOptions.None).Skip(2);
+
+            SigInts = reports.Select(s => new SigInt(s)).ToList();
         }
         private void ParseOperationReports()
         {
-            OperationReports = new List<OperationReport>();
+            string file = File.ReadAllText(OperationReports_filename);
 
+            var reports = file.Split(
+                new string[] { "\r\n" },
+                StringSplitOptions.None).Skip(2);
+
+            OperationReports = reports.Select(s => new OperationReport(s)).ToList();
         }
         public void Render()
         {

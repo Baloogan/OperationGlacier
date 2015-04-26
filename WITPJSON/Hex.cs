@@ -10,5 +10,12 @@ namespace WITPJSON
     {
         public int x, y;
         public string html;
+        public float radius;
+
+        public string color;
+
+        public string fillColor;
+        public float fillOpacity;
+
     }
 }

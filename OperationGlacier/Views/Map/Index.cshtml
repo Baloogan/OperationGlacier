@@ -96,10 +96,10 @@
                 if (isEven(y)) {
                     lon = lon - 0.6563 / 2.0;
                 }
-                var circle = L.circle([lat, lon], 0.1, {
-                    color: 'red',
-                    fillColor: '#f03',
-                    fillOpacity: 0.5
+                var circle = L.circle([lat, lon], item.radius, {
+                    color: item.color,
+                    fillColor: item.fillColor,
+                    fillOpacity: item.fillOpacity,
                 }).addTo(map);
                 circle.bindPopup('<pre><span class="inner-pre" style="font-size: 11px;line-height: 10px;">' + report + '</span></pre>', { maxWidth: 500, maxHeight: 300, });
             });
