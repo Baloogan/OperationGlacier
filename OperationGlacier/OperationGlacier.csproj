@@ -184,6 +184,7 @@
     <Content Include="Content\drop-theme-arrows.css" />
     <Content Include="Content\drop-theme-basic.css" />
     <Content Include="Content\drop-theme-hubspot-popovers.css" />
+    <Content Include="Content\jquery.dynatable.css" />
     <Content Include="Content\leaflet.css" />
     <Content Include="Content\welcome.css" />
     <Content Include="favicon.ico" />
@@ -195,9 +196,11 @@
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\drop.js" />
     <Content Include="Scripts\drop.min.js" />
+    <Content Include="Scripts\handlebars-v3.0.1.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.dynatable.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />

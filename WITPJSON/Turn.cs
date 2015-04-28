@@ -31,15 +31,6 @@ namespace WITPJSON
 
         public DateTime date;
 
-        [JsonIgnore]
-        public List<CombatEvent> CombatEvents;
-        [JsonIgnore]
-        public List<AfterActionReport> AfterActionReports;
-        [JsonIgnore]
-        public List<SigInt> SigInts;
-        [JsonIgnore]
-        public List<OperationReport> OperationReports;
-
         public List<Hex> Hexes;
 
         [JsonIgnore]
@@ -93,21 +84,20 @@ namespace WITPJSON
         {
             this.side = side;
             this.date = date;
-            ParseCombatEvents();
-            ParseAfterActionReports();
-            ParseSigInts();
-            ParseOperationReports();
-            ParseUnits();
+            Units = new List<Unit>();
+            Units.AddRange(ParseCombatEvents());
+            Units.AddRange(ParseAfterActionReports());
+            Units.AddRange(ParseSigInts());
+            Units.AddRange(ParseOperationReports());
+            Units.AddRange(ParseUnits());
             CompileHexes();
         }
 
-        private void ParseUnits()
+        private IEnumerable<Unit> ParseUnits()
         {
             if (Directory.Exists(tracker_directory))
-                Units = Unit.ParseUnits(tracker_directory);
-            else
-                Units = new List<Unit>();
-
+                return Unit.ParseUnits(tracker_directory);
+            return Enumerable.Empty<Unit>();
         }
         private Hex getHex(int x, int y)
         {
@@ -143,26 +133,26 @@ namespace WITPJSON
 
             }
 
-            foreach (var s in SigInts)
+            foreach (var s in Units.Where(u => u.type == Unit.Type.SigInt))
             {
                 var a = getHex(s.x, s.y);
                 a.html = a.html + s.report + "\r\n";
                 a.color = "orange";
             }
 
-            foreach (var s in OperationReports)
+            foreach (var s in Units.Where(u => u.type == Unit.Type.OperationalReport))
             {
                 var a = getHex(s.x, s.y);
                 a.html = a.html + s.report + "\r\n";
                 a.color = "orange";
             }
-            foreach (var s in CombatEvents)
+            foreach (var s in Units.Where(u => u.type == Unit.Type.CombatEvent))
             {
                 var a = getHex(s.x, s.y);
                 a.html = a.html + s.report + "\r\n";
                 a.color = "orange";
             }
-            foreach (var s in AfterActionReports)
+            foreach (var s in Units.Where(u => u.type == Unit.Type.AfterAction))
             {
                 var a = getHex(s.x, s.y);
                 a.html = a.html + s.report + "\r\n";
@@ -182,22 +172,39 @@ namespace WITPJSON
             }
 
         }
-        private void ParseCombatEvents()
+        private IEnumerable<Unit> ParseCombatEvents()
         {
-            CombatEvents = new List<CombatEvent>();
-
             string file = File.ReadAllText(CombatEvents_filename);
 
             var reports = file.Split(
                 new string[] { "\r\n" },
                 StringSplitOptions.None).Skip(2);
 
-            CombatEvents = reports
-                .Where(s => !s.Contains(" arrives at ")) //this is duplicated in operation reports, WITP being WITP :/
-                .Select(s => new CombatEvent(s)).ToList();
+            var a = reports.Where(s => !s.Contains(" arrives at "));
+            //this is duplicated in operation reports, WITP being WITP :/
+            foreach (var b in a)
+            {
+                Unit u = new Unit();
+                u.report = b;
+                u.type = Unit.Type.CombatEvent;
+
+                var myRegex = new Regex(@"(\d+),(\d+)");
+                var m = myRegex.Match(BaseToHex.ReplaceMatches(b));
+                if (m.Success)
+                {
+                    u.x = int.Parse(m.Groups[1].Value);
+                    u.y = int.Parse(m.Groups[2].Value);
+                }
+                else
+                {
+                    u.x = -1;
+                    u.y = -1;
+                }
+                yield return u;
+            }
         }
 
-        private void ParseAfterActionReports()
+        private IEnumerable<Unit> ParseAfterActionReports()
         {
             string file = File.ReadAllText(AfterActionReports_filename);
 
@@ -205,10 +212,23 @@ namespace WITPJSON
                 new string[] { "--------------------------------------------------------------------------------\r\n" },
                 StringSplitOptions.None).Skip(1);
 
-            AfterActionReports = reports.Select(s => new AfterActionReport(s)).ToList();
+            foreach (var a in reports)
+            {
+                Unit u = new Unit();
+                u.type = Unit.Type.AfterAction;
+                u.report = a;
+                var lines = a.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+                lines = lines.Where(s => s != " ").ToArray();
+                var myRegex = new Regex(@"(\d+),(\d+)");
+                var m = myRegex.Match(lines[0]);
+                u.x = int.Parse(m.Groups[1].Value);
+                u.y = int.Parse(m.Groups[2].Value);
+                yield return u;
+            }
+
         }
 
-        private void ParseSigInts()
+        private IEnumerable<Unit> ParseSigInts()
         {
             string file = File.ReadAllText(SigInts_filename);
 
@@ -216,9 +236,27 @@ namespace WITPJSON
                 new string[] { "\r\n" },
                 StringSplitOptions.None).Skip(2);
 
-            SigInts = reports.Select(s => new SigInt(s)).ToList();
+            foreach (var a in reports)
+            {
+                Unit u = new Unit();
+                u.type = Unit.Type.SigInt;
+                u.report = a;
+                var myRegex = new Regex(@"(\d+),(\d+)");
+                var m = myRegex.Match(BaseToHex.ReplaceMatches(a));
+                if (m.Success)
+                {
+                    u.x = int.Parse(m.Groups[1].Value);
+                    u.y = int.Parse(m.Groups[2].Value);
+                }
+                else
+                {
+                    u.x = -1;
+                    u.y = -1;
+                }
+                yield return u;
+            }
         }
-        private void ParseOperationReports()
+        private IEnumerable<Unit> ParseOperationReports()
         {
             string file = File.ReadAllText(OperationReports_filename);
 
@@ -226,7 +264,25 @@ namespace WITPJSON
                 new string[] { "\r\n" },
                 StringSplitOptions.None).Skip(2);
 
-            OperationReports = reports.Select(s => new OperationReport(s)).ToList();
+            foreach (var a in reports)
+            {
+                Unit u = new Unit();
+                u.type = Unit.Type.OperationalReport;
+                u.report = a;
+                var myRegex = new Regex(@"(\d+),(\d+)");
+                var m = myRegex.Match(BaseToHex.ReplaceMatches(a));
+                if (m.Success)
+                {
+                    u.x = int.Parse(m.Groups[1].Value);
+                    u.y = int.Parse(m.Groups[2].Value);
+                }
+                else
+                {
+                    u.x = -1;
+                    u.y = -1;
+                }
+                yield return u;
+            }
         }
         public void Render()
         {

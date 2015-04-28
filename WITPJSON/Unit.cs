@@ -13,21 +13,27 @@ namespace WITPJSON
     {
         public enum Type
         {
-            Aircraft,
-            AirframeProd,
+            //Aircraft,
+            //AirframeProd,
             AirGroup,
-            AirLoss,
+            //AirLoss,
             Base,
-            Device,
-            Engine,
-            LCU,
-            Leader,
-            Pilot,
-            ShipClass,
-            ShipUpgrade,
-            SunkShip,
+            //Device,
+            //Engine,
+            //LCU,
+            //Leader,
+            //Pilot,
+            //ShipClass,
+            //ShipUpgrade,
+            Ship,
+            //SunkShip,
             TF,
-            VP
+            //VP,
+
+            SigInt,
+            CombatEvent,
+            AfterAction,
+            OperationalReport
         }
 
         public Dictionary<string, string> row;
@@ -39,11 +45,8 @@ namespace WITPJSON
         public string location;
         public string color;
         public int owner;
-        public string report
-        {
-            get { return name; }
-        }
-
+        public string report;
+        
         private static IEnumerable<Unit> ParseUnitsFromCSV(Type type, string filename)
         {
             using (Microsoft.VisualBasic.FileIO.TextFieldParser parser = new TextFieldParser(filename))
@@ -97,15 +100,12 @@ namespace WITPJSON
                 }
             }
         }
-        internal static List<Unit> ParseUnits(string directory)
+        internal static IEnumerable<Unit> ParseUnits(string directory)
         {
             //bases
             var bases = ParseUnitsFromCSV(Type.Base, Path.Combine(directory, "Bases.csv"));
             var air_groups = ParseUnitsFromCSV(Type.AirGroup, Path.Combine(directory, "Airgroups.csv"));
-            var a = new List<Unit>();
-            a.AddRange(bases);
-            a.AddRange(air_groups);
-            return a;
+            return bases.Concat(air_groups);
         }
 
     }
