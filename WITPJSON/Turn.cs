@@ -105,6 +105,8 @@ namespace WITPJSON
         {
             if (Directory.Exists(tracker_directory))
                 Units = Unit.ParseUnits(tracker_directory);
+            else
+                Units = new List<Unit>();
 
         }
         private Hex getHex(int x, int y)
@@ -112,43 +114,47 @@ namespace WITPJSON
             var a = Hexes.FirstOrDefault(hex => hex.x == x && hex.y == y);
             if (a == null)
             {
-                a = new Hex() {x = x, y = y};
+                a = new Hex() { x = x, y = y };
                 Hexes.Add(a);
                 return a;
             }
             else
-            {
                 return a;
-            }
         }
         private void CompileHexes()
         {
             Hexes = new List<Hex>();
 
-            if (Units != null)
-            {
-                foreach (var s in Units)
-                {
-                    var a = getHex(s.x, s.y);
-                    a.html = a.html + s.report + "\r\n";
 
-                    a.color = "black";
-                        
-                    
-                }
+            foreach (var s in Units.Where(u => u.type == Unit.Type.Base))
+            {
+                var a = getHex(s.x, s.y);
+                a.html = a.html + s.report + "\r\n";
+                if (s.owner == 0) a.color = "red";
+                if (s.owner == 1) a.color = "blue";
+
             }
+            foreach (var s in Units.Where(u => u.type == Unit.Type.AirGroup))
+            {
+                var a = getHex(s.x, s.y);
+                a.html = a.html + s.report + "\r\n";
+                if (side == Side.Allies) a.color = "blue";
+                if (side == Side.Japan) a.color = "red";
+
+            }
+
             foreach (var s in SigInts)
             {
                 var a = getHex(s.x, s.y);
                 a.html = a.html + s.report + "\r\n";
-                a.color = "blue";
+                a.color = "orange";
             }
 
             foreach (var s in OperationReports)
             {
                 var a = getHex(s.x, s.y);
                 a.html = a.html + s.report + "\r\n";
-                a.color = "yellow";
+                a.color = "orange";
             }
             foreach (var s in CombatEvents)
             {
@@ -160,7 +166,7 @@ namespace WITPJSON
             {
                 var a = getHex(s.x, s.y);
                 a.html = a.html + s.report + "\r\n";
-                a.color = "red";
+                a.color = "orange";
 
             }
 
