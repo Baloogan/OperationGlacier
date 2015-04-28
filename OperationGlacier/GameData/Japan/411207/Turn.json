@@ -9,7 +9,8 @@
       "radius": 0.1,
       "color": "blue",
       "fillColor": "blue",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 33,
@@ -18,7 +19,8 @@
       "radius": 0.1,
       "color": "blue",
       "fillColor": "blue",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 86,
@@ -27,7 +29,8 @@
       "radius": 0.1,
       "color": "blue",
       "fillColor": "blue",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 81,
@@ -36,7 +39,8 @@
       "radius": 0.1,
       "color": "blue",
       "fillColor": "blue",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 82,
@@ -45,7 +49,8 @@
       "radius": 0.1,
       "color": "blue",
       "fillColor": "blue",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 82,
@@ -54,7 +59,8 @@
       "radius": 0.1,
       "color": "blue",
       "fillColor": "blue",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 77,
@@ -63,7 +69,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 50,
@@ -72,7 +79,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.15
+      "fillOpacity": 0.15,
+      "Units": []
     },
     {
       "x": 70,
@@ -81,7 +89,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 110,
@@ -90,7 +99,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 95,
@@ -99,7 +109,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 52,
@@ -108,7 +119,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 68,
@@ -117,7 +129,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 90,
@@ -126,7 +139,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 89,
@@ -135,7 +149,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 180,
@@ -144,7 +159,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 111,
@@ -153,7 +169,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 51,
@@ -162,7 +179,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 106,
@@ -171,7 +189,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.102
+      "fillOpacity": 0.102,
+      "Units": []
     },
     {
       "x": 104,
@@ -180,7 +199,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 101,
@@ -189,7 +209,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 134,
@@ -198,7 +219,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 90,
@@ -207,7 +229,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 51,
@@ -216,7 +239,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 158,
@@ -225,7 +249,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.646
+      "fillOpacity": 0.646,
+      "Units": []
     },
     {
       "x": 84,
@@ -234,7 +259,8 @@
       "radius": 0.1,
       "color": "orange",
       "fillColor": "orange",
-      "fillOpacity": 0.55
+      "fillOpacity": 0.55,
+      "Units": []
     },
     {
       "x": 85,
@@ -243,7 +269,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 85,
@@ -252,7 +279,8 @@
       "radius": 0.1,
       "color": "orange",
       "fillColor": "orange",
-      "fillOpacity": 0.112
+      "fillOpacity": 0.112,
+      "Units": []
     },
     {
       "x": 83,
@@ -261,7 +289,8 @@
       "radius": 0.1,
       "color": "orange",
       "fillColor": "orange",
-      "fillOpacity": 0.277
+      "fillOpacity": 0.277,
+      "Units": []
     },
     {
       "x": 64,
@@ -270,7 +299,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 51,
@@ -279,7 +309,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 51,
@@ -288,7 +319,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 78,
@@ -297,7 +329,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 51,
@@ -306,7 +339,8 @@
       "radius": 0.1,
       "color": "yellow",
       "fillColor": "yellow",
-      "fillOpacity": 0.142
+      "fillOpacity": 0.142,
+      "Units": []
     },
     {
       "x": 79,
@@ -315,7 +349,8 @@
       "radius": 0.1,
       "color": "orange",
       "fillColor": "orange",
-      "fillOpacity": 0.1
+      "fillOpacity": 0.1,
+      "Units": []
     },
     {
       "x": 78,
@@ -324,7 +359,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.687
+      "fillOpacity": 0.687,
+      "Units": []
     },
     {
       "x": 79,
@@ -333,7 +369,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 79,
@@ -342,7 +379,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.472
+      "fillOpacity": 0.472,
+      "Units": []
     },
     {
       "x": 82,
@@ -351,7 +389,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.44
+      "fillOpacity": 0.44,
+      "Units": []
     },
     {
       "x": 49,
@@ -360,7 +399,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 1.0
+      "fillOpacity": 1.0,
+      "Units": []
     },
     {
       "x": 88,
@@ -369,7 +409,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.579
+      "fillOpacity": 0.579,
+      "Units": []
     },
     {
       "x": 49,
@@ -378,7 +419,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.61
+      "fillOpacity": 0.61,
+      "Units": []
     },
     {
       "x": 88,
@@ -387,7 +429,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.424
+      "fillOpacity": 0.424,
+      "Units": []
     },
     {
       "x": 136,
@@ -396,8 +439,8 @@
       "radius": 0.1,
       "color": "red",
       "fillColor": "red",
-      "fillOpacity": 0.87
+      "fillOpacity": 0.87,
+      "Units": []
     }
-  ],
-  "side_initial": "j"
+  ]
 }

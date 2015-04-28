@@ -43,6 +43,9 @@ namespace WITPJSON
         public List<Hex> Hexes;
 
         [JsonIgnore]
+        public List<Unit> Units;
+
+        [JsonIgnore]
         public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year - 1900, date.Month, date.Day); } }
 
         [JsonIgnore]
@@ -94,71 +97,75 @@ namespace WITPJSON
             ParseAfterActionReports();
             ParseSigInts();
             ParseOperationReports();
+            ParseUnits();
             CompileHexes();
+        }
+
+        private void ParseUnits()
+        {
+            if (Directory.Exists(tracker_directory))
+                Units = Unit.ParseUnits(tracker_directory);
+
+        }
+        private Hex getHex(int x, int y)
+        {
+            var a = Hexes.FirstOrDefault(hex => hex.x == x && hex.y == y);
+            if (a == null)
+            {
+                a = new Hex() {x = x, y = y};
+                Hexes.Add(a);
+                return a;
+            }
+            else
+            {
+                return a;
+            }
         }
         private void CompileHexes()
         {
             Hexes = new List<Hex>();
+
+            if (Units != null)
+            {
+                foreach (var s in Units)
+                {
+                    var a = getHex(s.x, s.y);
+                    a.html = a.html + s.report + "\r\n";
+
+                    a.color = "black";
+                        
+                    
+                }
+            }
             foreach (var s in SigInts)
             {
-                var a = Hexes.FirstOrDefault(hex => hex.x == s.x && hex.y == s.y);
-                if (a == null)
-                {
-                    a = new Hex() { html = s.report + "\r\n", x = s.x, y = s.y };
-                    Hexes.Add(a);
-                }
-                else
-                {
-                    a.html = a.html + s.report + "\r\n";
-                }
+                var a = getHex(s.x, s.y);
+                a.html = a.html + s.report + "\r\n";
                 a.color = "blue";
             }
 
             foreach (var s in OperationReports)
             {
-                var a = Hexes.FirstOrDefault(hex => hex.x == s.x && hex.y == s.y);
-                if (a == null)
-                {
-                    a = new Hex() { html = s.report + "\r\n", x = s.x, y = s.y };
-                    Hexes.Add(a);
-                }
-                else
-                {
-                    a.html = a.html + s.report + "\r\n";
-                }
+                var a = getHex(s.x, s.y);
+                a.html = a.html + s.report + "\r\n";
                 a.color = "yellow";
             }
             foreach (var s in CombatEvents)
             {
-                var a = Hexes.FirstOrDefault(hex => hex.x == s.x && hex.y == s.y);
-                if (a == null)
-                {
-                    a = new Hex() { html = s.report + "\r\n", x = s.x, y = s.y };
-                    Hexes.Add(a);
-                }
-                else
-                {
-                    a.html = a.html + s.report + "\r\n";
-                }
+                var a = getHex(s.x, s.y);
+                a.html = a.html + s.report + "\r\n";
                 a.color = "orange";
             }
-            foreach (var aar in AfterActionReports)
+            foreach (var s in AfterActionReports)
             {
-                var a = Hexes.FirstOrDefault(hex => hex.x == aar.x && hex.y == aar.y);
-                if (a == null)
-                {
-                    a = new Hex() { html = aar.report + "\r\n", x = aar.x, y = aar.y };
-                    Hexes.Add(a);
-                }
-                else
-                {
-                    a.html = a.html + aar.report + "\r\n";
-                }
+                var a = getHex(s.x, s.y);
+                a.html = a.html + s.report + "\r\n";
                 a.color = "red";
 
             }
 
             Hexes = Hexes.Where(h => h.x != -1 && h.y != -1).ToList();
+
             foreach (var a in Hexes)
             {
                 a.radius = 0.1F;
@@ -167,6 +174,7 @@ namespace WITPJSON
                 if (a.fillOpacity > 1) a.fillOpacity = 1;
                 a.fillColor = a.color;
             }
+
         }
         private void ParseCombatEvents()
         {

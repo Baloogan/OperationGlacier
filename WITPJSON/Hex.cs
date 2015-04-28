@@ -17,5 +17,7 @@ namespace WITPJSON
         public string fillColor;
         public float fillOpacity;
 
+        public List<Unit> Units = new List<Unit>();
+
     }
 }
