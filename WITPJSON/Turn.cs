@@ -19,6 +19,7 @@ namespace WITPJSON
 
         public Side side;
 
+        [JsonIgnore]
         public string side_initial
         {
             get
@@ -30,17 +31,40 @@ namespace WITPJSON
 
         public DateTime date;
 
+        [JsonIgnore]
         public List<CombatEvent> CombatEvents;
+        [JsonIgnore]
         public List<AfterActionReport> AfterActionReports;
+        [JsonIgnore]
         public List<SigInt> SigInts;
+        [JsonIgnore]
         public List<OperationReport> OperationReports;
+
         public List<Hex> Hexes;
 
+        [JsonIgnore]
         public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year - 1900, date.Month, date.Day); } }
 
+        [JsonIgnore]
+        public string tracker_directory
+        {
+            get
+            {
+                if (side == Side.Allies)
+                    return Path.Combine(Program.allies_tracker_directory, date_string);
+                else if (side == Side.Japan)
+                    return Path.Combine(Program.japan_tracker_directory, date_string);
+                else
+                    throw new NotImplementedException();
+            }
+        }
+
+        [JsonIgnore]
         public string output_directory { get { return Path.Combine(Program.output_directory, side.ToString(), date_string); } }
+        [JsonIgnore]
         public string output_filename { get { return Path.Combine(this.output_directory, "Turn.json"); } }
 
+        [JsonIgnore]
         public string archive_directory
         {
             get
@@ -53,9 +77,13 @@ namespace WITPJSON
                     throw new NotImplementedException();
             }
         }
+        [JsonIgnore]
         public string CombatEvents_filename { get { return Path.Combine(archive_directory, string.Format("Combat_Events_{0}.txt", date_string)); } }
+        [JsonIgnore]
         public string AfterActionReports_filename { get { return Path.Combine(archive_directory, string.Format("combatreport_{0}.txt", date_string)); } }
+        [JsonIgnore]
         public string SigInts_filename { get { return Path.Combine(archive_directory, string.Format("{0}sigint_{1}.txt", side_initial, date_string)); } }
+        [JsonIgnore]
         public string OperationReports_filename { get { return Path.Combine(archive_directory, string.Format("{0}operationsreport_{1}.txt", side_initial, date_string)); } }
 
         public Turn(Side side, DateTime date)
@@ -85,7 +113,7 @@ namespace WITPJSON
                 }
                 a.color = "blue";
             }
-            
+
             foreach (var s in OperationReports)
             {
                 var a = Hexes.FirstOrDefault(hex => hex.x == s.x && hex.y == s.y);
@@ -127,7 +155,7 @@ namespace WITPJSON
                     a.html = a.html + aar.report + "\r\n";
                 }
                 a.color = "red";
-                
+
             }
 
             Hexes = Hexes.Where(h => h.x != -1 && h.y != -1).ToList();

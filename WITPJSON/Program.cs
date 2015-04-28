@@ -11,7 +11,9 @@ namespace WITPJSON
     class Program
     {
         internal static string allies_archive_directory = null;
+        internal static string allies_tracker_directory = null;
         internal static string japan_archive_directory = null;
+        internal static string japan_tracker_directory = null;
         internal static string output_directory = null;
 
         static void Main(string[] args)
@@ -22,6 +24,8 @@ namespace WITPJSON
                 case "STONEBURNER":
                     allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
+                    allies_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\AlliesTracker";
+                    japan_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\JapanTracker";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
                     break;
                 case "WIN-QPCSS4CO8PJ":
@@ -36,6 +40,11 @@ namespace WITPJSON
 
             ClearOutputDirectory();
 
+            ProcessTurns();
+
+        }
+        static void ProcessTurns()
+        {
             var allies_days = GetDays(allies_archive_directory);
             var allies_turns = allies_days.Select(t => new Turn(Turn.Side.Allies, t));
             var japan_days = GetDays(japan_archive_directory);
@@ -44,7 +53,6 @@ namespace WITPJSON
             {
                 turn.Render();
             }
-
         }
         static IEnumerable<DateTime> GetDays(string directory)
         {
@@ -67,7 +75,7 @@ namespace WITPJSON
             }
             catch (Exception e)
             {
-                
+
             }
             Directory.CreateDirectory(output_directory);
         }
