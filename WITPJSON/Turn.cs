@@ -85,20 +85,16 @@ namespace WITPJSON
             this.side = side;
             this.date = date;
             Units = new List<Unit>();
-            Units.AddRange(ParseCombatEvents());
-            Units.AddRange(ParseAfterActionReports());
-            Units.AddRange(ParseSigInts());
-            Units.AddRange(ParseOperationReports());
-            Units.AddRange(ParseUnits());
+            Units.AddRange(Unit.ParseCombatEvents(CombatEvents_filename));
+            Units.AddRange(Unit.ParseAfterActionReports(AfterActionReports_filename));
+            Units.AddRange(Unit.ParseSigInts(SigInts_filename));
+            Units.AddRange(Unit.ParseOperationReports(OperationReports_filename));
+            
+            Units.AddRange(Unit.ParseUnits(tracker_directory));
             CompileHexes();
         }
 
-        private IEnumerable<Unit> ParseUnits()
-        {
-            if (Directory.Exists(tracker_directory))
-                return Unit.ParseUnits(tracker_directory);
-            return Enumerable.Empty<Unit>();
-        }
+        
         private Hex getHex(int x, int y)
         {
             var a = Hexes.FirstOrDefault(hex => hex.x == x && hex.y == y);
@@ -171,118 +167,6 @@ namespace WITPJSON
                 a.fillColor = a.color;
             }
 
-        }
-        private IEnumerable<Unit> ParseCombatEvents()
-        {
-            string file = File.ReadAllText(CombatEvents_filename);
-
-            var reports = file.Split(
-                new string[] { "\r\n" },
-                StringSplitOptions.None).Skip(2);
-
-            var a = reports.Where(s => !s.Contains(" arrives at "));
-            //this is duplicated in operation reports, WITP being WITP :/
-            foreach (var b in a)
-            {
-                Unit u = new Unit();
-                u.report = b;
-                u.type = Unit.Type.CombatEvent;
-
-                var myRegex = new Regex(@"(\d+),(\d+)");
-                var m = myRegex.Match(BaseToHex.ReplaceMatches(b));
-                if (m.Success)
-                {
-                    u.x = int.Parse(m.Groups[1].Value);
-                    u.y = int.Parse(m.Groups[2].Value);
-                }
-                else
-                {
-                    u.x = -1;
-                    u.y = -1;
-                }
-                yield return u;
-            }
-        }
-
-        private IEnumerable<Unit> ParseAfterActionReports()
-        {
-            string file = File.ReadAllText(AfterActionReports_filename);
-
-            var reports = file.Split(
-                new string[] { "--------------------------------------------------------------------------------\r\n" },
-                StringSplitOptions.None).Skip(1);
-
-            foreach (var a in reports)
-            {
-                Unit u = new Unit();
-                u.type = Unit.Type.AfterAction;
-                u.report = a;
-                var lines = a.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
-                lines = lines.Where(s => s != " ").ToArray();
-                var myRegex = new Regex(@"(\d+),(\d+)");
-                var m = myRegex.Match(lines[0]);
-                u.x = int.Parse(m.Groups[1].Value);
-                u.y = int.Parse(m.Groups[2].Value);
-                yield return u;
-            }
-
-        }
-
-        private IEnumerable<Unit> ParseSigInts()
-        {
-            string file = File.ReadAllText(SigInts_filename);
-
-            var reports = file.Split(
-                new string[] { "\r\n" },
-                StringSplitOptions.None).Skip(2);
-
-            foreach (var a in reports)
-            {
-                Unit u = new Unit();
-                u.type = Unit.Type.SigInt;
-                u.report = a;
-                var myRegex = new Regex(@"(\d+),(\d+)");
-                var m = myRegex.Match(BaseToHex.ReplaceMatches(a));
-                if (m.Success)
-                {
-                    u.x = int.Parse(m.Groups[1].Value);
-                    u.y = int.Parse(m.Groups[2].Value);
-                }
-                else
-                {
-                    u.x = -1;
-                    u.y = -1;
-                }
-                yield return u;
-            }
-        }
-        private IEnumerable<Unit> ParseOperationReports()
-        {
-            string file = File.ReadAllText(OperationReports_filename);
-
-            var reports = file.Split(
-                new string[] { "\r\n" },
-                StringSplitOptions.None).Skip(2);
-
-            foreach (var a in reports)
-            {
-                Unit u = new Unit();
-                u.type = Unit.Type.OperationalReport;
-                u.report = a;
-                var myRegex = new Regex(@"(\d+),(\d+)");
-                var m = myRegex.Match(BaseToHex.ReplaceMatches(a));
-                if (m.Success)
-                {
-                    u.x = int.Parse(m.Groups[1].Value);
-                    u.y = int.Parse(m.Groups[2].Value);
-                }
-                else
-                {
-                    u.x = -1;
-                    u.y = -1;
-                }
-                yield return u;
-            }
         }
         public void Render()
         {

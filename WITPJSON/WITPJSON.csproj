@@ -47,7 +47,6 @@
   <ItemGroup>
     <Compile Include="BaseToHex.cs" />
     <Compile Include="Hex.cs" />
-    <Compile Include="OperationReport.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Turn.cs" />
