@@ -51,6 +51,7 @@ namespace WITPJSON
             var japan_turns = allies_days.Select(t => new Turn(Turn.Side.Japan, t));
             foreach (var turn in allies_turns.Concat(japan_turns))
             {
+                turn.compute();
                 turn.Render();
             }
         }

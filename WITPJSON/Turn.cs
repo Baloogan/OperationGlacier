@@ -59,7 +59,7 @@ namespace WITPJSON
         [JsonIgnore]
         public string output_directory { get { return Path.Combine(Program.output_directory, side.ToString(), date_string); } }
         [JsonIgnore]
-        public string output_filename { get { return Path.Combine(this.output_directory, "Turn.json"); } }
+        public string output_filename { get { return Path.Combine(this.output_directory, "Turn"); } }
 
         [JsonIgnore]
         public string archive_directory
@@ -87,17 +87,25 @@ namespace WITPJSON
         {
             this.side = side;
             this.date = date;
+        }
+        public void compute()
+        {
             Units = new List<Unit>();
             Units.AddRange(Unit.ParseCombatEvents(CombatEvents_filename));
             Units.AddRange(Unit.ParseAfterActionReports(AfterActionReports_filename));
             Units.AddRange(Unit.ParseSigInts(SigInts_filename));
             Units.AddRange(Unit.ParseOperationReports(OperationReports_filename));
             Units.AddRange(Unit.ParseUnits(tracker_directory));
-            
+
             foreach (var u in Units.Where(unit => unit.type == Unit.Type.Ship).ToArray())
             {
-                if (u.location.Contains("TF"))// TODO put ships into tfs
+                if (u.location.Contains("TF")) // TODO put ships into tfs
+                {
+                    Unit parent =
+                        Units.First(unit => unit.type == Unit.Type.TaskForce && unit.id == int.Parse(u.location.Substring(3)));
                     Units.Remove(u);
+                    parent.subunits.Add(u);
+                }
             }
             CompileHexes();
         }
@@ -126,9 +134,21 @@ namespace WITPJSON
         }
         public void Render()
         {
-            var json = Newtonsoft.Json.JsonConvert.SerializeObject(this, Formatting.Indented);
+            //
             Directory.CreateDirectory(output_directory);
-            File.WriteAllText(output_filename, json);
+            //
+            const int parts = 16;
+            List<IEnumerable<Hex>> groups = hexes.Select((hex, i) => new { hex, i })
+                              .GroupBy(x => x.i % parts).Select(x => x.Select(y => y.hex)).ToList();
+            var turns = groups.Select(h => new Turn(side, date) { hexes = h.ToList() })
+                .Select((turn, i) => new { turn, i });
+            foreach (var t in turns)
+            {
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(t.turn, Formatting.None);
+                File.WriteAllText(output_filename + t.i.ToString()+".json", json);
+            }
+
+
         }
     }
 }

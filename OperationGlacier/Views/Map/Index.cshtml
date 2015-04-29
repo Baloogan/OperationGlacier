@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Map";
+    ViewBag.Title = ViewBag.Side + " " + ViewBag.Date;
 }
 @Styles.Render("~/Content/leaflet.css")
 @Styles.Render("~/Content/jquery.dynatable.css")
@@ -97,12 +97,17 @@
 </script>
 <script id="taskforce-template" type="text/x-handlebars-template">
     <div>
-        {{name}} <i>{{row.Label}}</i> <strong>{{row.Mission}}</strong><br />
+        <h3>{{name}}</h3>
+        <i>{{row.Label}}</i> <strong>{{row.Mission}}</strong><br />
     </div>
 </script>
 <script id="ship-template" type="text/x-handlebars-template">
     <div>
-        {{name}}
+        <h4><a href="/OperationGlacier/Unit?Type=Ship&ID={{id}}">{{name}}</a></h4>
+        <strong>Sys/Flt/Eng/Fire/Wep:</strong> {{row.Sys}}/{{row.Flt}}/{{row.Eng}}/{{row.Fire}}/{{row.Weapon}} 
+        <strong>Exp D/N: </strong>{{row.Exp}}
+        <strong>AA/ASW/Torp</strong> {{row.AA}}/{{row.ASW}}/{{row.Torp}}</br>
+        {{row.Nation}} {{row.Class}} {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
     </div>
 </script>
 
@@ -149,133 +154,151 @@
     var lcuIcon = L.icon({
         iconUrl: '/OperationGlacier/Content/map_icons/LCU.png',
     });
+
+    var base_template = Handlebars.compile($("#base-template").html());
+    var lcu_template = Handlebars.compile($("#lcu-template").html());
+    var airgroup_template = Handlebars.compile($("#airgroup-template").html());
+    var taskforces_template = Handlebars.compile($("#taskforce-template").html());
+    var ship_template = Handlebars.compile($("#ship-template").html());
+
+    var sigint_template = Handlebars.compile($("#sigint-template").html());
+    var combatevent_template = Handlebars.compile($("#combatevent-template").html());
+    var afteraction_template = Handlebars.compile($("#afteraction-template").html());
+    var operationalreport_template = Handlebars.compile($("#operationalreport-template").html());
+
+    function load_hexes(data) {
+
+        var hexes = data.hexes;
+
+        $.each(hexes, function (i, hex) {
+
+            var x = hex.x;
+            var y = hex.y;
+            //var report = item.html;
+            var lon = 0.6563 * x + 15.962;
+            var lat = -0.593 * y - 15.499;
+            if (isEven(y)) {
+                lon = lon - 0.6563 / 2.0;
+            }
+            var base = "";
+            var base_tooltip = "";
+            var baseIcon;
+
+            var airbase = "";
+            var airbase_tooltip = "";
+
+            var navalbase = "";
+            var navalbase_tooltip = "";
+
+            var reports = "";
+            var reports_tooltip = "";
+
+            var taskforces = "";
+            var taskforces_tooltip = "";
+
+            var lcus = "";
+            var lcus_tooltip = "";
+
+
+
+            var popupOptions = { maxWidth: 600, maxHeight: 400, };
+            $.each(hex.units, function (i, unit) {
+                //populate htmls via that pretentious lib
+                if (unit.type_str == "AirGroup") {
+                    airbase = airbase + airgroup_template(unit);
+                    airbase_tooltip = airbase_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "Base") {
+                    base = base + base_template(unit);
+                    base_tooltip = base_tooltip + unit.name;
+                    if (unit.owner == 0)
+                        baseIcon = jabaseIcon;
+                    if (unit.owner == 1)
+                        baseIcon = usbaseIcon;
+                } else if (unit.type_str == "TaskForce") {
+                    taskforces = taskforces + taskforces_template(unit);
+                    $.each(unit.subunits, function (i, subunit) {
+                        taskforces = taskforces + ship_template(subunit);
+                    });
+                    taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "Ship") {
+                    //ships in TFs are in TFs, these are ships at ahcnor
+                    navalbase = navalbase + ship_template(unit);
+                    navalbase_tooltip = navalbase_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "LCU") {
+                    lcus = lcus + lcu_template(unit);
+                    lcus_tooltip = lcus_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "SigInt") {
+                    reports = reports + sigint_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report + "\n";
+                } else if (unit.type_str == "CombatEvent") {
+                    reports = reports + combatevent_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report + "\n";
+                } else if (unit.type_str == "AfterAction") {
+                    reports = reports + afteraction_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
+                } else if (unit.type_str == "OperationalReport") {
+                    reports = reports + operationalreport_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report + "\n";
+                }
+            });
+            
+
+
+
+            if (base != "") {
+                L.marker([lat + 0.09, lon - 0.09], { icon: baseIcon, title: base_tooltip })
+                    .addTo(map)
+                    .bindPopup(base, popupOptions);
+            }
+            if (lcus != "") {
+                L.marker([lat - 0.12, lon - 0.23], { icon: lcuIcon, title: lcus_tooltip })
+                    .addTo(map)
+                    .bindPopup(lcus, popupOptions);
+            }
+            if (airbase != "") {
+                L.marker([lat + 0.21, lon + 0.13], { icon: airbaseIcon, title: airbase_tooltip })
+                    .addTo(map)
+                    .bindPopup(airbase, popupOptions);
+            }
+            
+            if (taskforces != "") {
+                L.marker([lat - 0.10, lon + 0.06], { icon: taskforceIcon, title: taskforces_tooltip })
+                    .addTo(map)
+                    .bindPopup(taskforces, popupOptions);
+            }
+            
+            if (navalbase != "") {
+                L.marker([lat + 0.22, lon - 0.25], { icon: navalbaseIcon, title: navalbase_tooltip })
+                    .addTo(map)
+                    .bindPopup(navalbase, popupOptions);
+            }
+            if (reports != "") {
+                L.marker([lat + 0.35, lon - 0.10], { icon: reportIcon, title: reports_tooltip })
+                    .addTo(map)
+                    .bindPopup(reports, popupOptions);
+            }
+            
+        });
+    }
     (function () {
         var side = '@Ajax.JavaScriptStringEncode(ViewBag.Side)';
         var date = '@Ajax.JavaScriptStringEncode(ViewBag.Date)';
-        var link = '/OperationGlacier/GameData/' + side + '/' + date + '/Turn.json';
-        var turn = $.getJSON(link).done(function (data) {
-
-            var hexes = data.hexes;
-
-            var base_template = Handlebars.compile($("#base-template").html());
-            var lcu_template = Handlebars.compile($("#lcu-template").html());
-            var airgroup_template = Handlebars.compile($("#airgroup-template").html());
-            var taskforces_template = Handlebars.compile($("#taskforce-template").html());
-            var ship_template = Handlebars.compile($("#ship-template").html());
-
-            var sigint_template = Handlebars.compile($("#sigint-template").html());
-            var combatevent_template = Handlebars.compile($("#combatevent-template").html());
-            var afteraction_template = Handlebars.compile($("#afteraction-template").html());
-            var operationalreport_template = Handlebars.compile($("#operationalreport-template").html());
-
-            $.each(hexes, function (i, hex) {
-
-                var x = hex.x;
-                var y = hex.y;
-                //var report = item.html;
-                var lon = 0.6563 * x + 15.962;
-                var lat = -0.593 * y - 15.499;
-                if (isEven(y)) {
-                    lon = lon - 0.6563 / 2.0;
-                }
-                var base = "";
-                var base_tooltip = "";
-                var baseIcon;
-
-                var airbase = "";
-                var airbase_tooltip = "";
-
-                var navalbase = "";
-                var navalbase_tooltip = "";
-
-                var reports = "";
-                var reports_tooltip = "";
-
-                var taskforces = "";
-                var taskforces_tooltip = "";
-
-                var lcus = "";
-                var lcus_tooltip = "";
-
-
-
-                var popupOptions = { maxWidth: 600, maxHeight: 400, };
-                $.each(hex.units, function (i, unit) {
-                    //populate htmls via that pretentious lib
-                    if (unit.type_str == "AirGroup") {
-                        airbase = airbase + airgroup_template(unit);
-                        airbase_tooltip = airbase_tooltip + unit.name + "\n";
-                    } else if (unit.type_str == "Base") {
-                        base = base + base_template(unit);
-                        base_tooltip = base_tooltip + unit.name;
-                        if (unit.owner == 0)
-                            baseIcon = jabaseIcon;
-                        if (unit.owner == 1)
-                            baseIcon = usbaseIcon;
-                    } else if (unit.type_str == "TaskForce") {
-                        taskforces = taskforces + taskforces_template(unit);
-                        taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
-                    } else if (unit.type_str == "Ship") {
-                        //ships in TFs are in TFs, these are ships at ahcnor
-                        navalbase = navalbase + ship_template(unit);
-                        navalbase_tooltip = navalbase_tooltip + unit.name + "\n";
-                    } else if (unit.type_str == "LCU") {
-                        lcus = lcus + lcu_template(unit);
-                        lcus_tooltip = lcus_tooltip + unit.name + "\n";
-                    } else if (unit.type_str == "SigInt") {
-                        reports = reports + sigint_template(unit);
-                        reports_tooltip = reports_tooltip + unit.report + "\n";
-                    } else if (unit.type_str == "CombatEvent") {
-                        reports = reports + combatevent_template(unit);
-                        reports_tooltip = reports_tooltip + unit.report + "\n";
-                    } else if (unit.type_str == "AfterAction") {
-                        reports = reports + afteraction_template(unit);
-                        reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
-                    } else if (unit.type_str == "OperationalReport") {
-                        reports = reports + operationalreport_template(unit);
-                        reports_tooltip = reports_tooltip + unit.report + "\n";
-                    }
-                });
-                if (base != "") {
-                    L.marker([lat + 0.09, lon - 0.09], { icon: baseIcon, title: base_tooltip })
-                        .addTo(map)
-                        .bindPopup(base, popupOptions);
-                }
-                if (lcus != "") {
-                    L.marker([lat - 0.12, lon - 0.23], { icon: lcuIcon, title: lcus_tooltip })
-                        .addTo(map)
-                        .bindPopup(lcus, popupOptions);
-                }
-                if (airbase != "") {
-                    L.marker([lat + 0.21, lon + 0.13], { icon: airbaseIcon, title: airbase_tooltip })
-                        .addTo(map)
-                        .bindPopup(airbase, popupOptions);
-                }
-                if (taskforces != "") {
-                    L.marker([lat - 0.10, lon + 0.06], { icon: taskforceIcon, title: taskforces_tooltip })
-                        .addTo(map)
-                        .bindPopup(taskforces, popupOptions);
-                }
-                if (navalbase != "") {
-                    L.marker([lat + 0.22, lon - 0.25], { icon: navalbaseIcon, title: navalbase_tooltip })
-                        .addTo(map)
-                        .bindPopup(navalbase, popupOptions);
-                }
-                if (reports != "") {
-                    L.marker([lat + 0.35, lon - 0.10], { icon: reportIcon, title: reports_tooltip })
-                        .addTo(map)
-                        .bindPopup(reports, popupOptions);
-                }
-                //render code
-                /*var circle = L.circle([lat, lon], item.radius, {
-                    color: item.color,
-                    fillColor: item.fillColor,
-                    fillOpacity: item.fillOpacity,
-                }).addTo(map);*/
-                //L.marker([lat + 0.60 / 2.0, lon], { icon: airbaseIcon }).addTo(map);
-
-                //circle.bindPopup('<pre><span class="inner-pre" style="font-size: 11px;line-height: 10px;">' + report + '</span></pre>', { maxWidth: 500, maxHeight: 300, });
-            });
-        });
+        var link = '/OperationGlacier/GameData/' + side + '/' + date + '/Turn';
+        $.getJSON(link + '0.json').done(load_hexes);
+        $.getJSON(link + '1.json').done(load_hexes);
+        $.getJSON(link + '2.json').done(load_hexes);
+        $.getJSON(link + '3.json').done(load_hexes);
+        $.getJSON(link + '4.json').done(load_hexes);
+        $.getJSON(link + '5.json').done(load_hexes);
+        $.getJSON(link + '6.json').done(load_hexes);
+        $.getJSON(link + '7.json').done(load_hexes);
+        $.getJSON(link + '8.json').done(load_hexes);
+        $.getJSON(link + '9.json').done(load_hexes);
+        $.getJSON(link + '10.json').done(load_hexes);
+        $.getJSON(link + '11.json').done(load_hexes);
+        $.getJSON(link + '12.json').done(load_hexes);
+        $.getJSON(link + '13.json').done(load_hexes);
+        $.getJSON(link + '14.json').done(load_hexes);
+        $.getJSON(link + '15.json').done(load_hexes);
     }).call(this);
 </script>

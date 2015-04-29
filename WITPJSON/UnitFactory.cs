@@ -27,8 +27,14 @@ namespace WITPJSON
                 bool has_owner = header.Contains("Owner");
                 if (type == Type.Ship)
                 {
+                    
                     header[8] = "Cargo1";
+                    header[9] = "Exp";
+                    header[13] = "Planes";
+                    header[14] = "AirSortie";
+                    header[15] = "AirTorps";
                     header[18] = "Cargo2";
+
                 }
                 while (!parser.EndOfData)
                 {
