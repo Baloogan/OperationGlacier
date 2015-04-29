@@ -95,6 +95,17 @@
         {{name}}<br />
     </div>
 </script>
+<script id="taskforce-template" type="text/x-handlebars-template">
+    <div>
+        {{name}} <i>{{row.Label}}</i> <strong>{{row.Mission}}</strong><br />
+    </div>
+</script>
+<script id="ship-template" type="text/x-handlebars-template">
+    <div>
+        {{name}}
+    </div>
+</script>
+
 <script id="sigint-template" type="text/x-handlebars-template">
     <div>
         {{report}}<br />
@@ -107,7 +118,8 @@
 </script>
 <script id="afteraction-template" type="text/x-handlebars-template">
     <div>
-        <pre style="border-style: solid;border-width: 1px;">{{report}}</pre><br />
+        <pre style="border-style: solid; border-width: 1px;">{{report}}</pre>
+        <br />
     </div>
 </script>
 <script id="operationalreport-template" type="text/x-handlebars-template">
@@ -148,6 +160,9 @@
             var base_template = Handlebars.compile($("#base-template").html());
             var lcu_template = Handlebars.compile($("#lcu-template").html());
             var airgroup_template = Handlebars.compile($("#airgroup-template").html());
+            var taskforces_template = Handlebars.compile($("#taskforce-template").html());
+            var ship_template = Handlebars.compile($("#ship-template").html());
+
             var sigint_template = Handlebars.compile($("#sigint-template").html());
             var combatevent_template = Handlebars.compile($("#combatevent-template").html());
             var afteraction_template = Handlebars.compile($("#afteraction-template").html());
@@ -176,8 +191,8 @@
                 var reports = "";
                 var reports_tooltip = "";
 
-
-                var taskforce = "";
+                var taskforces = "";
+                var taskforces_tooltip = "";
 
                 var lcus = "";
                 var lcus_tooltip = "";
@@ -198,7 +213,12 @@
                         if (unit.owner == 1)
                             baseIcon = usbaseIcon;
                     } else if (unit.type_str == "TaskForce") {
+                        taskforces = taskforces + taskforces_template(unit);
+                        taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
                     } else if (unit.type_str == "Ship") {
+                        //ships in TFs are in TFs, these are ships at ahcnor
+                        navalbase = navalbase + ship_template(unit);
+                        navalbase_tooltip = navalbase_tooltip + unit.name + "\n";
                     } else if (unit.type_str == "LCU") {
                         lcus = lcus + lcu_template(unit);
                         lcus_tooltip = lcus_tooltip + unit.name + "\n";
@@ -231,9 +251,18 @@
                         .addTo(map)
                         .bindPopup(airbase, popupOptions);
                 }
-                
+                if (taskforces != "") {
+                    L.marker([lat - 0.10, lon + 0.06], { icon: taskforceIcon, title: taskforces_tooltip })
+                        .addTo(map)
+                        .bindPopup(taskforces, popupOptions);
+                }
+                if (navalbase != "") {
+                    L.marker([lat + 0.22, lon - 0.25], { icon: navalbaseIcon, title: navalbase_tooltip })
+                        .addTo(map)
+                        .bindPopup(navalbase, popupOptions);
+                }
                 if (reports != "") {
-                    L.marker([lat + 0.4, lon - 0.14], { icon: reportIcon, title: reports_tooltip })
+                    L.marker([lat + 0.35, lon - 0.10], { icon: reportIcon, title: reports_tooltip })
                         .addTo(map)
                         .bindPopup(reports, popupOptions);
                 }

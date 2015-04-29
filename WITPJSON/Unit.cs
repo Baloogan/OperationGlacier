@@ -27,7 +27,7 @@ namespace WITPJSON
             //ShipUpgrade,
             Ship,
             //SunkShip,
-            TF,
+            TaskForce,
             //VP,
 
             SigInt,

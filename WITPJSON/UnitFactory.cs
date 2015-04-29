@@ -17,6 +17,7 @@ namespace WITPJSON
         {
             using (Microsoft.VisualBasic.FileIO.TextFieldParser parser = new TextFieldParser(filename))
             {
+
                 parser.HasFieldsEnclosedInQuotes = true;
                 parser.SetDelimiters(new string[] { "," });
                 string[] header = parser.ReadFields();
@@ -24,11 +25,17 @@ namespace WITPJSON
                 bool has_name = header.Contains("Name");
                 bool has_location = header.Contains("Location");
                 bool has_owner = header.Contains("Owner");
+                if (type == Type.Ship)
+                {
+                    header[8] = "Cargo1";
+                    header[18] = "Cargo2";
+                }
                 while (!parser.EndOfData)
                 {
                     string[] fields = parser.ReadFields();
                     Unit u = new Unit();
                     u.type = type;
+                    
                     u.row = header.Zip(fields, (s, s1) => new Tuple<string, string>(s, s1))
                                   .ToDictionary(t => t.Item1, t => t.Item2);
                     if (has_id)
@@ -62,6 +69,10 @@ namespace WITPJSON
                             }
                         }
                     }
+                    if (u.type == Type.TaskForce)
+                    {
+                        u.name = "TF" + (u.id - 8400).ToString();
+                    }
                     yield return u;
                 }
             }
@@ -76,13 +87,18 @@ namespace WITPJSON
             var bases = ParseUnitsFromCSV(Type.Base, Path.Combine(directory, "Bases.csv"));
             var air_groups = ParseUnitsFromCSV(Type.AirGroup, Path.Combine(directory, "Airgroups.csv"));
             var lcus = ParseUnitsFromCSV(Type.LCU, Path.Combine(directory, "LCUs.csv"));
+            var tfs = ParseUnitsFromCSV(Type.TaskForce, Path.Combine(directory, "TFs.csv"));
+            var ships = ParseUnitsFromCSV(Type.Ship, Path.Combine(directory, "Ships.csv"));
 
             var units = Enumerable.Empty<Unit>()
                 .Concat(air_groups)
                 .Concat(lcus)
                 .Concat(bases)
+                .Concat(tfs)
+                .Concat(ships)
                 ;
 
+            
 
             return units;
         }

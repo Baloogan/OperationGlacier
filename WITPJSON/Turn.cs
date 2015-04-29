@@ -93,6 +93,12 @@ namespace WITPJSON
             Units.AddRange(Unit.ParseSigInts(SigInts_filename));
             Units.AddRange(Unit.ParseOperationReports(OperationReports_filename));
             Units.AddRange(Unit.ParseUnits(tracker_directory));
+            
+            foreach (var u in Units.Where(unit => unit.type == Unit.Type.Ship).ToArray())
+            {
+                if (u.location.Contains("TF"))// TODO put ships into tfs
+                    Units.Remove(u);
+            }
             CompileHexes();
         }
 
