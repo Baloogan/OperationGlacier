@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace WITPJSON
@@ -22,9 +23,23 @@ namespace WITPJSON
                             s.Split('|').Last()))
                         .ToList();
             }
+            var myRegex = new Regex(@"(\d+),(\d+)");
+            var m = myRegex.Match(a);
+            if (m.Success)
+                return a;
             foreach (var t in base_hex_defs)
             {
-                a = a.Replace(t.Item1, t.Item2);
+                if (a == t.Item1)
+                {
+                    a = t.Item2;
+                    break;
+                }
+                if (a.Contains(t.Item1 + " "))
+                {
+                    a = a.Replace(t.Item1 + " ", t.Item2);
+                    break;
+                }
+
             }
             return a;
         }

@@ -393,31 +393,7 @@
           "type": 8,
           "location": null,
           "owner": 0,
-          "report": "E13A1 Jake reports suspected submarine at 180, 107 near Pearl Harbor",
-          "type_str": "OperationalReport"
-        },
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 180,
-          "y": 107,
-          "type": 8,
-          "location": null,
-          "owner": 0,
           "report": "E7K2 Alf from Abukuma-1  has spotted a A class class AMc at 180,107",
-          "type_str": "OperationalReport"
-        },
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 180,
-          "y": 107,
-          "type": 8,
-          "location": null,
-          "owner": 0,
-          "report": "E14Y1 Glen reports submarine at 180, 107 near Pearl Harbor",
           "type_str": "OperationalReport"
         },
         {
@@ -513,18 +489,6 @@
           "type": 8,
           "location": null,
           "owner": 0,
-          "report": "Coastwatcher Report: xAK Michael Embiricos reported in port at Hong Kong",
-          "type_str": "OperationalReport"
-        },
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 77,
-          "y": 61,
-          "type": 8,
-          "location": null,
-          "owner": 0,
           "report": "Coastwatcher sighting: 1 Allied ship at 77,61 near Hong Kong   ",
           "type_str": "OperationalReport"
         },
@@ -568,18 +532,6 @@
           "location": null,
           "owner": 0,
           "report": "PBY-4 Catalina has spotted a Fubuki(II) class DD at 158,91",
-          "type_str": "CombatEvent"
-        },
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 158,
-          "y": 91,
-          "type": 6,
-          "location": null,
-          "owner": 0,
-          "report": "Japanese Ships Bombarding Midway Island",
           "type_str": "CombatEvent"
         },
         {
@@ -784,30 +736,6 @@
           "location": null,
           "owner": 0,
           "report": "TF 8 observes Allied Patrol at 85,70 near Batan Island",
-          "type_str": "CombatEvent"
-        },
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 85,
-          "y": 70,
-          "type": 6,
-          "location": null,
-          "owner": 0,
-          "report": "Amphibious TF 90 offshore of Batan Island",
-          "type_str": "CombatEvent"
-        },
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 85,
-          "y": 70,
-          "type": 6,
-          "location": null,
-          "owner": 0,
-          "report": "Amphibious TF 96 offshore of Batan Island",
           "type_str": "CombatEvent"
         },
         {
@@ -1168,18 +1096,6 @@
           "location": null,
           "owner": 0,
           "report": "TF 85 shadowed by Allied Float Plane at 51,75 near Kota Bharu",
-          "type_str": "CombatEvent"
-        },
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 51,
-          "y": 75,
-          "type": 6,
-          "location": null,
-          "owner": 0,
-          "report": "Amphibious TF 85 offshore of Kota Bharu",
           "type_str": "CombatEvent"
         },
         {
@@ -1635,42 +1551,6 @@
       ]
     },
     {
-      "x": 110,
-      "y": 60,
-      "units": [
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 110,
-          "y": 60,
-          "type": 8,
-          "location": null,
-          "owner": 0,
-          "report": "E13A1 Jake reports periscope at 102, 56 near Tsushima",
-          "type_str": "OperationalReport"
-        }
-      ]
-    },
-    {
-      "x": 95,
-      "y": 65,
-      "units": [
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 95,
-          "y": 65,
-          "type": 8,
-          "location": null,
-          "owner": 0,
-          "report": "E13A1 Jake reports submarine wake at 96, 63 near Nago",
-          "type_str": "OperationalReport"
-        }
-      ]
-    },
-    {
       "x": 68,
       "y": 70,
       "units": [
@@ -1743,24 +1623,6 @@
       ]
     },
     {
-      "x": 51,
-      "y": 79,
-      "units": [
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 51,
-          "y": 79,
-          "type": 8,
-          "location": null,
-          "owner": 0,
-          "report": "E7K2 Alf reports periscope wake at 54, 78 near Kuantan",
-          "type_str": "OperationalReport"
-        }
-      ]
-    },
-    {
       "x": 106,
       "y": 58,
       "units": [
@@ -1797,24 +1659,6 @@
       ]
     },
     {
-      "x": 101,
-      "y": 58,
-      "units": [
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 101,
-          "y": 58,
-          "type": 8,
-          "location": null,
-          "owner": 0,
-          "report": "E13A1 Jake reports periscope at 100, 58 near Fukue-jima",
-          "type_str": "OperationalReport"
-        }
-      ]
-    },
-    {
       "x": 134,
       "y": 114,
       "units": [
@@ -1828,42 +1672,6 @@
           "location": null,
           "owner": 0,
           "report": "E7K2 Alf sighting report: 4 Allied ships at 134,114 near Likiep, speed 15, Moving East",
-          "type_str": "OperationalReport"
-        }
-      ]
-    },
-    {
-      "x": 90,
-      "y": 97,
-      "units": [
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 90,
-          "y": 97,
-          "type": 8,
-          "location": null,
-          "owner": 0,
-          "report": "E13A1 Jake reports periscope at 93, 93 near Babeldaob",
-          "type_str": "OperationalReport"
-        }
-      ]
-    },
-    {
-      "x": 51,
-      "y": 73,
-      "units": [
-        {
-          "row": null,
-          "name": null,
-          "id": 0,
-          "x": 51,
-          "y": 73,
-          "type": 8,
-          "location": null,
-          "owner": 0,
-          "report": "E13A1 Jake reports periscope wake at 54, 73 near Patani",
           "type_str": "OperationalReport"
         }
       ]
