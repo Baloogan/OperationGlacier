@@ -2,6 +2,8 @@
     ViewBag.Title = "Map";
 }
 @Styles.Render("~/Content/leaflet.css")
+@Styles.Render("~/Content/jquery.dynatable.css")
+@Scripts.Render("~/Scripts/jquery.dynatable.js")
 @Scripts.Render("~/Scripts/leaflet.js")
 @Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
 <div id="map" style="width: 100%; height: 100%; background: black;"></div>
@@ -19,6 +21,7 @@
         overflow: hidden;
         height: 100%;
     }
+
     html, body {
         height: 100%;
         margin: 0;
@@ -27,13 +30,12 @@
     #wrapper {
         min-height: 100%;
     }
+
     .leaflet-popup {
         width: 500px;
     }
 </style>
-<script id="entry-template" type="text/x-handlebars-template">
-    
-</script>
+
 <script>
     var map = L.map('map', {
         crs: L.CRS.Simple,
@@ -53,15 +55,13 @@
 
     map.zoomControl.setPosition('topright');
     map.setMaxBounds([[-138, 12], [-14, 170]]);
-</script>
-<script>
     L.Circle = L.Circle.extend({
         projectLatlngs: function () {
             //this._point = this._map.latLngToLayerPoint(this._latlng);
             //this._radius = this._mRadius;
             var lngRadius = this._mRadius,
-              latlng2 = new L.LatLng(this._latlng.lat, this._latlng.lng - lngRadius),
-              point2 = this._map.latLngToLayerPoint(latlng2);
+                latlng2 = new L.LatLng(this._latlng.lat, this._latlng.lng - lngRadius),
+                point2 = this._map.latLngToLayerPoint(latlng2);
 
             this._point = this._map.latLngToLayerPoint(this._latlng);
             this._radius = Math.max(Math.round(this._point.x - point2.x), 1);
@@ -79,34 +79,173 @@
     function isEven(n) {
         return n == parseFloat(n) ? !(n % 2) : void 0;
     }
+</script>
+<script id="base-template" type="text/x-handlebars-template">
+    <div>
+        <h1>{{name}}</h1>
+    </div>
+</script>
+<script id="lcu-template" type="text/x-handlebars-template">
+    <div>
+        {{name}}<br />
+    </div>
+</script>
+<script id="airgroup-template" type="text/x-handlebars-template">
+    <div>
+        {{name}}<br />
+    </div>
+</script>
+<script id="sigint-template" type="text/x-handlebars-template">
+    <div>
+        {{report}}<br />
+    </div>
+</script>
+<script id="combatevent-template" type="text/x-handlebars-template">
+    <div>
+        {{report}}<br />
+    </div>
+</script>
+<script id="afteraction-template" type="text/x-handlebars-template">
+    <div>
+        <pre style="border-style: solid;border-width: 1px;">{{report}}</pre><br />
+    </div>
+</script>
+<script id="operationalreport-template" type="text/x-handlebars-template">
+    <div>
+        {{report}}<br />
+    </div>
+</script>
+<script>
+    var airbaseIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/AB.png',
+    });
+    var navalbaseIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/NB.png',
+    });
+    var taskforceIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/TF.png',
+    });
+    var usbaseIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/USBase.png',
+    });
+    var jabaseIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/JABase.png',
+    });
+    var reportIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
+    });
+    var lcuIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/LCU.png',
+    });
     (function () {
         var side = '@Ajax.JavaScriptStringEncode(ViewBag.Side)';
         var date = '@Ajax.JavaScriptStringEncode(ViewBag.Date)';
         var link = '/OperationGlacier/GameData/' + side + '/' + date + '/Turn.json';
         var turn = $.getJSON(link).done(function (data) {
 
-            var aars = data.Hexes;
+            var hexes = data.hexes;
 
-            var source = $("#entry-template").html();
-            var template = Handlebars.compile(source);
-            
-            $.each(aars, function(i, item) {
+            var base_template = Handlebars.compile($("#base-template").html());
+            var lcu_template = Handlebars.compile($("#lcu-template").html());
+            var airgroup_template = Handlebars.compile($("#airgroup-template").html());
+            var sigint_template = Handlebars.compile($("#sigint-template").html());
+            var combatevent_template = Handlebars.compile($("#combatevent-template").html());
+            var afteraction_template = Handlebars.compile($("#afteraction-template").html());
+            var operationalreport_template = Handlebars.compile($("#operationalreport-template").html());
 
-                var x = item.x;
-                var y = item.y;
-                var report = item.html;
+            $.each(hexes, function (i, hex) {
+
+                var x = hex.x;
+                var y = hex.y;
+                //var report = item.html;
                 var lon = 0.6563 * x + 15.962;
                 var lat = -0.593 * y - 15.499;
                 if (isEven(y)) {
                     lon = lon - 0.6563 / 2.0;
                 }
-                var circle = L.circle([lat, lon], item.radius, {
+                var base = "";
+                var base_tooltip = "";
+                var baseIcon;
+
+                var airbase = "";
+                var airbase_tooltip = "";
+
+                var navalbase = "";
+                var navalbase_tooltip = "";
+
+                var reports = "";
+                var reports_tooltip = "";
+
+
+                var taskforce = "";
+
+                var lcus = "";
+                var lcus_tooltip = "";
+
+
+
+                var popupOptions = { maxWidth: 600, maxHeight: 400, };
+                $.each(hex.units, function (i, unit) {
+                    //populate htmls via that pretentious lib
+                    if (unit.type_str == "AirGroup") {
+                        airbase = airbase + airgroup_template(unit);
+                        airbase_tooltip = airbase_tooltip + unit.name + "\n";
+                    } else if (unit.type_str == "Base") {
+                        base = base + base_template(unit);
+                        base_tooltip = base_tooltip + unit.name;
+                        if (unit.owner == 0)
+                            baseIcon = jabaseIcon;
+                        if (unit.owner == 1)
+                            baseIcon = usbaseIcon;
+                    } else if (unit.type_str == "TaskForce") {
+                    } else if (unit.type_str == "Ship") {
+                    } else if (unit.type_str == "LCU") {
+                        lcus = lcus + lcu_template(unit);
+                        lcus_tooltip = lcus_tooltip + unit.name + "\n";
+                    } else if (unit.type_str == "SigInt") {
+                        reports = reports + sigint_template(unit);
+                        reports_tooltip = reports_tooltip + unit.report + "\n";
+                    } else if (unit.type_str == "CombatEvent") {
+                        reports = reports + combatevent_template(unit);
+                        reports_tooltip = reports_tooltip + unit.report + "\n";
+                    } else if (unit.type_str == "AfterAction") {
+                        reports = reports + afteraction_template(unit);
+                        reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
+                    } else if (unit.type_str == "OperationalReport") {
+                        reports = reports + operationalreport_template(unit);
+                        reports_tooltip = reports_tooltip + unit.report + "\n";
+                    }
+                });
+                if (base != "") {
+                    L.marker([lat + 0.09, lon - 0.09], { icon: baseIcon, title: base_tooltip })
+                        .addTo(map)
+                        .bindPopup(base, popupOptions);
+                }
+                if (lcus != "") {
+                    L.marker([lat - 0.12, lon - 0.23], { icon: lcuIcon, title: lcus_tooltip })
+                        .addTo(map)
+                        .bindPopup(lcus, popupOptions);
+                }
+                if (airbase != "") {
+                    L.marker([lat + 0.21, lon + 0.13], { icon: airbaseIcon, title: airbase_tooltip })
+                        .addTo(map)
+                        .bindPopup(airbase, popupOptions);
+                }
+                
+                if (reports != "") {
+                    L.marker([lat + 0.4, lon - 0.14], { icon: reportIcon, title: reports_tooltip })
+                        .addTo(map)
+                        .bindPopup(reports, popupOptions);
+                }
+                //render code
+                /*var circle = L.circle([lat, lon], item.radius, {
                     color: item.color,
                     fillColor: item.fillColor,
                     fillOpacity: item.fillOpacity,
-                }).addTo(map);
-                
-                circle.bindPopup('<pre><span class="inner-pre" style="font-size: 11px;line-height: 10px;">' + report + '</span></pre>', { maxWidth: 500, maxHeight: 300, });
+                }).addTo(map);*/
+                //L.marker([lat + 0.60 / 2.0, lon], { icon: airbaseIcon }).addTo(map);
+
+                //circle.bindPopup('<pre><span class="inner-pre" style="font-size: 11px;line-height: 10px;">' + report + '</span></pre>', { maxWidth: 500, maxHeight: 300, });
             });
         });
     }).call(this);

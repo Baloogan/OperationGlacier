@@ -19,6 +19,12 @@ namespace WITPJSON
 
         public Side side;
 
+        public DateTime date;
+
+        public List<Hex> hexes;
+
+
+
         [JsonIgnore]
         public string side_initial
         {
@@ -29,9 +35,6 @@ namespace WITPJSON
             }
         }
 
-        public DateTime date;
-
-        public List<Hex> Hexes;
 
         [JsonIgnore]
         public List<Unit> Units;
@@ -89,19 +92,18 @@ namespace WITPJSON
             Units.AddRange(Unit.ParseAfterActionReports(AfterActionReports_filename));
             Units.AddRange(Unit.ParseSigInts(SigInts_filename));
             Units.AddRange(Unit.ParseOperationReports(OperationReports_filename));
-            
             Units.AddRange(Unit.ParseUnits(tracker_directory));
             CompileHexes();
         }
 
-        
+
         private Hex getHex(int x, int y)
         {
-            var a = Hexes.FirstOrDefault(hex => hex.x == x && hex.y == y);
+            var a = hexes.FirstOrDefault(hex => hex.x == x && hex.y == y);
             if (a == null)
             {
                 a = new Hex() { x = x, y = y };
-                Hexes.Add(a);
+                hexes.Add(a);
                 return a;
             }
             else
@@ -109,64 +111,12 @@ namespace WITPJSON
         }
         private void CompileHexes()
         {
-            Hexes = new List<Hex>();
+            hexes = new List<Hex>();
 
+            foreach (var s in Units)
+                getHex(s.x, s.y).units.Add(s);
 
-            foreach (var s in Units.Where(u => u.type == Unit.Type.Base))
-            {
-                var a = getHex(s.x, s.y);
-                a.html = a.html + s.report + "\r\n";
-                if (s.owner == 0) a.color = "red";
-                if (s.owner == 1) a.color = "blue";
-
-            }
-            foreach (var s in Units.Where(u => u.type == Unit.Type.AirGroup))
-            {
-                var a = getHex(s.x, s.y);
-                a.html = a.html + s.report + "\r\n";
-                if (side == Side.Allies) a.color = "blue";
-                if (side == Side.Japan) a.color = "red";
-
-            }
-
-            foreach (var s in Units.Where(u => u.type == Unit.Type.SigInt))
-            {
-                var a = getHex(s.x, s.y);
-                a.html = a.html + s.report + "\r\n";
-                a.color = "orange";
-            }
-
-            foreach (var s in Units.Where(u => u.type == Unit.Type.OperationalReport))
-            {
-                var a = getHex(s.x, s.y);
-                a.html = a.html + s.report + "\r\n";
-                a.color = "orange";
-            }
-            foreach (var s in Units.Where(u => u.type == Unit.Type.CombatEvent))
-            {
-                var a = getHex(s.x, s.y);
-                a.html = a.html + s.report + "\r\n";
-                a.color = "orange";
-            }
-            foreach (var s in Units.Where(u => u.type == Unit.Type.AfterAction))
-            {
-                var a = getHex(s.x, s.y);
-                a.html = a.html + s.report + "\r\n";
-                a.color = "orange";
-
-            }
-
-            Hexes = Hexes.Where(h => h.x != -1 && h.y != -1).ToList();
-
-            foreach (var a in Hexes)
-            {
-                a.radius = 0.1F;
-                a.fillOpacity = a.html.Length / 1000.0F;
-                if (a.fillOpacity < 0.1) a.fillOpacity = 0.1F;
-                if (a.fillOpacity > 1) a.fillOpacity = 1;
-                a.fillColor = a.color;
-            }
-
+            hexes = hexes.Where(h => h.x != -1 && h.y != -1).ToList();
         }
         public void Render()
         {

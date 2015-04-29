@@ -9,15 +9,15 @@ namespace WITPJSON
     class Hex
     {
         public int x, y;
-        public string html;
-        public float radius;
+        //public string html;
+        //public float radius;
 
-        public string color;
+        //public string color;
 
-        public string fillColor;
-        public float fillOpacity;
+        //public string fillColor;
+        //float fillOpacity;
 
-        public List<Unit> Units = new List<Unit>();
+        public List<Unit> units = new List<Unit>();
 
     }
 }

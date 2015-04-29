@@ -74,19 +74,10 @@
                     <div class="drop-content" style="display: none;">
                         <ul style="background: black;">
                             <li>
-                                <span onclick="window.location='/OperationGlacier/Map'">Allied</span>
+                                <span onclick="window.location='/OperationGlacier/Map?side=Allies&date=411207'">Latest Allies Turn</span>
                             </li>
                             <li>
-                                <span>Really cool.</span>
-                            </li>
-                            <li>
-                                <span>Options etc, filters.</span>
-                            </li>
-                            <li>
-                                <span>Stuff</span>
-                            </li>
-                            <li>
-                                <span>More stuff!</span>
+                                <span onclick="window.location='/OperationGlacier/Map?side=Japan&date=411207'">Latest Japanese Turn</span>
                             </li>
                         </ul>
                     </div>
@@ -96,9 +87,7 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Map", "Index", "Map")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li><a href="https://secure.baloogancampaign.com/#/rooms/baloogan">Chatroom</a></li>
                     <li><a href="https://secure.baloogancampaign.com:8081/OperationGlacier/Map?side=Allies&date=411207">Latest Allies Turn</a></li>
                     <li><a href="https://secure.baloogancampaign.com:8081/OperationGlacier/Map?side=Japan&date=411207">Latest Japanese Turn</a></li>
                 </ul>
