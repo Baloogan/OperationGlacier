@@ -7,3 +7,4 @@ C:\Dropbox\OperationGlacier\WITPJSON\obj\Debug\WITPJSON.exe
 C:\Dropbox\OperationGlacier\WITPJSON\obj\Debug\WITPJSON.pdb
 C:\Dropbox\OperationGlacier\WITPJSON\obj\Debug\WITPJSON.csprojResolveAssemblyReference.cache
 C:\Dropbox\OperationGlacier\WITPJSON\bin\Debug\BaseToHex.psv
+C:\Dropbox\OperationGlacier\WITPJSON\bin\Debug\ShipToClass.psv

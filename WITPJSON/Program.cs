@@ -15,13 +15,15 @@ namespace WITPJSON
         internal static string japan_archive_directory = null;
         internal static string japan_tracker_directory = null;
         internal static string output_directory = null;
+        public static Random random = new Random();
 
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
-
+            Console.WriteLine("WITPJSON v0.1");
             switch (System.Environment.MachineName)
             {
                 case "STONEBURNER":
+                    Console.WriteLine("Running on: STONEBURNER");
                     allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                     allies_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\AlliesTracker";
@@ -33,7 +35,7 @@ namespace WITPJSON
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
                     throw new PlatformNotSupportedException();
-                //break;
+                    //break;
                 default:
                     throw new PlatformNotSupportedException();
             }
@@ -43,13 +45,18 @@ namespace WITPJSON
             ProcessTurns();
 
         }
+
         static void ProcessTurns()
         {
-            var allies_days = GetDays(allies_archive_directory);
-            var allies_turns = allies_days.Select(t => new Turn(Turn.Side.Allies, t));
-            var japan_days = GetDays(japan_archive_directory);
-            var japan_turns = allies_days.Select(t => new Turn(Turn.Side.Japan, t));
-            foreach (var turn in allies_turns.Concat(japan_turns))
+            Console.WriteLine("Processing turns");
+            var allies_days = GetDays(allies_archive_directory).Distinct();
+            var allies_turns = allies_days.Select(t => new Turn(Turn.Side.Allies, t) { file_index = -1 });
+            Console.WriteLine(allies_turns.Count() + " allied turns found");
+            var japan_days = GetDays(japan_archive_directory).Distinct();
+            var japan_turns = japan_days.Select(t => new Turn(Turn.Side.Japan, t) { file_index = -1 });
+            Console.WriteLine(japan_turns.Count() + " japan turns found");
+            var turns = allies_turns.Concat(japan_turns).ToList();
+            foreach (var turn in turns)
             {
                 turn.compute();
                 turn.Render();
@@ -70,6 +77,7 @@ namespace WITPJSON
         }
         static void ClearOutputDirectory()
         {
+            Console.WriteLine("Clearing output directory");
             try
             {
                 new DirectoryInfo(output_directory).Delete(true);

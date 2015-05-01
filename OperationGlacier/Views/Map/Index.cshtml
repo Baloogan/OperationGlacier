@@ -44,7 +44,7 @@
     });
 
     //L.tileLayer('https://secure.baloogancampaign.com:8081/map/render3/{z}/{x}/{y}.png', {
-    L.tileLayer('https://loupvert.phpnet.org/dbimages/render3/{z}/{x}/{y}.png', {
+    L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
         attribution: 'WitP-AE Topo Map Project',
         continuousWorld: true,
         id: 'map-render3',
@@ -82,32 +82,90 @@
 </script>
 <script id="base-template" type="text/x-handlebars-template">
     <div>
-        <h1>{{name}}</h1>
+        <h2><a href="/OperationGlacier/Unit?Type=Base&ID={{id}}" target="_blank">{{name}}</a></h2>
+        {{row.Region}} {{row.Type}}
+        <br />
+        <strong>Held by: </strong> {{owner}}
+        <br />
+        <strong>Supply: </strong> {{row.Supply}}
+        <strong>Fuel: </strong> {{row.Fuel}}
+        <br />
+        <strong>Port: </strong> {{row.Port}} {{row.PExp}}
+        <strong>Airbase: </strong> {{row.Airbase}} {{row.AExp}}
+        <strong>Forts: </strong> {{row.Forts}} {{row.FExp}}
+        <br />
+        <strong>Eng: </strong> {{row.Eng}} 
+        <strong>Nav: </strong> {{row.Nav}} 
+        <strong>AirS: </strong> {{row.AirS}} 
+        <strong>AV: </strong> {{row.AV}} 
+        <br />
+        <strong>Garrison: </strong> {{row.Garrison}} 
+        <strong>TroopCap: </strong> {{row.TroopCap}} 
+        <strong>HQ: </strong> {{row.HQ}} 
+        <br />
+        <strong>Japan VP: </strong> {{row.JapanVP}} 
+        <strong>Allied VP: </strong> {{row.AlliedVP}} 
     </div>
 </script>
 <script id="lcu-template" type="text/x-handlebars-template">
     <div>
-        {{name}}<br />
+        <h4><a href="/OperationGlacier/Unit?Type=LCU&ID={{id}}" target="_blank">{{name}}</a></h4>
+        {{row.Nation}} {{row.Type}} {{row.TOE}} {{row.HQ}} Withdraw {{row.Withdraw}}
+        <br />
+        <strong>AV: </strong> {{row.AV}}
+        <strong>Nav: </strong> {{row.Nav}}
+        <strong>Air: </strong> {{row.Air}}
+        <strong>Eng: </strong> {{row.Eng}}
+        <br />
+        <strong>Exp/Morale: </strong> {{row.Exp}}/{{row.Morale}}
+        <strong>Disr/Fat: </strong> {{row.Disr}}/{{row.Fat}}
+        <br />
+        <strong>Mode: </strong> {{row.OpMode}}
+        <strong>Plan: </strong> {{row.Planfor}} {{row.Plan}}
+        <br />
+        <strong>Supply: </strong> {{row.Supply}}
+        <strong>Base Load: </strong> {{row.BaseLoad}}
+        <strong>Destination: </strong> {{row.Destination}}
     </div>
 </script>
 <script id="airgroup-template" type="text/x-handlebars-template">
     <div>
-        {{name}}<br />
+        <h5><a href="/OperationGlacier/Unit?Type=AirGroup&ID={{id}}" target="_blank">{{name}}</a></h5>
+        {{row.Nation}} {{row.Model}} {{row.HQ}}
+        <br />
+        <strong>Ready/Repair/Reserve/Max:</strong> {{row.Ready}}/{{row.Repair}}/{{row.Reserve}}/{{row.MaxPlanes}} 
+        <br />
+        <strong>CAP/LRCAP/ASW/Search/Train/Rest:</strong> {{row.CAP}}/{{row.LRCAP}}/{{row.ASW}}/{{row.Search}}/{{row.Train}}/{{row.Rest}} 
+        <br />
+        <strong>Pilots:</strong> {{row.Pilots}} 
+        <strong>Exp/Mor/Fat: </strong>{{row.Exp}}/{{row.Morale}}/{{row.Fat}}
+        <strong>Kills:</strong> {{row.Kills}}
+        <br />
+        <strong>Upgrade:</strong> {{row.Upgrade}} 
+        <strong>Withdraw:</strong> {{row.Withdraw}} 
+        <strong>Leader Air/Insp:</strong> {{row.LeadAir}}/{{row.LeadInsp}}
     </div>
 </script>
 <script id="taskforce-template" type="text/x-handlebars-template">
     <div>
-        <h3>{{name}}</h3>
-        <i>{{row.Label}}</i> <strong>{{row.Mission}}</strong><br />
+        <h3><a href="/OperationGlacier/Unit?Type=TaskForce&ID={{id}}" target="_blank">{{name}} {{row.Label}}</a></h3>
+        <strong>{{row.Mission}}</strong>
+        <strong>Detect: </strong>{{row.Detect}}
+        <br />
+        <strong>Ships: </strong>{{row.Ships}}
+        <strong>Speed: </strong>{{row.Speed}}
+        <strong>Dock Level: </strong>{{row.DockLevel}}
+        <strong>ETA Home: </strong>{{row.ETAHome}}
     </div>
 </script>
 <script id="ship-template" type="text/x-handlebars-template">
     <div>
-        <h4><a href="/OperationGlacier/Unit?Type=Ship&ID={{id}}">{{name}}</a></h4>
+        <h4><a href="/OperationGlacier/Unit?Type=Ship&ID={{id}}" target="_blank">{{name}}</a></h4>
+        <strong>{{ship_class}}</strong><br />
         <strong>Sys/Flt/Eng/Fire/Wep:</strong> {{row.Sys}}/{{row.Flt}}/{{row.Eng}}/{{row.Fire}}/{{row.Weapon}} 
         <strong>Exp D/N: </strong>{{row.Exp}}
         <strong>AA/ASW/Torp</strong> {{row.AA}}/{{row.ASW}}/{{row.Torp}}</br>
-        {{row.Nation}} {{row.Class}} {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
+        {{row.Nation}} {{row.Class}}-class {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
     </div>
 </script>
 
@@ -165,7 +223,12 @@
     var combatevent_template = Handlebars.compile($("#combatevent-template").html());
     var afteraction_template = Handlebars.compile($("#afteraction-template").html());
     var operationalreport_template = Handlebars.compile($("#operationalreport-template").html());
-
+    function commaSeparateNumber(val) {
+        while (/(\d+)(\d{3})/.test(val.toString())) {
+            val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+        }
+        return val;
+    }
     function load_hexes(data) {
 
         var hexes = data.hexes;
@@ -176,7 +239,7 @@
             var y = hex.y;
             //var report = item.html;
             var lon = 0.6563 * x + 15.962;
-            var lat = -0.593 * y - 15.499;
+            var lat = -0.5935 * y - 15.446;
             if (isEven(y)) {
                 lon = lon - 0.6563 / 2.0;
             }
@@ -208,21 +271,34 @@
                     airbase = airbase + airgroup_template(unit);
                     airbase_tooltip = airbase_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "Base") {
+                    if (unit.owner == 0) {
+                        baseIcon = jabaseIcon;
+                        unit.owner = "Japan";
+                    }
+                    if (unit.owner == 1) {
+                        baseIcon = usbaseIcon;
+                        unit.owner = "Allied";
+                    }
+                    unit.row.Supply = commaSeparateNumber(unit.row.Supply);
+                    unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
                     base = base + base_template(unit);
                     base_tooltip = base_tooltip + unit.name;
-                    if (unit.owner == 0)
-                        baseIcon = jabaseIcon;
-                    if (unit.owner == 1)
-                        baseIcon = usbaseIcon;
+                    
                 } else if (unit.type_str == "TaskForce") {
                     taskforces = taskforces + taskforces_template(unit);
                     $.each(unit.subunits, function (i, subunit) {
                         taskforces = taskforces + ship_template(subunit);
+                        $.each(subunit.subunits, function (i, subsubunit) {
+                            taskforces = taskforces + airgroup_template(subsubunit);
+                        });
                     });
                     taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "Ship") {
                     //ships in TFs are in TFs, these are ships at ahcnor
                     navalbase = navalbase + ship_template(unit);
+                    $.each(unit.subunits, function (i, subunit) {
+                        navalbase = navalbase + airgroup_template(subunit);
+                    });
                     navalbase_tooltip = navalbase_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "LCU") {
                     lcus = lcus + lcu_template(unit);
@@ -241,7 +317,7 @@
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 }
             });
-            
+
 
 
 
@@ -260,24 +336,30 @@
                     .addTo(map)
                     .bindPopup(airbase, popupOptions);
             }
-            
+
             if (taskforces != "") {
-                L.marker([lat - 0.10, lon + 0.06], { icon: taskforceIcon, title: taskforces_tooltip })
+                var pos;
+                if (base == "") {
+                    pos = [lat + 0.1, lon - 0.1];
+                } else {
+                    pos = [lat - 0.10, lon + 0.06];
+                }
+                L.marker(pos, { icon: taskforceIcon, title: taskforces_tooltip })
                     .addTo(map)
                     .bindPopup(taskforces, popupOptions);
             }
-            
+
             if (navalbase != "") {
                 L.marker([lat + 0.22, lon - 0.25], { icon: navalbaseIcon, title: navalbase_tooltip })
                     .addTo(map)
                     .bindPopup(navalbase, popupOptions);
             }
             if (reports != "") {
-                L.marker([lat + 0.35, lon - 0.10], { icon: reportIcon, title: reports_tooltip })
+                L.marker([lat + 0.35, lon - 0.08], { icon: reportIcon, title: reports_tooltip })
                     .addTo(map)
                     .bindPopup(reports, popupOptions);
             }
-            
+
         });
     }
     (function () {

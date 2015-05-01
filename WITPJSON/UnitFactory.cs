@@ -15,6 +15,7 @@ namespace WITPJSON
 
         private static IEnumerable<Unit> ParseUnitsFromCSV(Type type, string filename)
         {
+            Console.WriteLine("   " + Path.GetFileName(filename));
             using (Microsoft.VisualBasic.FileIO.TextFieldParser parser = new TextFieldParser(filename))
             {
 
@@ -27,7 +28,7 @@ namespace WITPJSON
                 bool has_owner = header.Contains("Owner");
                 if (type == Type.Ship)
                 {
-                    
+
                     header[8] = "Cargo1";
                     header[9] = "Exp";
                     header[13] = "Planes";
@@ -36,12 +37,45 @@ namespace WITPJSON
                     header[18] = "Cargo2";
 
                 }
+                if (type == Type.AirGroup)
+                {
+                    header[11] = "MaxPlanes";
+                    header[12] = "CAP";
+                    header[13] = "LRCAP";
+                    header[14] = "ASW";
+                    header[15] = "Search";
+                    header[16] = "Train";
+                    header[17] = "Rest";
+                    header[19] = "Upgrade";
+                    header[25] = "LeadAir";
+                    header[26] = "LeadInsp";
+                }
+                if (type == Type.TaskForce)
+                {
+                    header[7] = "DockLevel";
+                    header[8] = "ETAHome";
+                }
+                if (type == Type.Base)
+                {
+                    header[15] = "AirS";
+                    for (int i = 0; i < header.Count(); ++i)
+                    {
+                        header[i] = header[i].Replace(" ", "");
+                    }
+                }
+                if (type == Type.LCU)
+                {
+                    header[15] = "OpMode";
+                    header[16] = "Planfor";
+                    header[17] = "Plan";
+                    header[22] = "BaseLoad";
+                }
                 while (!parser.EndOfData)
                 {
                     string[] fields = parser.ReadFields();
                     Unit u = new Unit();
                     u.type = type;
-                    
+
                     u.row = header.Zip(fields, (s, s1) => new Tuple<string, string>(s, s1))
                                   .ToDictionary(t => t.Item1, t => t.Item2);
                     if (has_id)
@@ -50,7 +84,10 @@ namespace WITPJSON
                         u.name = u.row["Name"];
                     if (has_owner)
                         u.owner = int.Parse(u.row["Owner"]);
-
+                    if (type == Type.Ship)
+                    {
+                        u.ship_class = ShipToClass.ShipName_To_Class(u.name);
+                    }
                     if (has_location)
                     {
                         u.location = u.row["Location"];
@@ -85,6 +122,7 @@ namespace WITPJSON
         }
         internal static IEnumerable<Unit> ParseUnits(string directory)
         {
+            Console.WriteLine("  ParseUnits...");
             if (!Directory.Exists(directory))
                 return Enumerable.Empty<Unit>();
 
@@ -104,14 +142,13 @@ namespace WITPJSON
                 .Concat(ships)
                 ;
 
-            
-
             return units;
         }
 
 
         internal static IEnumerable<Unit> ParseCombatEvents(string CombatEvents_filename)
         {
+            Console.WriteLine("  ParseCombatEvents...");
             string file = File.ReadAllText(CombatEvents_filename);
 
             var reports = file.Split(
@@ -144,6 +181,7 @@ namespace WITPJSON
 
         internal static IEnumerable<Unit> ParseAfterActionReports(string AfterActionReports_filename)
         {
+            Console.WriteLine("  ParseAfterActionReports...");
             string file = File.ReadAllText(AfterActionReports_filename);
 
             var reports = file.Split(
@@ -168,6 +206,7 @@ namespace WITPJSON
 
         internal static IEnumerable<Unit> ParseSigInts(string SigInts_filename)
         {
+            Console.WriteLine("  ParseSigInts...");
             string file = File.ReadAllText(SigInts_filename);
 
             var reports = file.Split(
@@ -196,6 +235,7 @@ namespace WITPJSON
         }
         internal static IEnumerable<Unit> ParseOperationReports(string OperationReports_filename)
         {
+            Console.WriteLine("  ParseOperationReports...");
             string file = File.ReadAllText(OperationReports_filename);
 
             var reports = file.Split(

@@ -9,10 +9,9 @@ namespace WITPJSON
 {
     static class BaseToHex
     {
-        public static List<Tuple<string, string>> base_hex_defs = null;
-        public static string ReplaceMatches(string a)
+        private static List<Tuple<string, string>> base_hex_defs = null;
+        private static void populate_defs()
         {
-
             if (base_hex_defs == null)
             {
                 string[] lines = System.IO.File.ReadAllLines("BaseToHex.psv");
@@ -23,6 +22,23 @@ namespace WITPJSON
                             s.Split('|').Last()))
                         .ToList();
             }
+        }
+        public static bool is_base(string a)
+        {
+            populate_defs();
+            foreach (var t in base_hex_defs)
+            {
+                if (a == t.Item1)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        public static string ReplaceMatches(string a)
+        {
+
+            populate_defs();
             var myRegex = new Regex(@"(\d+),(\d+)");
             var m = myRegex.Match(a);
             if (m.Success)

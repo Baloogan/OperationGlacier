@@ -18,6 +18,5 @@ namespace WITPJSON
         //float fillOpacity;
 
         public List<Unit> units = new List<Unit>();
-
     }
 }

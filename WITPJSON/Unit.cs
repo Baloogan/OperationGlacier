@@ -44,6 +44,7 @@ namespace WITPJSON
         public string location;
         public int owner;
         public string report;
+        public string ship_class;
         public List<Unit> subunits = new List<Unit>(); 
     }
 }

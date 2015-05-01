@@ -17,12 +17,13 @@ namespace WITPJSON
             Japan
         }
 
+        public int file_index;
+
         public Side side;
 
         public DateTime date;
 
         public List<Hex> hexes;
-
 
 
         [JsonIgnore]
@@ -34,7 +35,6 @@ namespace WITPJSON
                 else return "j";
             }
         }
-
 
         [JsonIgnore]
         public List<Unit> Units;
@@ -90,6 +90,8 @@ namespace WITPJSON
         }
         public void compute()
         {
+
+            Console.WriteLine(" Computing " + side.ToString() + " " + date_string);
             Units = new List<Unit>();
             Units.AddRange(Unit.ParseCombatEvents(CombatEvents_filename));
             Units.AddRange(Unit.ParseAfterActionReports(AfterActionReports_filename));
@@ -97,9 +99,24 @@ namespace WITPJSON
             Units.AddRange(Unit.ParseOperationReports(OperationReports_filename));
             Units.AddRange(Unit.ParseUnits(tracker_directory));
 
+            Units = Units.Where(u =>
+                string.IsNullOrEmpty(u.location)
+                || !u.location.ToLower().Contains("delay")).ToList();
+
+            foreach (var u in Units.Where(unit => unit.type == Unit.Type.AirGroup).ToArray())
+            {
+                if (!BaseToHex.is_base(u.location)) // put aircraft into ships
+                {
+                    //these ships might be subunits, so do before putting ships into tfs
+                    Unit parent =
+                        Units.First(unit => unit.type == Unit.Type.Ship && unit.name == u.location);
+                    Units.Remove(u);
+                    parent.subunits.Add(u);
+                }
+            }
             foreach (var u in Units.Where(unit => unit.type == Unit.Type.Ship).ToArray())
             {
-                if (u.location.Contains("TF")) // TODO put ships into tfs
+                if (u.location.Contains("TF")) // put ships into tfs
                 {
                     Unit parent =
                         Units.First(unit => unit.type == Unit.Type.TaskForce && unit.id == int.Parse(u.location.Substring(3)));
@@ -107,7 +124,10 @@ namespace WITPJSON
                     parent.subunits.Add(u);
                 }
             }
+            Console.WriteLine(" Units: " + Units.Count);
+            Console.WriteLine(" Subunits: " + Units.Sum(u => u.subunits.Count() + u.subunits.Sum(su => su.subunits.Count())));
             CompileHexes();
+            Console.WriteLine(" Compute complete!");
         }
 
 
@@ -125,6 +145,7 @@ namespace WITPJSON
         }
         private void CompileHexes()
         {
+            Console.WriteLine(" CompileHexes...");
             hexes = new List<Hex>();
 
             foreach (var s in Units)
@@ -134,20 +155,27 @@ namespace WITPJSON
         }
         public void Render()
         {
-            //
+
             Directory.CreateDirectory(output_directory);
-            //
-            const int parts = 16;
-            List<IEnumerable<Hex>> groups = hexes.Select((hex, i) => new { hex, i })
-                              .GroupBy(x => x.i % parts).Select(x => x.Select(y => y.hex)).ToList();
+
+            const int parts = 16;//don't change lightly, this number shows up in cshtmls
+            Console.WriteLine(" Rendering to " + parts + "...");
+
+            List<IEnumerable<Hex>> groups = hexes.OrderBy(hex => Program.random.NextDouble())
+                                                 .Select((hex, i) => new { hex, i })
+                                                 .GroupBy(x => x.i % parts)
+                                                 .Select(x => x.Select(y => y.hex))
+                                                 .ToList();
             var turns = groups.Select(h => new Turn(side, date) { hexes = h.ToList() })
-                .Select((turn, i) => new { turn, i });
+                              .Select((turn, i) => new { turn, i });
             foreach (var t in turns)
             {
-                var json = Newtonsoft.Json.JsonConvert.SerializeObject(t.turn, Formatting.None);
-                File.WriteAllText(output_filename + t.i.ToString()+".json", json);
+                var turn = t.turn;
+                turn.file_index = t.i;
+                var json = Newtonsoft.Json.JsonConvert.SerializeObject(turn, Formatting.None);
+                File.WriteAllText(output_filename + turn.file_index.ToString() + ".json", json);
             }
-
+            Console.WriteLine(" Rendering complete!");
 
         }
     }
