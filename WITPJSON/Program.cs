@@ -27,7 +27,7 @@ namespace WITPJSON
                     allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                     allies_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\AlliesTracker";
-                    japan_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\JapanTracker";
+                    japan_tracker_directory = @"C:\Dropbox\HistoricalGamer\tracker";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
                     break;
                 case "WIN-QPCSS4CO8PJ":
@@ -61,6 +61,11 @@ namespace WITPJSON
                 turn.compute();
                 turn.Render();
             }
+            /*var timelines = UnitTimeline.generate_unit_timelines(turns);
+            foreach (var timeline in timelines)
+            {
+                timeline.render();
+            }*/
         }
         static IEnumerable<DateTime> GetDays(string directory)
         {

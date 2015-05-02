@@ -53,6 +53,7 @@
     <Compile Include="Turn.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="UnitFactory.cs" />
+    <Compile Include="UnitTimeline.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

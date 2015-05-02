@@ -99,6 +99,12 @@ namespace WITPJSON
             Units.AddRange(Unit.ParseOperationReports(OperationReports_filename));
             Units.AddRange(Unit.ParseUnits(tracker_directory));
 
+            foreach (Unit u in Units)
+            {
+                u.date = date;
+                u.side = side;
+            }
+
             Units = Units.Where(u =>
                 string.IsNullOrEmpty(u.location)
                 || !u.location.ToLower().Contains("delay")).ToList();

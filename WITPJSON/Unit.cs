@@ -35,10 +35,13 @@ namespace WITPJSON
             AfterAction,
             OperationalReport
         }
+
+        public Turn.Side side;
         public Dictionary<string, string> row;
         public string name;
         public int id;
         public int x, y;
+        public DateTime date;
         public Type type;
         public string type_str { get { return type.ToString(); } }
         public string location;

@@ -85,26 +85,26 @@
         <h2><a href="/OperationGlacier/Unit?Type=Base&ID={{id}}" target="_blank">{{name}}</a></h2>
         {{row.Region}} {{row.Type}}
         <br />
-        <strong>Held by: </strong> {{owner}}
+        <strong>Held by: </strong>{{owner}}
         <br />
-        <strong>Supply: </strong> {{row.Supply}}
-        <strong>Fuel: </strong> {{row.Fuel}}
+        <strong>Supply: </strong>{{row.Supply}}
+        <strong>Fuel: </strong>{{row.Fuel}}
         <br />
-        <strong>Port: </strong> {{row.Port}} {{row.PExp}}
-        <strong>Airbase: </strong> {{row.Airbase}} {{row.AExp}}
-        <strong>Forts: </strong> {{row.Forts}} {{row.FExp}}
+        <strong>Port: </strong>{{row.Port}} {{row.PExp}}
+        <strong>Airbase: </strong>{{row.Airbase}} {{row.AExp}}
+        <strong>Forts: </strong>{{row.Forts}} {{row.FExp}}
         <br />
-        <strong>Eng: </strong> {{row.Eng}} 
-        <strong>Nav: </strong> {{row.Nav}} 
-        <strong>AirS: </strong> {{row.AirS}} 
-        <strong>AV: </strong> {{row.AV}} 
+        <strong>Eng: </strong>{{row.Eng}} 
+        <strong>Nav: </strong>{{row.Nav}} 
+        <strong>AirS: </strong>{{row.AirS}} 
+        <strong>AV: </strong>{{row.AV}} 
         <br />
-        <strong>Garrison: </strong> {{row.Garrison}} 
-        <strong>TroopCap: </strong> {{row.TroopCap}} 
-        <strong>HQ: </strong> {{row.HQ}} 
+        <strong>Garrison: </strong>{{row.Garrison}} 
+        <strong>TroopCap: </strong>{{row.TroopCap}} 
+        <strong>HQ: </strong>{{row.HQ}} 
         <br />
-        <strong>Japan VP: </strong> {{row.JapanVP}} 
-        <strong>Allied VP: </strong> {{row.AlliedVP}} 
+        <strong>Japan VP: </strong>{{row.JapanVP}} 
+        <strong>Allied VP: </strong>{{row.AlliedVP}} 
     </div>
 </script>
 <script id="lcu-template" type="text/x-handlebars-template">
@@ -112,20 +112,20 @@
         <h4><a href="/OperationGlacier/Unit?Type=LCU&ID={{id}}" target="_blank">{{name}}</a></h4>
         {{row.Nation}} {{row.Type}} {{row.TOE}} {{row.HQ}} Withdraw {{row.Withdraw}}
         <br />
-        <strong>AV: </strong> {{row.AV}}
-        <strong>Nav: </strong> {{row.Nav}}
-        <strong>Air: </strong> {{row.Air}}
-        <strong>Eng: </strong> {{row.Eng}}
+        <strong>AV: </strong>{{row.AV}}
+        <strong>Nav: </strong>{{row.Nav}}
+        <strong>Air: </strong>{{row.Air}}
+        <strong>Eng: </strong>{{row.Eng}}
         <br />
-        <strong>Exp/Morale: </strong> {{row.Exp}}/{{row.Morale}}
-        <strong>Disr/Fat: </strong> {{row.Disr}}/{{row.Fat}}
+        <strong>Exp/Morale: </strong>{{row.Exp}}/{{row.Morale}}
+        <strong>Disr/Fat: </strong>{{row.Disr}}/{{row.Fat}}
         <br />
-        <strong>Mode: </strong> {{row.OpMode}}
-        <strong>Plan: </strong> {{row.Planfor}} {{row.Plan}}
+        <strong>Mode: </strong>{{row.OpMode}}
+        <strong>Plan: </strong>{{row.Planfor}} {{row.Plan}}
         <br />
-        <strong>Supply: </strong> {{row.Supply}}
-        <strong>Base Load: </strong> {{row.BaseLoad}}
-        <strong>Destination: </strong> {{row.Destination}}
+        <strong>Supply: </strong>{{row.Supply}}
+        <strong>Base Load: </strong>{{row.BaseLoad}}
+        <strong>Destination: </strong>{{row.Destination}}
     </div>
 </script>
 <script id="airgroup-template" type="text/x-handlebars-template">
@@ -191,14 +191,16 @@
     </div>
 </script>
 <script>
+    var side_letter = @(ViewBag.Side == "Japan" ? @Html.Raw("\"j\"") : @Html.Raw("\"\""));
+    
     var airbaseIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/AB.png',
+        iconUrl: '/OperationGlacier/Content/map_icons/AB'+side_letter+'.png',
     });
     var navalbaseIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/NB.png',
+        iconUrl: '/OperationGlacier/Content/map_icons/NB'+side_letter+'.png',
     });
     var taskforceIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/TF.png',
+        iconUrl: '/OperationGlacier/Content/map_icons/TF'+side_letter+'.png',
     });
     var usbaseIcon = L.icon({
         iconUrl: '/OperationGlacier/Content/map_icons/USBase.png',
@@ -210,7 +212,7 @@
         iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
     });
     var lcuIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/LCU.png',
+        iconUrl: '/OperationGlacier/Content/map_icons/LCU'+side_letter+'.png',
     });
 
     var base_template = Handlebars.compile($("#base-template").html());
