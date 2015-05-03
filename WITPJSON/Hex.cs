@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WITPJSON
 {
-    class Hex
+    public class Hex
     {
         public int x, y;
         //public string html;
