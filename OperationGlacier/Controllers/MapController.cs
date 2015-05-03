@@ -12,6 +12,10 @@ namespace OperationGlacier.Controllers
         {
             ViewBag.Side = side;
             ViewBag.Date = date;
+            if (side != "Allies" && System.Web.HttpContext.Current.User.Identity.Name == "baloogan@gmail.com")
+                return View("Index", "Home");
+            if (side != "Japan" && System.Web.HttpContext.Current.User.Identity.Name == "historicalgamer@gmail.com")
+                return View("Index", "Home");
             return View();
         }
 
