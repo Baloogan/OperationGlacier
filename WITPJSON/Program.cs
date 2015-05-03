@@ -49,13 +49,33 @@ namespace WITPJSON
             ProcessTimelines();
             RenderTimelines();
         }
+        public static void DeleteDirectory(string path)
+        {
+            if (!Directory.Exists(path))
+            {
+                return;
+            }
+            foreach (string directory in Directory.GetDirectories(path))
+            {
+                DeleteDirectory(directory);
+            }
+
+            try
+            {
+                Directory.Delete(path, true);
+            }
+            catch (IOException)
+            {
+                Directory.Delete(path, true);
+            }
+            catch (UnauthorizedAccessException)
+            {
+                Directory.Delete(path, true);
+            }
+        }
         static void RenderTurns()
         {
-            if (Directory.Exists(output_turns_directory))
-            {
-                new DirectoryInfo(output_turns_directory).Delete(true);
-                Directory.CreateDirectory(output_turns_directory);
-            }
+            DeleteDirectory(output_turns_directory);
             Console.WriteLine("Rendering turns.");
             foreach (var turn in turns)
             {
@@ -64,11 +84,8 @@ namespace WITPJSON
         }
         static void RenderTimelines()
         {
-            if (Directory.Exists(output_timelines_directory))
-            {
-                new DirectoryInfo(output_timelines_directory).Delete(true);
-                Directory.CreateDirectory(output_timelines_directory);
-            }
+            DeleteDirectory(output_timelines_directory);
+            
             Console.WriteLine("Rendering " + timelines.Count() + " timelines.");
             foreach (var timeline in timelines)
             {

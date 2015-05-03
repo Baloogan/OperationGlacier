@@ -36,7 +36,8 @@ namespace WITPJSON
         }
         public void render()
         {
-
+            if (!Directory.Exists(Program.output_timelines_directory))
+                Directory.CreateDirectory(Program.output_timelines_directory);
             var json = Newtonsoft.Json.JsonConvert.SerializeObject(this, Formatting.None);
             File.WriteAllText(Path.Combine(Program.output_timelines_directory, unit_data.First().timeline_id + ".json"), json);
         }
