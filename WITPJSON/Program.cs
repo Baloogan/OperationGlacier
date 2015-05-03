@@ -46,8 +46,8 @@ namespace WITPJSON
             ProcessTurns();
             RenderTurns();
 
-            //ProcessTimelines();
-            //RenderTimelines();
+            ProcessTimelines();
+            RenderTimelines();
         }
         static void RenderTurns()
         {

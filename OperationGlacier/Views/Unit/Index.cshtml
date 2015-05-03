@@ -1,20 +1,46 @@
 ﻿@{
-    ViewBag.Title = "UNIT_NAME"
+    ViewBag.Title = "UNIT_NAME";
 }
 @Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
 @Styles.Render("~/Content/jquery.dynatable.css")
 @Scripts.Render("~/Scripts/jquery.dynatable.js")
-<div id="unit-timeline" style="background: red;">
-    Work In Progress!
-</div>
-<div id="unit-timeline-graphs" style="background: blue;">
-    Work In Progress!
+@RenderPage("../Includes/HandlebarsTemplates.cshtml")
+<div class="row">
+    <div id="unit-timeline" class="col-sm-8" style="">
+        Work In Progress!
+    </div>
+    <div id="unit-timeline-graphs" class="col-sm-4" style="">
+        Work In Progress!
+    </div>
 </div>
 <script>
 
     function display_timeline(timeline) {
-        document.querySelector('#unit-timeline').innerHTML = 'lol';
-        document.title.replace("UNIT_NAME", timeline.name);
+        document.title = document.title.replace("UNIT_NAME", timeline.name);
+        var html = "";
+        $.each(timeline.unit_data, function (i, unit) {
+            if (unit.type_str == "AirGroup") {
+                html = html + airgroup_template(unit);
+            } else if (unit.type_str == "Base") {
+                html = html + base_template(unit);
+            } else if (unit.type_str == "TaskForce") {
+                html = html + html(unit);
+                $.each(unit.subunits, function (i, subunit) {
+                    html = html + ship_template(subunit);
+                    $.each(subunit.subunits, function (i, subsubunit) {
+                        html = html + airgroup_template(subsubunit);
+                    });
+                });
+            } else if (unit.type_str == "Ship") {
+                html = html + ship_template(unit);
+                $.each(unit.subunits, function (i, subunit) {
+                    html = html + airgroup_template(subunit);
+                });
+            } else if (unit.type_str == "LCU") {
+                html = html + lcu_template(unit);
+            }
+        });
+        document.querySelector('#unit-timeline').innerHTML = html;
     }
     //download the json
     (function () {

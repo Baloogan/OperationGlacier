@@ -41,7 +41,6 @@ namespace WITPJSON
         [JsonIgnore]
         public List<Unit> Units;
 
-        [JsonIgnore]
         public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year - 1900, date.Month, date.Day); } }
 
         [JsonIgnore]

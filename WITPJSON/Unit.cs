@@ -43,6 +43,7 @@ namespace WITPJSON
         public int id;
         public int x, y;
         public DateTime date;
+        public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year - 1900, date.Month, date.Day); } }
         public Type type;
         public string type_str { get { return type.ToString(); } }
         public string location;
