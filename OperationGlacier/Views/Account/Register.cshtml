@@ -32,7 +32,7 @@
 <div class="form-group">
     @Html.LabelFor(m => m.SideRestriction, new { @class = "col-md-2 control-label" })
     <div class="col-md-10">
-        @Html.ListBoxFor(m => m.SideRestriction,ViewBag.SideRestrictionOptions, new {@class = "form-control"})
+        @Html.DropDownListFor(m => m.SideRestriction, new SelectList(((List<SelectListItem>) ViewBag.SideRestrictionOptions), "Value", "Text"), new {@class = "form-control"})
     </div>
 </div>
 <div class="form-group">
