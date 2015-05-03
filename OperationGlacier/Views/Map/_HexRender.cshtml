@@ -1,0 +1,271 @@
+﻿
+<script>
+
+
+    var airbaseIcon_a = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/AB' + '' + '.png',
+    });
+    var navalbaseIcon_a = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/NB' + '' + '.png',
+    });
+    var taskforceIcon_a = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/TF' + '' + '.png',
+    });
+    var lcuIcon_a = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/LCU' + '' + '.png',
+    });
+
+    var airbaseIcon_j = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/AB' + 'j' + '.png',
+    });
+    var navalbaseIcon_j = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/NB' + 'j' + '.png',
+    });
+    var taskforceIcon_j = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/TF' + 'j' + '.png',
+    });
+    var lcuIcon_j = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/LCU' + 'j' + '.png',
+    });
+
+    var baseIcon_a = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/USBase.png',
+    });
+    var baseIcon_j = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/JABase.png',
+    });
+    var reportIcon = L.icon({
+        iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
+    });
+    var base_template = Handlebars.compile($("#base-template").html());
+    var lcu_template = Handlebars.compile($("#lcu-template").html());
+    var airgroup_template = Handlebars.compile($("#airgroup-template").html());
+    var taskforces_template = Handlebars.compile($("#taskforce-template").html());
+    var ship_template = Handlebars.compile($("#ship-template").html());
+
+    var sigint_template = Handlebars.compile($("#sigint-template").html());
+    var combatevent_template = Handlebars.compile($("#combatevent-template").html());
+    var afteraction_template = Handlebars.compile($("#afteraction-template").html());
+    var operationalreport_template = Handlebars.compile($("#operationalreport-template").html());
+    function commaSeparateNumber(val) {
+        while (/(\d+)(\d{3})/.test(val.toString())) {
+            val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
+        }
+        return val;
+    }
+    function load_hexes(turn) {
+
+        var hexes = turn.hexes;
+
+        $.each(hexes, function (i, hex) {
+
+            var x = hex.x;
+            var y = hex.y;
+            //var report = item.html;
+            var lon = 0.6563 * x + 15.962;
+            var lat = -0.5935 * y - 15.446;
+            if (isEven(y)) {
+                lon = lon - 0.6563 / 2.0;
+            }
+            var base = "";
+            var base_tooltip = "";
+
+
+            var airbase = "";
+            var airbase_tooltip = "";
+
+
+            var navalbase = "";
+            var navalbase_tooltip = "";
+
+            var reports = "";
+            var reports_tooltip = "";
+
+
+            var taskforces = "";
+            var taskforces_tooltip = "";
+
+            var lcus = "";
+            var lcus_tooltip = "";
+
+            var baseIcon;
+            var airbaseIcon;
+            var navalbaseIcon;
+            var taskforceIcon;
+            var lcusIcon;
+
+            var popupOptions = { maxWidth: 600, maxHeight: 400, };
+            $.each(hex.units, function (i, unit) {
+                //populate htmls via that pretentious lib
+
+                if (unit.type_str == "AirGroup") {
+                    if (unit.owner == 0) {
+                        airbaseIcon = "Japan";
+                        unit.owner = "Japan";
+                    }
+                    if (unit.owner == 1) {
+                        airbaseIcon = "Allies";
+                        unit.owner = "Allies";
+                    }
+                    airbase = airbase + airgroup_template(unit);
+                    airbase_tooltip = airbase_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "Base") {
+                    if (unit.owner == 0) {
+                        baseIcon = "Japan";
+                        unit.owner = "Japan";
+                    }
+                    if (unit.owner == 1) {
+                        baseIcon = "Allies";
+                        unit.owner = "Allies";
+                    }
+                    unit.row.Supply = commaSeparateNumber(unit.row.Supply);
+                    unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
+                    base = base + base_template(unit);
+                    base_tooltip = base_tooltip + unit.name;
+
+                } else if (unit.type_str == "TaskForce") {
+                    if (unit.owner == 0) {
+                        taskforceIcon = "Japan";
+                        unit.owner = "Japan";
+                    }
+                    if (unit.owner == 1) {
+                        taskforceIcon = "Allies";
+                        unit.owner = "Allies";
+                    }
+                    taskforces = taskforces + taskforces_template(unit);
+                    $.each(unit.subunits, function (i, subunit) {
+                        taskforces = taskforces + ship_template(subunit);
+                        $.each(subunit.subunits, function (i, subsubunit) {
+                            taskforces = taskforces + airgroup_template(subsubunit);
+                        });
+                    });
+                    taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "Ship") {
+                    if (unit.owner == 0) {
+                        navalbaseIcon = "Japan";
+                        unit.owner = "Japan";
+                    }
+                    if (unit.owner == 1) {
+                        navalbaseIcon = "Allies";
+                        unit.owner = "Allies";
+                    }
+                    //ships in TFs are in TFs, these are ships at ahcnor
+                    navalbase = navalbase + ship_template(unit);
+                    $.each(unit.subunits, function (i, subunit) {
+                        navalbase = navalbase + airgroup_template(subunit);
+                    });
+                    navalbase_tooltip = navalbase_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "LCU") {
+                    if (unit.owner == 0) {
+                        lcuIcon = "Japan";
+                        unit.owner = "Japan";
+                    }
+                    if (unit.owner == 1) {
+                        lcuIcon = "Allies";
+                        unit.owner = "Allies";
+                    }
+                    lcus = lcus + lcu_template(unit);
+                    lcus_tooltip = lcus_tooltip + unit.name + "\n";
+                } else if (unit.type_str == "SigInt") {
+                    reports = reports + sigint_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report + "\n";
+                } else if (unit.type_str == "CombatEvent") {
+                    reports = reports + combatevent_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report + "\n";
+                } else if (unit.type_str == "AfterAction") {
+                    reports = reports + afteraction_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
+                } else if (unit.type_str == "OperationalReport") {
+                    reports = reports + operationalreport_template(unit);
+                    reports_tooltip = reports_tooltip + unit.report + "\n";
+                }
+            });
+
+            var nudge_y = 0.0;
+            if ("@Ajax.JavaScriptStringEncode(ViewBag.Side)" == "Both") {
+                if (turn.side_string == "Allies") {
+                    nudge_y = 0.07;
+                } else if (turn.side_string == "Japan") {
+                    nudge_y = -0.07;
+                }
+            }
+            if ("@Ajax.JavaScriptStringEncode(ViewBag.Side)" != "Both" || (baseIcon == "Japan" && turn.side_string == "Japan") || (baseIcon == "Allies" && turn.side_string == "Allies")) {
+                if (base != "") {
+                    var pos = [lat + 0.09, lon - 0.09]; //intentionall no nudge_y
+                    if (baseIcon == "Japan") {
+                        L.marker(pos, { icon: baseIcon_j, title: base_tooltip })
+                            .addTo(map)
+                            .bindPopup(base, popupOptions);
+                    } else {
+                        L.marker(pos, { icon: baseIcon_a, title: base_tooltip })
+                            .addTo(map)
+                            .bindPopup(base, popupOptions);
+                    }
+                }
+            }
+            if (lcus != "") {
+                var pos = [lat - 0.12 + nudge_y, lon - 0.23];
+                if (lcuIcon == "Japan") {
+                    L.marker(pos, { icon: lcuIcon_j, title: lcus_tooltip })
+                        .addTo(map)
+                        .bindPopup(lcus, popupOptions);
+                } else {
+                    L.marker(pos, { icon: lcuIcon_a, title: lcus_tooltip })
+                        .addTo(map)
+                        .bindPopup(lcus, popupOptions);
+                }
+
+            }
+            if (airbase != "") {
+                var pos = [lat + 0.21, lon + 0.13];
+                if (airbaseIcon == "Japan") {
+                    L.marker(pos, { icon: airbaseIcon_j, title: airbase_tooltip })
+                        .addTo(map)
+                        .bindPopup(airbase, popupOptions);
+                } else {
+                    L.marker(pos, { icon: airbaseIcon_a, title: airbase_tooltip })
+                        .addTo(map)
+                        .bindPopup(airbase, popupOptions);
+                }
+
+            }
+
+            if (taskforces != "") {
+                var pos;
+                if (base == "") {
+                    pos = [lat + 0.1 + nudge_y, lon - 0.1];
+                } else {
+                    pos = [lat - 0.10 + nudge_y, lon + 0.06];
+                }
+                if (taskforceIcon == "Japan") {
+                    L.marker(pos, { icon: taskforceIcon_j, title: taskforces_tooltip })
+                        .addTo(map)
+                        .bindPopup(taskforces, popupOptions);
+                } else {
+                    L.marker(pos, { icon: taskforceIcon_a, title: taskforces_tooltip })
+                        .addTo(map)
+                        .bindPopup(taskforces, popupOptions);
+                }
+            }
+
+            if (navalbase != "") {
+                var pos = [lat + 0.22, lon - 0.25];
+                if (navalbaseIcon == "Japan") {
+                    L.marker(pos, { icon: navalbaseIcon_j, title: navalbase_tooltip })
+                        .addTo(map)
+                        .bindPopup(navalbase, popupOptions);
+                } else {
+                    L.marker(pos, { icon: navalbaseIcon_a, title: navalbase_tooltip })
+                        .addTo(map)
+                        .bindPopup(navalbase, popupOptions);
+                }
+            }
+            if (reports != "") {
+                L.marker([lat + 0.35 + nudge_y, lon - 0.08], { icon: reportIcon, title: reports_tooltip })
+                    .addTo(map)
+                    .bindPopup(reports, popupOptions);
+            }
+
+        });
+    }
+</script>

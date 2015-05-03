@@ -91,7 +91,7 @@ namespace WITPJSON
                     if (has_location)
                     {
                         u.location = u.row["Location"];
-                        if (u.location.ToLower().Contains("delay"))
+                        if (u.location.ToLower().Contains("delay") || u.location.ToLower().Contains("loaded on"))
                         {
                             u.x = -1;
                             u.y = -1;

@@ -1,0 +1,110 @@
+﻿<script id="base-template" type="text/x-handlebars-template">
+    <div>
+        <h2><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h2>
+        {{row.Region}} {{row.Type}}
+        <br />
+        <strong>Held by: </strong>{{owner}}
+        <br />
+        <strong>Supply: </strong>{{row.Supply}}
+        <strong>Fuel: </strong>{{row.Fuel}}
+        <br />
+        <strong>Port: </strong>{{row.Port}} {{row.PExp}}
+        <strong>Airbase: </strong>{{row.Airbase}} {{row.AExp}}
+        <strong>Forts: </strong>{{row.Forts}} {{row.FExp}}
+        <br />
+        <strong>Eng: </strong>{{row.Eng}} 
+        <strong>Nav: </strong>{{row.Nav}} 
+        <strong>AirS: </strong>{{row.AirS}} 
+        <strong>AV: </strong>{{row.AV}} 
+        <br />
+        <strong>Garrison: </strong>{{row.Garrison}} 
+        <strong>TroopCap: </strong>{{row.TroopCap}} 
+        <strong>HQ: </strong>{{row.HQ}} 
+        <br />
+        <strong>Japan VP: </strong>{{row.JapanVP}} 
+        <strong>Allies VP: </strong>{{row.AlliedVP}} 
+    </div>
+</script>
+<script id="lcu-template" type="text/x-handlebars-template">
+    <div>
+        <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
+        {{row.Nation}} {{row.Type}} {{row.TOE}} {{row.HQ}} Withdraw {{row.Withdraw}}
+        <br />
+        <strong>AV: </strong>{{row.AV}}
+        <strong>Nav: </strong>{{row.Nav}}
+        <strong>Air: </strong>{{row.Air}}
+        <strong>Eng: </strong>{{row.Eng}}
+        <br />
+        <strong>Exp/Morale: </strong>{{row.Exp}}/{{row.Morale}}
+        <strong>Disr/Fat: </strong>{{row.Disr}}/{{row.Fat}}
+        <br />
+        <strong>Mode: </strong>{{row.OpMode}}
+        <strong>Plan: </strong>{{row.Planfor}} {{row.Plan}}
+        <br />
+        <strong>Supply: </strong>{{row.Supply}}
+        <strong>Base Load: </strong>{{row.BaseLoad}}
+        <strong>Destination: </strong>{{row.Destination}}
+    </div>
+</script>
+<script id="airgroup-template" type="text/x-handlebars-template">
+    <div>
+        <h5><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h5>
+        {{row.Nation}} {{row.Model}} {{row.HQ}}
+        <br />
+        <strong>Ready/Repair/Reserve/Max:</strong> {{row.Ready}}/{{row.Repair}}/{{row.Reserve}}/{{row.MaxPlanes}} 
+        <br />
+        <strong>CAP/LRCAP/ASW/Search/Train/Rest:</strong> {{row.CAP}}/{{row.LRCAP}}/{{row.ASW}}/{{row.Search}}/{{row.Train}}/{{row.Rest}} 
+        <br />
+        <strong>Pilots:</strong> {{row.Pilots}} 
+        <strong>Exp/Mor/Fat: </strong>{{row.Exp}}/{{row.Morale}}/{{row.Fat}}
+        <strong>Kills:</strong> {{row.Kills}}
+        <br />
+        <strong>Upgrade:</strong> {{row.Upgrade}} 
+        <strong>Withdraw:</strong> {{row.Withdraw}} 
+        <strong>Leader Air/Insp:</strong> {{row.LeadAir}}/{{row.LeadInsp}}
+    </div>
+</script>
+<script id="taskforce-template" type="text/x-handlebars-template">
+    <div>
+        <h3><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}} {{row.Label}}</a></h3>
+        <strong>{{row.Mission}}</strong>
+        <strong>Detect: </strong>{{row.Detect}}
+        <br />
+        <strong>Ships: </strong>{{row.Ships}}
+        <strong>Speed: </strong>{{row.Speed}}
+        <strong>Dock Level: </strong>{{row.DockLevel}}
+        <strong>ETA Home: </strong>{{row.ETAHome}}
+    </div>
+</script>
+<script id="ship-template" type="text/x-handlebars-template">
+    <div>
+        <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
+        <strong>{{ship_class}}</strong><br />
+        <strong>Sys/Flt/Eng/Fire/Wep:</strong> {{row.Sys}}/{{row.Flt}}/{{row.Eng}}/{{row.Fire}}/{{row.Weapon}} 
+        <strong>Exp D/N: </strong>{{row.Exp}}
+        <strong>AA/ASW/Torp</strong> {{row.AA}}/{{row.ASW}}/{{row.Torp}}</br>
+        {{row.Nation}} {{row.Class}}-class {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
+    </div>
+</script>
+
+<script id="sigint-template" type="text/x-handlebars-template">
+    <div>
+        {{report}}<br />
+    </div>
+</script>
+<script id="combatevent-template" type="text/x-handlebars-template">
+    <div>
+        {{report}}<br />
+    </div>
+</script>
+<script id="afteraction-template" type="text/x-handlebars-template">
+    <div>
+        <pre style="border-style: solid; border-width: 1px;">{{report}}</pre>
+        <br />
+    </div>
+</script>
+<script id="operationalreport-template" type="text/x-handlebars-template">
+    <div>
+        {{report}}<br />
+    </div>
+</script>

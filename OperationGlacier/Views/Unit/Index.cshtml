@@ -1,1 +1,27 @@
-﻿Under construction!
+﻿@{
+    ViewBag.Title = "UNIT_NAME"
+}
+@Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
+@Styles.Render("~/Content/jquery.dynatable.css")
+@Scripts.Render("~/Scripts/jquery.dynatable.js")
+<div id="unit-timeline" style="background: red;">
+    Work In Progress!
+</div>
+<div id="unit-timeline-graphs" style="background: blue;">
+    Work In Progress!
+</div>
+<script>
+
+    function display_timeline(timeline) {
+        document.querySelector('#unit-timeline').innerHTML = 'lol';
+        document.title.replace("UNIT_NAME", timeline.name);
+    }
+    //download the json
+    (function () {
+        var link = "/OperationGlacier/GameData/Timeline/" + "@Ajax.JavaScriptStringEncode(ViewBag.tid)" + ".json";
+        $.getJSON(link).done(display_timeline);
+
+
+    }).call(this);
+
+</script>

@@ -9,7 +9,7 @@ using Newtonsoft.Json;
 
 namespace WITPJSON
 {
-    class Turn //more a TurnCoordinator, this guy knows where stuff gotta go.
+    public class Turn //more a TurnCoordinator, this guy knows where stuff gotta go.
     {
         public enum Side
         {
@@ -20,6 +20,8 @@ namespace WITPJSON
         public int file_index;
 
         public Side side;
+
+        public string side_string { get { if (side == Side.Allies) return "Allies"; else if (side == Side.Japan) return "Japan"; throw new Exception(); } }
 
         public DateTime date;
 
@@ -57,7 +59,7 @@ namespace WITPJSON
         }
 
         [JsonIgnore]
-        public string output_directory { get { return Path.Combine(Program.output_directory, side.ToString(), date_string); } }
+        public string output_directory { get { return Path.Combine(Program.output_turns_directory, side.ToString(), date_string); } }
         [JsonIgnore]
         public string output_filename { get { return Path.Combine(this.output_directory, "Turn"); } }
 
@@ -103,6 +105,17 @@ namespace WITPJSON
             {
                 u.date = date;
                 u.side = side;
+                if (u.owner == -1)
+                {
+                    if (u.side == Side.Allies)
+                    {
+                        u.owner = 1;
+                    }
+                    if (u.side == Side.Japan)
+                    {
+                        u.owner = 0;
+                    }
+                }
             }
 
             Units = Units.Where(u =>

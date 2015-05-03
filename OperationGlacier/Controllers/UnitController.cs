@@ -8,8 +8,9 @@ namespace OperationGlacier.Controllers
 {
     public class UnitController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Index(string tid)
         {
+            ViewBag.tid = tid;
             return View();
         }
 

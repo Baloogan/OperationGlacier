@@ -9,7 +9,7 @@ using Microsoft.VisualBasic.FileIO;
 using System.Text.RegularExpressions;
 namespace WITPJSON
 {
-    partial class Unit
+    public partial class Unit
     {
         public enum Type
         {
@@ -35,8 +35,9 @@ namespace WITPJSON
             AfterAction,
             OperationalReport
         }
-
+        public string timeline_id { get { return side_str + "_" + type_str + "_" + id; } }
         public Turn.Side side;
+        public string side_str { get { return side.ToString(); } }
         public Dictionary<string, string> row;
         public string name;
         public int id;
@@ -45,9 +46,9 @@ namespace WITPJSON
         public Type type;
         public string type_str { get { return type.ToString(); } }
         public string location;
-        public int owner;
+        public int owner = -1;
         public string report;
         public string ship_class;
-        public List<Unit> subunits = new List<Unit>(); 
+        public List<Unit> subunits = new List<Unit>();
     }
 }

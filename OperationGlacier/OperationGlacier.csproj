@@ -180,14 +180,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\drop-theme-arrows-bounce-dark.css" />
-    <Content Include="Content\drop-theme-arrows-bounce.css" />
-    <Content Include="Content\drop-theme-arrows.css" />
-    <Content Include="Content\drop-theme-basic.css" />
-    <Content Include="Content\drop-theme-hubspot-popovers.css" />
     <Content Include="Content\jquery.dynatable.css" />
     <Content Include="Content\leaflet.css" />
-    <Content Include="Content\welcome.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -195,8 +189,6 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Scripts\drop.js" />
-    <Content Include="Scripts\drop.min.js" />
     <Content Include="Scripts\handlebars-v3.0.1.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -249,6 +241,10 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Map\Index.cshtml" />
     <Content Include="Views\Unit\Index.cshtml" />
+    <Content Include="Views\Includes\HandlebarsTemplates.cshtml" />
+    <Content Include="Views\Map\_HexRender.cshtml" />
+    <Content Include="Views\Map\_DownloadTurns.cshtml" />
+    <Content Include="Scripts\knockout-3.3.0.js" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

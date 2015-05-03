@@ -15,8 +15,11 @@ namespace WITPJSON
         internal static string japan_archive_directory = null;
         internal static string japan_tracker_directory = null;
         internal static string output_directory = null;
+        internal static string output_turns_directory { get { return Path.Combine(output_directory, "Turns"); } }
+        internal static string output_timelines_directory { get { return Path.Combine(output_directory, "Timeline"); } }
         public static Random random = new Random();
-
+        private static IEnumerable<Turn> turns;
+        private static IEnumerable<UnitTimeline> timelines;
         private static void Main(string[] args)
         {
             Console.WriteLine("WITPJSON v0.1");
@@ -35,17 +38,48 @@ namespace WITPJSON
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                     output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
                     throw new PlatformNotSupportedException();
-                    //break;
+                //break;
                 default:
                     throw new PlatformNotSupportedException();
             }
 
-            ClearOutputDirectory();
-
             ProcessTurns();
+            RenderTurns();
 
+            //ProcessTimelines();
+            //RenderTimelines();
         }
-
+        static void RenderTurns()
+        {
+            if (Directory.Exists(output_turns_directory))
+            {
+                new DirectoryInfo(output_turns_directory).Delete(true);
+                Directory.CreateDirectory(output_turns_directory);
+            }
+            Console.WriteLine("Rendering turns.");
+            foreach (var turn in turns)
+            {
+                turn.Render();
+            }
+        }
+        static void RenderTimelines()
+        {
+            if (Directory.Exists(output_timelines_directory))
+            {
+                new DirectoryInfo(output_timelines_directory).Delete(true);
+                Directory.CreateDirectory(output_timelines_directory);
+            }
+            Console.WriteLine("Rendering " + timelines.Count() + " timelines.");
+            foreach (var timeline in timelines)
+            {
+                timeline.render();
+            }
+        }
+        static void ProcessTimelines()
+        {
+            Console.WriteLine("Computing timelines");
+            timelines = UnitTimeline.generate_unit_timelines(turns).ToList();
+        }
         static void ProcessTurns()
         {
             Console.WriteLine("Processing turns");
@@ -55,17 +89,11 @@ namespace WITPJSON
             var japan_days = GetDays(japan_archive_directory).Distinct();
             var japan_turns = japan_days.Select(t => new Turn(Turn.Side.Japan, t) { file_index = -1 });
             Console.WriteLine(japan_turns.Count() + " japan turns found");
-            var turns = allies_turns.Concat(japan_turns).ToList();
+            turns = allies_turns.Concat(japan_turns).ToList();
             foreach (var turn in turns)
             {
                 turn.compute();
-                turn.Render();
             }
-            /*var timelines = UnitTimeline.generate_unit_timelines(turns);
-            foreach (var timeline in timelines)
-            {
-                timeline.render();
-            }*/
         }
         static IEnumerable<DateTime> GetDays(string directory)
         {
@@ -80,19 +108,5 @@ namespace WITPJSON
                 yield return new DateTime(year, month, day);
             }
         }
-        static void ClearOutputDirectory()
-        {
-            Console.WriteLine("Clearing output directory");
-            try
-            {
-                new DirectoryInfo(output_directory).Delete(true);
-            }
-            catch (Exception e)
-            {
-
-            }
-            Directory.CreateDirectory(output_directory);
-        }
-
     }
 }

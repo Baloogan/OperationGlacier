@@ -2,8 +2,6 @@
     ViewBag.Title = ViewBag.Side + " " + ViewBag.Date;
 }
 @Styles.Render("~/Content/leaflet.css")
-@Styles.Render("~/Content/jquery.dynatable.css")
-@Scripts.Render("~/Scripts/jquery.dynatable.js")
 @Scripts.Render("~/Scripts/leaflet.js")
 @Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
 <div id="map" style="width: 100%; height: 100%; background: black;"></div>
@@ -20,6 +18,7 @@
         background: black;
         overflow: hidden;
         height: 100%;
+        padding: 0;
     }
 
     html, body {
@@ -37,15 +36,16 @@
 </style>
 
 <script>
+
     var map = L.map('map', {
         crs: L.CRS.Simple,
         center: [-78, 95],
-        zoom: 3
+        zoom: 3,
     });
 
     //L.tileLayer('https://secure.baloogancampaign.com:8081/map/render3/{z}/{x}/{y}.png', {
     L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
-        attribution: 'WitP-AE Topo Map Project',
+        attribution: '@Ajax.JavaScriptStringEncode(ViewBag.Side) @Ajax.JavaScriptStringEncode(ViewBag.Date) WitP-AE Topo Map Project',
         continuousWorld: true,
         id: 'map-render3',
         maxZoom: 6,
@@ -54,7 +54,7 @@
     }).addTo(map);
 
     map.zoomControl.setPosition('topright');
-    map.setMaxBounds([[-138, 12], [-14, 170]]);
+    map.setMaxBounds([[-138, 12], [0, 170]]);
     L.Circle = L.Circle.extend({
         projectLatlngs: function () {
             //this._point = this._map.latLngToLayerPoint(this._latlng);
@@ -80,309 +80,7 @@
         return n == parseFloat(n) ? !(n % 2) : void 0;
     }
 </script>
-<script id="base-template" type="text/x-handlebars-template">
-    <div>
-        <h2><a href="/OperationGlacier/Unit?Type=Base&ID={{id}}" target="_blank">{{name}}</a></h2>
-        {{row.Region}} {{row.Type}}
-        <br />
-        <strong>Held by: </strong>{{owner}}
-        <br />
-        <strong>Supply: </strong>{{row.Supply}}
-        <strong>Fuel: </strong>{{row.Fuel}}
-        <br />
-        <strong>Port: </strong>{{row.Port}} {{row.PExp}}
-        <strong>Airbase: </strong>{{row.Airbase}} {{row.AExp}}
-        <strong>Forts: </strong>{{row.Forts}} {{row.FExp}}
-        <br />
-        <strong>Eng: </strong>{{row.Eng}} 
-        <strong>Nav: </strong>{{row.Nav}} 
-        <strong>AirS: </strong>{{row.AirS}} 
-        <strong>AV: </strong>{{row.AV}} 
-        <br />
-        <strong>Garrison: </strong>{{row.Garrison}} 
-        <strong>TroopCap: </strong>{{row.TroopCap}} 
-        <strong>HQ: </strong>{{row.HQ}} 
-        <br />
-        <strong>Japan VP: </strong>{{row.JapanVP}} 
-        <strong>Allied VP: </strong>{{row.AlliedVP}} 
-    </div>
-</script>
-<script id="lcu-template" type="text/x-handlebars-template">
-    <div>
-        <h4><a href="/OperationGlacier/Unit?Type=LCU&ID={{id}}" target="_blank">{{name}}</a></h4>
-        {{row.Nation}} {{row.Type}} {{row.TOE}} {{row.HQ}} Withdraw {{row.Withdraw}}
-        <br />
-        <strong>AV: </strong>{{row.AV}}
-        <strong>Nav: </strong>{{row.Nav}}
-        <strong>Air: </strong>{{row.Air}}
-        <strong>Eng: </strong>{{row.Eng}}
-        <br />
-        <strong>Exp/Morale: </strong>{{row.Exp}}/{{row.Morale}}
-        <strong>Disr/Fat: </strong>{{row.Disr}}/{{row.Fat}}
-        <br />
-        <strong>Mode: </strong>{{row.OpMode}}
-        <strong>Plan: </strong>{{row.Planfor}} {{row.Plan}}
-        <br />
-        <strong>Supply: </strong>{{row.Supply}}
-        <strong>Base Load: </strong>{{row.BaseLoad}}
-        <strong>Destination: </strong>{{row.Destination}}
-    </div>
-</script>
-<script id="airgroup-template" type="text/x-handlebars-template">
-    <div>
-        <h5><a href="/OperationGlacier/Unit?Type=AirGroup&ID={{id}}" target="_blank">{{name}}</a></h5>
-        {{row.Nation}} {{row.Model}} {{row.HQ}}
-        <br />
-        <strong>Ready/Repair/Reserve/Max:</strong> {{row.Ready}}/{{row.Repair}}/{{row.Reserve}}/{{row.MaxPlanes}} 
-        <br />
-        <strong>CAP/LRCAP/ASW/Search/Train/Rest:</strong> {{row.CAP}}/{{row.LRCAP}}/{{row.ASW}}/{{row.Search}}/{{row.Train}}/{{row.Rest}} 
-        <br />
-        <strong>Pilots:</strong> {{row.Pilots}} 
-        <strong>Exp/Mor/Fat: </strong>{{row.Exp}}/{{row.Morale}}/{{row.Fat}}
-        <strong>Kills:</strong> {{row.Kills}}
-        <br />
-        <strong>Upgrade:</strong> {{row.Upgrade}} 
-        <strong>Withdraw:</strong> {{row.Withdraw}} 
-        <strong>Leader Air/Insp:</strong> {{row.LeadAir}}/{{row.LeadInsp}}
-    </div>
-</script>
-<script id="taskforce-template" type="text/x-handlebars-template">
-    <div>
-        <h3><a href="/OperationGlacier/Unit?Type=TaskForce&ID={{id}}" target="_blank">{{name}} {{row.Label}}</a></h3>
-        <strong>{{row.Mission}}</strong>
-        <strong>Detect: </strong>{{row.Detect}}
-        <br />
-        <strong>Ships: </strong>{{row.Ships}}
-        <strong>Speed: </strong>{{row.Speed}}
-        <strong>Dock Level: </strong>{{row.DockLevel}}
-        <strong>ETA Home: </strong>{{row.ETAHome}}
-    </div>
-</script>
-<script id="ship-template" type="text/x-handlebars-template">
-    <div>
-        <h4><a href="/OperationGlacier/Unit?Type=Ship&ID={{id}}" target="_blank">{{name}}</a></h4>
-        <strong>{{ship_class}}</strong><br />
-        <strong>Sys/Flt/Eng/Fire/Wep:</strong> {{row.Sys}}/{{row.Flt}}/{{row.Eng}}/{{row.Fire}}/{{row.Weapon}} 
-        <strong>Exp D/N: </strong>{{row.Exp}}
-        <strong>AA/ASW/Torp</strong> {{row.AA}}/{{row.ASW}}/{{row.Torp}}</br>
-        {{row.Nation}} {{row.Class}}-class {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
-    </div>
-</script>
 
-<script id="sigint-template" type="text/x-handlebars-template">
-    <div>
-        {{report}}<br />
-    </div>
-</script>
-<script id="combatevent-template" type="text/x-handlebars-template">
-    <div>
-        {{report}}<br />
-    </div>
-</script>
-<script id="afteraction-template" type="text/x-handlebars-template">
-    <div>
-        <pre style="border-style: solid; border-width: 1px;">{{report}}</pre>
-        <br />
-    </div>
-</script>
-<script id="operationalreport-template" type="text/x-handlebars-template">
-    <div>
-        {{report}}<br />
-    </div>
-</script>
-<script>
-    var side_letter = @(ViewBag.Side == "Japan" ? @Html.Raw("\"j\"") : @Html.Raw("\"\""));
-    
-    var airbaseIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/AB'+side_letter+'.png',
-    });
-    var navalbaseIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/NB'+side_letter+'.png',
-    });
-    var taskforceIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/TF'+side_letter+'.png',
-    });
-    var usbaseIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/USBase.png',
-    });
-    var jabaseIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/JABase.png',
-    });
-    var reportIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
-    });
-    var lcuIcon = L.icon({
-        iconUrl: '/OperationGlacier/Content/map_icons/LCU'+side_letter+'.png',
-    });
-
-    var base_template = Handlebars.compile($("#base-template").html());
-    var lcu_template = Handlebars.compile($("#lcu-template").html());
-    var airgroup_template = Handlebars.compile($("#airgroup-template").html());
-    var taskforces_template = Handlebars.compile($("#taskforce-template").html());
-    var ship_template = Handlebars.compile($("#ship-template").html());
-
-    var sigint_template = Handlebars.compile($("#sigint-template").html());
-    var combatevent_template = Handlebars.compile($("#combatevent-template").html());
-    var afteraction_template = Handlebars.compile($("#afteraction-template").html());
-    var operationalreport_template = Handlebars.compile($("#operationalreport-template").html());
-    function commaSeparateNumber(val) {
-        while (/(\d+)(\d{3})/.test(val.toString())) {
-            val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
-        }
-        return val;
-    }
-    function load_hexes(data) {
-
-        var hexes = data.hexes;
-
-        $.each(hexes, function (i, hex) {
-
-            var x = hex.x;
-            var y = hex.y;
-            //var report = item.html;
-            var lon = 0.6563 * x + 15.962;
-            var lat = -0.5935 * y - 15.446;
-            if (isEven(y)) {
-                lon = lon - 0.6563 / 2.0;
-            }
-            var base = "";
-            var base_tooltip = "";
-            var baseIcon;
-
-            var airbase = "";
-            var airbase_tooltip = "";
-
-            var navalbase = "";
-            var navalbase_tooltip = "";
-
-            var reports = "";
-            var reports_tooltip = "";
-
-            var taskforces = "";
-            var taskforces_tooltip = "";
-
-            var lcus = "";
-            var lcus_tooltip = "";
-
-
-
-            var popupOptions = { maxWidth: 600, maxHeight: 400, };
-            $.each(hex.units, function (i, unit) {
-                //populate htmls via that pretentious lib
-                if (unit.type_str == "AirGroup") {
-                    airbase = airbase + airgroup_template(unit);
-                    airbase_tooltip = airbase_tooltip + unit.name + "\n";
-                } else if (unit.type_str == "Base") {
-                    if (unit.owner == 0) {
-                        baseIcon = jabaseIcon;
-                        unit.owner = "Japan";
-                    }
-                    if (unit.owner == 1) {
-                        baseIcon = usbaseIcon;
-                        unit.owner = "Allied";
-                    }
-                    unit.row.Supply = commaSeparateNumber(unit.row.Supply);
-                    unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
-                    base = base + base_template(unit);
-                    base_tooltip = base_tooltip + unit.name;
-                    
-                } else if (unit.type_str == "TaskForce") {
-                    taskforces = taskforces + taskforces_template(unit);
-                    $.each(unit.subunits, function (i, subunit) {
-                        taskforces = taskforces + ship_template(subunit);
-                        $.each(subunit.subunits, function (i, subsubunit) {
-                            taskforces = taskforces + airgroup_template(subsubunit);
-                        });
-                    });
-                    taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
-                } else if (unit.type_str == "Ship") {
-                    //ships in TFs are in TFs, these are ships at ahcnor
-                    navalbase = navalbase + ship_template(unit);
-                    $.each(unit.subunits, function (i, subunit) {
-                        navalbase = navalbase + airgroup_template(subunit);
-                    });
-                    navalbase_tooltip = navalbase_tooltip + unit.name + "\n";
-                } else if (unit.type_str == "LCU") {
-                    lcus = lcus + lcu_template(unit);
-                    lcus_tooltip = lcus_tooltip + unit.name + "\n";
-                } else if (unit.type_str == "SigInt") {
-                    reports = reports + sigint_template(unit);
-                    reports_tooltip = reports_tooltip + unit.report + "\n";
-                } else if (unit.type_str == "CombatEvent") {
-                    reports = reports + combatevent_template(unit);
-                    reports_tooltip = reports_tooltip + unit.report + "\n";
-                } else if (unit.type_str == "AfterAction") {
-                    reports = reports + afteraction_template(unit);
-                    reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
-                } else if (unit.type_str == "OperationalReport") {
-                    reports = reports + operationalreport_template(unit);
-                    reports_tooltip = reports_tooltip + unit.report + "\n";
-                }
-            });
-
-
-
-
-            if (base != "") {
-                L.marker([lat + 0.09, lon - 0.09], { icon: baseIcon, title: base_tooltip })
-                    .addTo(map)
-                    .bindPopup(base, popupOptions);
-            }
-            if (lcus != "") {
-                L.marker([lat - 0.12, lon - 0.23], { icon: lcuIcon, title: lcus_tooltip })
-                    .addTo(map)
-                    .bindPopup(lcus, popupOptions);
-            }
-            if (airbase != "") {
-                L.marker([lat + 0.21, lon + 0.13], { icon: airbaseIcon, title: airbase_tooltip })
-                    .addTo(map)
-                    .bindPopup(airbase, popupOptions);
-            }
-
-            if (taskforces != "") {
-                var pos;
-                if (base == "") {
-                    pos = [lat + 0.1, lon - 0.1];
-                } else {
-                    pos = [lat - 0.10, lon + 0.06];
-                }
-                L.marker(pos, { icon: taskforceIcon, title: taskforces_tooltip })
-                    .addTo(map)
-                    .bindPopup(taskforces, popupOptions);
-            }
-
-            if (navalbase != "") {
-                L.marker([lat + 0.22, lon - 0.25], { icon: navalbaseIcon, title: navalbase_tooltip })
-                    .addTo(map)
-                    .bindPopup(navalbase, popupOptions);
-            }
-            if (reports != "") {
-                L.marker([lat + 0.35, lon - 0.08], { icon: reportIcon, title: reports_tooltip })
-                    .addTo(map)
-                    .bindPopup(reports, popupOptions);
-            }
-
-        });
-    }
-    (function () {
-        var side = '@Ajax.JavaScriptStringEncode(ViewBag.Side)';
-        var date = '@Ajax.JavaScriptStringEncode(ViewBag.Date)';
-        var link = '/OperationGlacier/GameData/' + side + '/' + date + '/Turn';
-        $.getJSON(link + '0.json').done(load_hexes);
-        $.getJSON(link + '1.json').done(load_hexes);
-        $.getJSON(link + '2.json').done(load_hexes);
-        $.getJSON(link + '3.json').done(load_hexes);
-        $.getJSON(link + '4.json').done(load_hexes);
-        $.getJSON(link + '5.json').done(load_hexes);
-        $.getJSON(link + '6.json').done(load_hexes);
-        $.getJSON(link + '7.json').done(load_hexes);
-        $.getJSON(link + '8.json').done(load_hexes);
-        $.getJSON(link + '9.json').done(load_hexes);
-        $.getJSON(link + '10.json').done(load_hexes);
-        $.getJSON(link + '11.json').done(load_hexes);
-        $.getJSON(link + '12.json').done(load_hexes);
-        $.getJSON(link + '13.json').done(load_hexes);
-        $.getJSON(link + '14.json').done(load_hexes);
-        $.getJSON(link + '15.json').done(load_hexes);
-    }).call(this);
-</script>
+@RenderPage("../Includes/HandlebarsTemplates.cshtml")
+@RenderPage("_HexRender.cshtml")
+@RenderPage("_DownloadTurns.cshtml")
