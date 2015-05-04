@@ -29,6 +29,25 @@
             -ms-user-select: none;
             user-select: none;
         }
+
+        .logo-operation-glacier {
+            cursor: pointer;
+            background-image: url(https://i.imgur.com/RXzCraP.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding-left: 55px;
+    }
+
+.dropdown-menu > li > a {
+  display: block;
+  padding: 3px 20px;
+  clear: both;
+  font-weight: normal;
+  line-height: 1.428571429;
+  color: #FFFFFF;
+  white-space: nowrap;
+}
+    
     </style>
 </head>
 <body>
@@ -39,17 +58,21 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand noselect" style="cursor: pointer; background-image: url(https://i.imgur.com/RXzCraP.png); background-repeat: no-repeat; background-size: contain; padding-left: 55px; user-select: none;">Operation Glacier</a>
+		    </button>
+	    <div class="dropdown">
+		    <a class="navbar-brand noselect logo-operation-glacier dropdown-toggle" id="mainDropdown" data-toggle="dropdown" aria-expanded="true">Operation Glacier</a>
+		    <ul class="dropdown-menu" role="menu" aria-labelledby="mainDropdown" style="margin:50px 0 0; background-color: #333333; ">
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=411207">Latest Allies Turn</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=411207">Latest Japanese Turn</a></li>
+    <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=411207">Latest Combined Turn</a></li>
 
+		    </ul>
+		</div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li><a href="/OperationGlacier/Map?side=Allies&date=411207">Latest Allies Turn</a></li>
-                    <li><a href="/OperationGlacier/Map?side=Japan&date=411207">Latest Japanese Turn</a></li>
-                    <li><a href="/OperationGlacier/Map?side=Both&date=411207">Latest See-All Turn</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
