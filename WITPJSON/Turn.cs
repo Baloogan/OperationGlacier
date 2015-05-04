@@ -41,6 +41,9 @@ namespace WITPJSON
         [JsonIgnore]
         public List<Unit> Units;
 
+        [JsonIgnore]
+        public List<Unit> All_Units;
+
         public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year - 1900, date.Month, date.Day); } }
 
         [JsonIgnore]
@@ -120,6 +123,8 @@ namespace WITPJSON
             Units = Units.Where(u =>
                 string.IsNullOrEmpty(u.location)
                 || !u.location.ToLower().Contains("delay")).ToList();
+
+            All_Units = Units.ToList();
 
             foreach (var u in Units.Where(unit => unit.type == Unit.Type.AirGroup).ToArray())
             {

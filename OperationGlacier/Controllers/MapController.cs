@@ -31,14 +31,21 @@ namespace OperationGlacier.Controllers
             ViewBag.Side = side;
             ViewBag.Date = date;
 
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user.SideRestriction != "Both")
+            if (User != null)
             {
-                if (user.SideRestriction != side)
+                if (User.Identity != null)
                 {
-                    return new RedirectResult("~/");
+                    var user = UserManager.FindById(User.Identity.GetUserId());
+                    if (user != null && user.SideRestriction != "Both")
+                    {
+                        if (user.SideRestriction != side)
+                        {
+                            return new RedirectResult("~/");
+                        }
+                    }
                 }
             }
+
             return View();
         }
 

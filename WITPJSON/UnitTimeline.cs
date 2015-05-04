@@ -27,7 +27,7 @@ namespace WITPJSON
 
         internal static IEnumerable<UnitTimeline> generate_unit_timelines(IEnumerable<Turn> turns)
         {
-            var unit_bag = turns.SelectMany(t => t.Units).Where(u => u.type != Unit.Type.AfterAction && u.type != Unit.Type.CombatEvent && u.type != Unit.Type.SigInt && u.type != Unit.Type.OperationalReport);
+            var unit_bag = turns.SelectMany(t => t.All_Units).Where(u => u.type != Unit.Type.AfterAction && u.type != Unit.Type.CombatEvent && u.type != Unit.Type.SigInt && u.type != Unit.Type.OperationalReport);
             var units = unit_bag.GroupBy(unit => unit.timeline_id);
             foreach (var a in units)
             {
