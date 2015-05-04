@@ -38,12 +38,7 @@
         iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
     });
 
-    function commaSeparateNumber(val) {
-        while (/(\d+)(\d{3})/.test(val.toString())) {
-            val = val.toString().replace(/(\d+)(\d{3})/, '$1' + ',' + '$2');
-        }
-        return val;
-    }
+    
     function load_hexes(turn) {
 
         var hexes = turn.hexes;
@@ -98,7 +93,7 @@
                         airbaseIcon = "Allies";
                         unit.owner = "Allies";
                     }
-                    airbase = airbase + airgroup_template(unit);
+                    airbase += airgroup_template(unit);
                     airbase_tooltip = airbase_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "Base") {
                     if (unit.owner == 0) {
@@ -111,7 +106,7 @@
                     }
                     unit.row.Supply = commaSeparateNumber(unit.row.Supply);
                     unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
-                    base = base + base_template(unit);
+                    base += base_template(unit);
                     base_tooltip = base_tooltip + unit.name;
 
                 } else if (unit.type_str == "TaskForce") {
@@ -123,13 +118,17 @@
                         taskforceIcon = "Allies";
                         unit.owner = "Allies";
                     }
-                    taskforces = taskforces + taskforces_template(unit);
+                    taskforces += taskforce_template(unit);
+                    taskforces += "<div style='margin-left:20px'>";
                     $.each(unit.subunits, function (i, subunit) {
-                        taskforces = taskforces + ship_template(subunit);
+                        taskforces += ship_template(subunit);
+                        taskforces += "<div style='margin-left:20px'>";
                         $.each(subunit.subunits, function (i, subsubunit) {
-                            taskforces = taskforces + airgroup_template(subsubunit);
+                            taskforces += airgroup_template(subsubunit);
                         });
+                        taskforces += "</div>";
                     });
+                    taskforces += "</div>";
                     taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "Ship") {
                     if (unit.owner == 0) {
@@ -141,10 +140,12 @@
                         unit.owner = "Allies";
                     }
                     //ships in TFs are in TFs, these are ships at ahcnor
-                    navalbase = navalbase + ship_template(unit);
+                    navalbase += ship_template(unit);
+                    navalbase += "<div style='margin-left:20px'>";
                     $.each(unit.subunits, function (i, subunit) {
-                        navalbase = navalbase + airgroup_template(subunit);
+                        navalbase += airgroup_template(subunit);
                     });
+                    navalbase += "</div>";
                     navalbase_tooltip = navalbase_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "LCU") {
                     if (unit.owner == 0) {
@@ -155,19 +156,19 @@
                         lcuIcon = "Allies";
                         unit.owner = "Allies";
                     }
-                    lcus = lcus + lcu_template(unit);
+                    lcus += lcu_template(unit);
                     lcus_tooltip = lcus_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "SigInt") {
-                    reports = reports + sigint_template(unit);
+                    reports += sigint_template(unit);
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 } else if (unit.type_str == "CombatEvent") {
-                    reports = reports + combatevent_template(unit);
+                    reports += combatevent_template(unit);
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 } else if (unit.type_str == "AfterAction") {
-                    reports = reports + afteraction_template(unit);
+                    reports += afteraction_template(unit);
                     reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
                 } else if (unit.type_str == "OperationalReport") {
-                    reports = reports + operationalreport_template(unit);
+                    reports += operationalreport_template(unit);
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 }
             });
