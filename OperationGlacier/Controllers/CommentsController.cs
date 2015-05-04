@@ -47,7 +47,7 @@ namespace OperationGlacier.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CommentID,Username,date_in_game,date_in_world,timeline_id,message,side_restriction,x,y")] Comment comment)
+        public async Task<ActionResult> Create([Bind(Include = "CommentID,Username,date_in_game,date_in_world,unit_timeline_id,unit_side_str,message,ReplyToCommentID,side_restriction,x,y,unit_name,unit_location,unit_report_first_line")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace OperationGlacier.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CommentID,Username,date_in_game,date_in_world,timeline_id,message,side_restriction,x,y")] Comment comment)
+        public async Task<ActionResult> Edit([Bind(Include = "CommentID,Username,date_in_game,date_in_world,unit_timeline_id,unit_side_str,message,ReplyToCommentID,side_restriction,x,y,unit_name,unit_location,unit_report_first_line")] Comment comment)
         {
             if (ModelState.IsValid)
             {

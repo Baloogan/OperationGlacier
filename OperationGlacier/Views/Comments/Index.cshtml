@@ -21,10 +21,16 @@
             @Html.DisplayNameFor(model => model.date_in_world)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.timeline_id)
+            @Html.DisplayNameFor(model => model.unit_timeline_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit_side_str)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReplyToCommentID)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.side_restriction)
@@ -34,6 +40,15 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.y)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit_location)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.unit_report_first_line)
         </th>
         <th></th>
     </tr>
@@ -50,10 +65,16 @@
             @Html.DisplayFor(modelItem => item.date_in_world)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.timeline_id)
+            @Html.DisplayFor(modelItem => item.unit_timeline_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit_side_str)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReplyToCommentID)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.side_restriction)
@@ -63,6 +84,15 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.y)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit_location)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.unit_report_first_line)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CommentID }) |
