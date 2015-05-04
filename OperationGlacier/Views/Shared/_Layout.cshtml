@@ -1,4 +1,16 @@
 ﻿<!DOCTYPE html>
+@using Microsoft.AspNet.Identity
+@using OperationGlacier.Models
+@using Microsoft.AspNet.Identity.EntityFramework
+@{
+    ApplicationUser my_user = null;
+    if (Request.IsAuthenticated)
+    {
+        var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new ApplicationDbContext()));
+        my_user = UserManager.FindById(User.Identity.GetUserId());
+    }
+    ViewBag.my_user = my_user;
+}
 <html>
 <head>
     <meta charset="utf-8" />
@@ -36,18 +48,17 @@
             background-repeat: no-repeat;
             background-size: contain;
             padding-left: 55px;
-    }
+        }
 
-.dropdown-menu > li > a {
-  display: block;
-  padding: 3px 20px;
-  clear: both;
-  font-weight: normal;
-  line-height: 1.428571429;
-  color: #FFFFFF;
-  white-space: nowrap;
-}
-    
+        .dropdown-menu > li > a {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.428571429;
+            color: #FFFFFF;
+            white-space: nowrap;
+        }
     </style>
 </head>
 <body>
@@ -58,16 +69,42 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-		    </button>
-	    <div class="dropdown">
-		    <a class="navbar-brand noselect logo-operation-glacier dropdown-toggle" id="mainDropdown" data-toggle="dropdown" aria-expanded="true">Operation Glacier</a>
-		    <ul class="dropdown-menu" role="menu" aria-labelledby="mainDropdown" style="margin:50px 0 0; background-color: #333333; ">
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=latest">Latest Allies Turn</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=latest">Latest Japanese Turn</a></li>
-    <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=latest">Latest Combined Turn</a></li>
-
-		    </ul>
-		</div>
+                </button>
+                <div class="dropdown">
+                    <a class="navbar-brand noselect logo-operation-glacier dropdown-toggle" id="mainDropdown" data-toggle="dropdown" aria-expanded="true">Operation Glacier</a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="mainDropdown" style="margin:50px 0 0; background-color: #333333; ">
+                        @{
+                            bool can_see_japan = true;
+                            bool can_see_allies = true;
+                            if (Request.IsAuthenticated)
+                            {
+                                if (my_user.SideRestriction != "Both")
+                                {
+                                    if (my_user.SideRestriction == "Allies")
+                                    {
+                                        can_see_japan = false;
+                                    }
+                                    if (my_user.SideRestriction == "Japan")
+                                    {
+                                        can_see_allies = false;
+                                    }
+                                }
+                            }
+                        }
+                        @if (can_see_allies)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=latest">Latest Allies Turn</a></li>
+                        }
+                        @if (can_see_japan)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=latest">Latest Japanese Turn</a></li>
+                        }
+                        @if (can_see_allies && can_see_japan)
+                        {
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=latest">Latest Combined Turn</a></li>
+                        }
+                    </ul>
+                </div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -90,6 +127,11 @@
     </div>
 
 
+
+
+
     @RenderSection("scripts", required: false)
 </body>
+    <
+    </body>
 </html>

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OperationGlacier", "OperationGlacier\OperationGlacier.csproj", "{87BD419B-0BC4-4480-977B-F6DA208D2B76}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WITPJSON", "WITPJSON\WITPJSON.csproj", "{51F226C4-F4CA-4E94-8A8D-E27A7FEF11D8}"

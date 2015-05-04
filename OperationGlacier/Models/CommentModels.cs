@@ -15,6 +15,7 @@ namespace OperationGlacier.Models
         public string timeline_id { get; set; }
         public string message { get; set; }
         public string side_restriction { get; set; }
-
+        public int x { get; set; }
+        public int y { get; set; }
     }
 }

@@ -29,6 +29,12 @@
         <th>
             @Html.DisplayNameFor(model => model.side_restriction)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.x)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.y)
+        </th>
         <th></th>
     </tr>
 
@@ -51,6 +57,12 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.side_restriction)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.x)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.y)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CommentID }) |

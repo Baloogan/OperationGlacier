@@ -30,21 +30,15 @@ namespace OperationGlacier.Controllers
         {
             ViewBag.Side = side;
             if (date == "latest")
-                date = "411207";
+                date = "411207"; //lol
             ViewBag.Date = date;
 
-            if (User != null)
+            if (Request.IsAuthenticated)
             {
-                if (User.Identity != null)
+                var user = UserManager.FindById(User.Identity.GetUserId());
+                if (user.SideRestriction != "Both" && user.SideRestriction != side)
                 {
-                    var user = UserManager.FindById(User.Identity.GetUserId());
-                    if (user != null && user.SideRestriction != "Both")
-                    {
-                        if (user.SideRestriction != side)
-                        {
-                            return new RedirectResult("~/");
-                        }
-                    }
+                    return new RedirectResult("~/");
                 }
             }
 

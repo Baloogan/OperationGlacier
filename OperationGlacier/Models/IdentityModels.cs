@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using OperationGlacier.Migrations;
 
 namespace OperationGlacier.Models
 {
@@ -25,6 +26,8 @@ namespace OperationGlacier.Models
         public ApplicationDbContext()
             : base("DefaultConnection", throwIfV1Schema: false)
         {
+            System.Data.Entity.Database.SetInitializer(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Configuration>());            
+   
         }
 
         public static ApplicationDbContext Create()
