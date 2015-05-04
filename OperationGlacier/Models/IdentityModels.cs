@@ -31,5 +31,7 @@ namespace OperationGlacier.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<OperationGlacier.Models.Comment> Comments { get; set; }
     }
 }

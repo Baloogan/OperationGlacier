@@ -29,6 +29,8 @@ namespace OperationGlacier.Controllers
         public ActionResult Index(string side, string date)
         {
             ViewBag.Side = side;
+            if (date == "latest")
+                date = "411207";
             ViewBag.Date = date;
 
             if (User != null)

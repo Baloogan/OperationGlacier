@@ -9,7 +9,7 @@ namespace OperationGlacier.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(OperationGlacier.Models.ApplicationDbContext context)

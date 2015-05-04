@@ -1,0 +1,66 @@
+﻿@model OperationGlacier.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Comment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_in_game)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_in_game)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.date_in_world)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.date_in_world)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.timeline_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.timeline_id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.message)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.message)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.side_restriction)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.side_restriction)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CommentID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

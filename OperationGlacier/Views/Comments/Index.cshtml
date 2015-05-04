@@ -1,0 +1,63 @@
+﻿@model IEnumerable<OperationGlacier.Models.Comment>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Username)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_in_game)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.date_in_world)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeline_id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.message)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.side_restriction)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Username)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_in_game)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.date_in_world)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timeline_id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.message)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.side_restriction)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CommentID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CommentID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CommentID })
+        </td>
+    </tr>
+}
+
+</table>

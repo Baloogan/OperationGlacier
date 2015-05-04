@@ -161,6 +161,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -245,6 +246,11 @@
     <Content Include="Views\Map\_HexRender.cshtml" />
     <Content Include="Views\Map\_DownloadTurns.cshtml" />
     <Content Include="Scripts\knockout-3.3.0.js" />
+    <Content Include="Views\Comments\Create.cshtml" />
+    <Content Include="Views\Comments\Delete.cshtml" />
+    <Content Include="Views\Comments\Details.cshtml" />
+    <Content Include="Views\Comments\Edit.cshtml" />
+    <Content Include="Views\Comments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
