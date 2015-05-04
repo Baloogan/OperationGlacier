@@ -20,31 +20,40 @@
 
     </script>
     <!-- End Google Analytics -->
-    
+    <style>
+        .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+    </style>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                            <a class="navbar-brand" style="cursor: pointer; background-image: url(https://i.imgur.com/RXzCraP.png); background-repeat: no-repeat; background-size: contain; padding-left: 55px">Operation Glacier</a>
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand noselect" style="cursor: pointer; background-image: url(https://i.imgur.com/RXzCraP.png); background-repeat: no-repeat; background-size: contain; padding-left: 55px; user-select: none;">Operation Glacier</a>
 
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("About", "About", "Home")</li>
-                            <li><a href="/OperationGlacier/Map?side=Allies&date=411207">Latest Allies Turn</a></li>
-                            <li><a href="/OperationGlacier/Map?side=Japan&date=411207">Latest Japanese Turn</a></li>
-                            <li><a href="/OperationGlacier/Map?side=Both&date=411207">Latest See-All Turn</a></li>
-                        </ul>
-                        @Html.Partial("_LoginPartial")
-                    </div>
-                </div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li><a href="/OperationGlacier/Map?side=Allies&date=411207">Latest Allies Turn</a></li>
+                    <li><a href="/OperationGlacier/Map?side=Japan&date=411207">Latest Japanese Turn</a></li>
+                    <li><a href="/OperationGlacier/Map?side=Both&date=411207">Latest See-All Turn</a></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
     </div>
 
     @Scripts.Render("~/bundles/jquery")

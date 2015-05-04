@@ -19,12 +19,18 @@
         document.title = document.title.replace("UNIT_NAME", timeline.name);
         var html = "";
         $.each(timeline.unit_data, function (i, unit) {
+            if (unit.owner == 0) {
+                unit.owner = "Japan";
+            }
+            if (unit.owner == 1) {
+                unit.owner = "Allies";
+            }
             if (unit.type_str == "AirGroup") {
                 html = html + airgroup_template(unit);
             } else if (unit.type_str == "Base") {
                 html = html + base_template(unit);
             } else if (unit.type_str == "TaskForce") {
-                html = html + html(unit);
+                html = html + taskforces_template(unit);
                 $.each(unit.subunits, function (i, subunit) {
                     html = html + ship_template(subunit);
                     $.each(subunit.subunits, function (i, subsubunit) {
