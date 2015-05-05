@@ -28,23 +28,57 @@ namespace OperationGlacier.Controllers
 
         public ActionResult Index(string side, string date)
         {
-            ViewBag.Side = side;
+            var model = new Models.MapModel();
+            model.side = side;
             if (date == "latest")
                 date = "411207"; //lol
-            ViewBag.Date = date;
+            model.date_str = date;
 
+            ApplicationUser user = null;
             if (Request.IsAuthenticated)
             {
-                var user = UserManager.FindById(User.Identity.GetUserId());
+                user = UserManager.FindById(User.Identity.GetUserId());
                 if (user.SideRestriction != "Both" && user.SideRestriction != side)
                 {
                     return new RedirectResult("~/");
                 }
             }
+            var my_date = WitpUtility.from_date_str(model.date_str);
+            IQueryable<Comment> comments = ApplicationDbContext.Comments.Where(c => c.date_in_game == my_date).OrderBy(c => c.date_in_world);
+            if (Request.IsAuthenticated)
+            {
+                if (user.SideRestriction != "Both")
+                {
+                    comments = comments.Where(c => c.side_restriction == user.SideRestriction);
+                }
+            }
+            if (model.side == "Japan")
+            {
+                comments = comments.Where(c => c.side_restriction == "Japan");
+            }
+            else if (model.side == "Allies")
+            {
+                comments = comments.Where(c => c.side_restriction == "Allies");
+            }
 
-            return View();
+            //var g = comments;
+
+            model.comments = comments
+                .ToList()//Linq to Elements -> Linq to something
+                .Select(c => new CommentModel(c))
+                .GroupBy(c => c.x * 10000 + c.y)
+                .Select(c=> c.Select(d=>d).ToList())
+                .ToList();
+            return View(model);
         }
 
-
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                ApplicationDbContext.Dispose();
+            }
+            base.Dispose(disposing);
+        }
     }
 }

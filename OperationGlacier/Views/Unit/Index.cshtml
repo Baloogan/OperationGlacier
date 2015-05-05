@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Newtonsoft.Json
+@model OperationGlacier.Models.UnitModel
+@{
     ViewBag.Title = "UNIT_NAME";
 }
 @Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
@@ -17,7 +19,7 @@
             html += "<div class='col-sm-6'>";
         }
         html += "<div class='panel panel-default'><div class='panel-body'>";
-        
+
         if (unit.owner == 0) {
             unit.owner = "Japan";
         }
@@ -57,15 +59,31 @@
         html += "</div>";
         return html;
     }
-    function render_comments(timeline) {
+    function render_comments(timeline, current_unit) {
         var html = "";
 
         html += "<div class='col-sm-6'>";
 
         html += "<div class='panel panel-default'>";
-        html += "<div class='panel-heading'><h2>Comments</h2></div>";
+        html += "<div class='panel-heading'>";
+        html += "<div style='float:right;'><a href='/OperationGlacier/Comments/Create?"
+            + "date_string=" + current_unit.date_string
+            + "&unit_timeline_id=" + current_unit.timeline_id
+            + "&unit_location=" + current_unit.location
+            + "&x=" + current_unit.x
+            + "&y=" + current_unit.y
+            + "&unit_name=" + current_unit.name
+            + "'>Add Comment</a></div>";
+        html += "<h2>Comments</h2>";
+        html += "</div>";
+        
         html += "<div class='panel-body'>";
-        html += "<a href='/OperationGlacier/Comments/Create'>Add Comment</a>";
+        
+
+        var comments_json = JSON.parse(@Html.Raw(HttpUtility.JavaScriptStringEncode(JsonConvert.SerializeObject(Model.comments), addDoubleQuotes: true)));
+
+        $.each(comments_json, function (i, comment) { html += comment_template(comment); });
+        
 
         html += "</div>";
         html += "</div>";
@@ -78,12 +96,13 @@
     function display_timeline(timeline) {
         document.title = document.title.replace("UNIT_NAME", timeline.name);
         var all_html = "";
-        var first = true;
+
         timeline.unit_data.reverse();//scroll down = go backwards in time
-        all_html += render_unit_data_panel(-1, timeline.unit_data.shift());
+        var current_unit = timeline.unit_data.shift();
+        all_html += render_unit_data_panel(-1, current_unit);
         //PUT GRAPHS IN HERE, SUPPLY ETC!
         //comments too!
-        all_html += render_comments(timeline);
+        all_html += render_comments(timeline, current_unit);
         all_html += render_graphs(timeline);
         $.each(timeline.unit_data, function (i, unit) { all_html += render_unit_data_panel(i, unit); });
 
@@ -91,7 +110,7 @@
     }
     //download the json
     (function () {
-        var link = "/OperationGlacier/GameData/Timeline/" + "@Ajax.JavaScriptStringEncode(ViewBag.tid)" + ".json";
+        var link = "/OperationGlacier/GameData/Timeline/" + "@Ajax.JavaScriptStringEncode(Model.timeline_id)" + ".json";
         $.getJSON(link).done(display_timeline);
 
 

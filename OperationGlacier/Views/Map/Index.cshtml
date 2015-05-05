@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = ViewBag.Side + " " + ViewBag.Date;
+﻿@model OperationGlacier.Models.MapModel
+@{
+    ViewBag.Title = Model.side + " " + Model.date_str;
 }
 @Styles.Render("~/Content/leaflet.css")
 @Scripts.Render("~/Scripts/leaflet.js")
@@ -33,13 +34,17 @@
         min-height: 100%;
     }
 
-    .leaflet-popup {
-        width: 500px;
-    }
 </style>
 
 <script>
-
+    function x_to_lon(x) {
+        var lon = 0.6563 * x + 15.962;
+        return lon;
+    }
+    function y_to_lat(y) {
+        var lat = -0.5935 * y - 15.446;
+        return lat;
+    }
     var map = L.map('map', {
         crs: L.CRS.Simple,
         center: [-78, 95],
@@ -48,7 +53,7 @@
 
     //L.tileLayer('https://secure.baloogancampaign.com:8081/map/render3/{z}/{x}/{y}.png', {
     L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
-        attribution: '@Ajax.JavaScriptStringEncode(ViewBag.Side) @Ajax.JavaScriptStringEncode(ViewBag.Date) WitP-AE Topo Map Project',
+        attribution: '@Ajax.JavaScriptStringEncode(Model.side) @Ajax.JavaScriptStringEncode(Model.date_str) WitP-AE Topo Map Project',
         continuousWorld: true,
         id: 'map-render3',
         maxZoom: 6,
@@ -86,4 +91,5 @@
 
 @RenderPage("../Includes/HandlebarsTemplates.cshtml")
 @RenderPage("_HexRender.cshtml")
+@RenderPage("_CommentRender.cshtml")
 @RenderPage("_DownloadTurns.cshtml")

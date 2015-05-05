@@ -1,0 +1,25 @@
+﻿@using Newtonsoft.Json
+@model OperationGlacier.Models.MapModel
+<script>
+
+
+    var comments_popupOptions = { maxWidth: 600, maxHeight: 400, };
+
+    var comments_json = JSON.parse(@Html.Raw(HttpUtility.JavaScriptStringEncode(JsonConvert.SerializeObject(Model.comments), addDoubleQuotes: true)));
+
+    $.each(comments_json, function (i, comment_group) {
+        var comment_html = "";
+        var comment_x;
+        var comment_y;
+        $.each(comment_group, function (i, comment) {
+            comment_x = comment.x;
+            comment_y = comment.y;
+            comment_html += comment_template(comment);
+        });
+        L.circle([y_to_lat(comment_y), x_to_lon(comment_x)], 0.2, { color: 'red' })
+            .addTo(map)
+            .bindPopup(comment_html, comments_popupOptions)
+            .openPopup();
+    });
+
+</script>

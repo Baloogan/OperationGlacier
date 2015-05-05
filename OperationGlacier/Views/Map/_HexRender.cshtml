@@ -1,4 +1,4 @@
-﻿
+﻿@using Newtonsoft.Json
 <script>
 
 
@@ -42,14 +42,15 @@
     function load_hexes(turn) {
 
         var hexes = turn.hexes;
+        
 
         $.each(hexes, function (i, hex) {
 
             var x = hex.x;
             var y = hex.y;
+            var lon = x_to_lon(x);
+            var lat = y_to_lat(y);
             //var report = item.html;
-            var lon = 0.6563 * x + 15.962;
-            var lat = -0.5935 * y - 15.446;
             if (isEven(y)) {
                 lon = lon - 0.6563 / 2.0;
             }
@@ -174,14 +175,14 @@
             });
 
             var nudge_y = 0.0;
-            if ("@Ajax.JavaScriptStringEncode(ViewBag.Side)" == "Both") {
+            if ("@Ajax.JavaScriptStringEncode(Model.side)" == "Both") {
                 if (turn.side_string == "Allies") {
                     nudge_y = 0.07;
                 } else if (turn.side_string == "Japan") {
                     nudge_y = -0.07;
                 }
             }
-            if ("@Ajax.JavaScriptStringEncode(ViewBag.Side)" != "Both" || (baseIcon == "Japan" && turn.side_string == "Japan") || (baseIcon == "Allies" && turn.side_string == "Allies")) {
+            if ("@Ajax.JavaScriptStringEncode(Model.side)" != "Both" || (baseIcon == "Japan" && turn.side_string == "Japan") || (baseIcon == "Allies" && turn.side_string == "Allies")) {
                 if (base != "") {
                     var pos = [lat + 0.09, lon - 0.09]; //intentionall no nudge_y
                     if (baseIcon == "Japan") {
