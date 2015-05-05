@@ -30,6 +30,16 @@ namespace OperationGlacier.Controllers
         // GET: Comments
         public async Task<ActionResult> Index()
         {
+            if (!Request.IsAuthenticated)
+            {
+                return RedirectToAction("Login", "Account");
+            }
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user.UserName != "Baloogan")
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             return View(await db.Comments.ToListAsync());
         }
 
@@ -101,7 +111,7 @@ namespace OperationGlacier.Controllers
             {
                 db.Comments.Add(comment);
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return Redirect("/OperationGlacier/Unit?tid=" + comment.unit_timeline_id);
             }
 
             return View(comment);

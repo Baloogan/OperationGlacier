@@ -1,13 +1,22 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
-
+<style>audio {
+    background-color: #FFFFFF;
+    width:100%;
+}</style>
 <div class="jumbotron">
     <img src="https://i.imgur.com/dku2pWg.png" style="float:right;border:1px solid #021a40;" />
     <h1>Operation Glacier</h1>
-    <p class="lead">An Interactive WitP-AE PBEM</p>
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Operatio Glaciem. In convallis, ex vel LudioLudiusHistoricis & Delphinapterus Campania arcu augue eleifend massa, eget viverra tellus est in diam. 
-    Donec porttitor, tortor eu posuere tincidunt, diam odio lacinia libero, nec lobortis orci magna vitae nisi!</p>
+    <p class="lead">
+        An Interactive WitP-AE PBEM
+    </p>
+    <p>
+        Are you tired of wading through massive text dumps to understand the events in an After Action of a WitP PBEM?
+        Wish you could alert the players of a PBEM of a masterful strategy that only you can see?
+        <br />
+        Introducing Operation Glacier: An Interactive WitP-AE PBEM
+    </p>
     <p><a href="/OperationGlacier/Home/About" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 </div>
 
@@ -16,55 +25,38 @@
         <h2>TheHistoricalGamer</h2>
         <a href="/OperationGlacier/Map?side=Japan&date=latest"><img src="https://i.imgur.com/c9C4m89.png" /></a>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis risus id purus bibendum tempus quis sit amet libero. 
-        Suspendisse potenti. Nunc urna tellus, egestas vel odio sed, ornare blandit sapien. Pellentesque vulputate in risus nec fermentum. 
-        Nulla facilisi. In dictum felis ex, ac semper leo commodo eget. 
+            TheHistoricalGamer is sitting in for Admiral Yamamoto, and commands the Combined Fleet.
         </p>
+        <audio controls preload="none">
+            <source src="https://secure.baloogancampaign.com/Uploads/Op_Glacier_9409.mp3" type="audio/mpeg">
+        </audio>
+        <blockquote>
+            "The fate of the Empire rests on this enterprise every man must devote himself totally to the task in hand."
+            <br />
+            Admiral Isoroku Yamamoto - 7th December 1941
+        </blockquote>
+        <p><a href="/OperationGlacier/Map?side=Japan&date=latest" class="btn btn-primary btn-lg">Current Japanese Turn &raquo;</a></p>
     </div>
     <div class="col-md-4">
         <h2>Baloogan</h2>
         <a href="/OperationGlacier/Map?side=Allies&date=latest"><img src="https://i.imgur.com/guoaCE0.png" /></a>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim imperdiet quam, ac sagittis ex malesuada vel. 
-            Morbi dolor odio, vehicula eu neque id, pellentesque dictum neque. Cras in pellentesque felis, a lobortis turpis. Vestibulum sagittis metus eu dapibus lacinia. 
+            Baloogan takes the reins of Pacific Command and steps into the shoes of Admiral Nimitz.
         </p>
+        <blockquote>
+            "I'll come back as soon as I can with as much as I can. In the meantime, you've got to hold."
+            <br />
+            General MacArthur - March 1942
+        </blockquote>
+        <p><a href="/OperationGlacier/Map?side=Allies&date=latest" class="btn btn-primary btn-lg">Current US & Allies Turn &raquo;</a></p>
     </div>
 
     <div class="col-md-4">
         <h2>See It All</h2>
         <a href="/OperationGlacier/Map?side=Both&date=latest"><img src="https://i.imgur.com/UK9sl77.png" /></a>
         <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum mauris ac lectus tempus, quis condimentum nulla varius. Sed eget varius dui, sagittis efficitur neque. 
-        Sed nibh mi, mattis sit amet dapibus a, venenatis a elit. Pellentesque lorem ligula, placerat sed felis ut, imperdiet vehicula sapien. 
+            In Operation Glacier you can see both sides of the conflict! Please don't spoil anything for the players however. If you do want to offer advice to the players, please login and choose a <strong>Side Restriction</strong>. This will allow the player to see your comments, and puts you in the player's shoes by preventing you from seeing the opposing side.
         </p>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-md-4">
-        <h2>Comments &amp; Graphs</h2>
-        <a href="/OperationGlacier/Map?side=Japan&date=latest"><img src="https://i.imgur.com/c9C4m89.png" /></a>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis quis risus id purus bibendum tempus quis sit amet libero.
-            Suspendisse potenti. Nunc urna tellus, egestas vel odio sed, ornare blandit sapien. Pellentesque vulputate in risus nec fermentum.
-            Nulla facilisi. In dictum felis ex, ac semper leo commodo eget.
-        </p>
-    </div>
-    <div class="col-md-4">
-        <h2>Advice &amp; Council</h2>
-        <a href="/OperationGlacier/Map?side=Allies&date=latest"><img src="https://i.imgur.com/guoaCE0.png" /></a>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce dignissim imperdiet quam, ac sagittis ex malesuada vel.
-            Morbi dolor odio, vehicula eu neque id, pellentesque dictum neque. Cras in pellentesque felis, a lobortis turpis. Vestibulum sagittis metus eu dapibus lacinia.
-        </p>
-    </div>
-
-    <div class="col-md-4">
-        <h2>Open Source</h2>
-        <a href="/OperationGlacier/Map?side=Both&date=latest"><img src="https://i.imgur.com/UK9sl77.png" /></a>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus elementum mauris ac lectus tempus, quis condimentum nulla varius. Sed eget varius dui, sagittis efficitur neque.
-            Sed nibh mi, mattis sit amet dapibus a, venenatis a elit. Pellentesque lorem ligula, placerat sed felis ut, imperdiet vehicula sapien.
-        </p>
+        <p><a href="/OperationGlacier/Map?side=Both&date=latest" class="btn btn-primary btn-md">See Everything! &raquo;</a><a href="/OperationGlacier/Account/Register" class="btn btn-primary btn-md">Register with a Side Restriction! &raquo;</a></p>
     </div>
 </div>

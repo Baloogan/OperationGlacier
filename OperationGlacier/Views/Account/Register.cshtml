@@ -35,6 +35,8 @@
         @Html.DropDownListFor(m => m.SideRestriction, new SelectList(((List<SelectListItem>) ViewBag.SideRestrictionOptions), "Value", "Text"), new {@class = "form-control"})
     </div>
 </div>
+    <p>Registering with a 'side restriction' set to Allies or Japan will restrict the information you are able to see about the opposing side, but will allow you to provide advice to the player and add comments to all the units in game.
+    If you register with a 'side restriction' set to No Restriction your comments will only be visible to players who also selected No Restriction.</p>
 <div class="form-group">
     @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">

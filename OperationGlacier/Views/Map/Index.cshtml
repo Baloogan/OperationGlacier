@@ -45,6 +45,19 @@
         var lat = -0.5935 * y - 15.446;
         return lat;
     }
+    /***  little hack starts here ***/
+    L.Map = L.Map.extend({
+        openPopup: function (popup) {
+            //        this.closePopup();  // just comment this
+            this._popup = popup;
+
+            return this.addLayer(popup).fire('popupopen', {
+                popup: this._popup
+            });
+        }
+    }); /***  end of hack ***/
+
+
     var map = L.map('map', {
         crs: L.CRS.Simple,
         center: [-78, 95],
@@ -62,7 +75,7 @@
     }).addTo(map);
 
     map.zoomControl.setPosition('topright');
-    map.setMaxBounds([[-138, 12], [0, 170]]);
+    map.setMaxBounds([[-150, 0], [0, 190]]);
     L.Circle = L.Circle.extend({
         projectLatlngs: function () {
             //this._point = this._map.latLngToLayerPoint(this._latlng);

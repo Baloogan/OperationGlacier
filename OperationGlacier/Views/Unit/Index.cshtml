@@ -79,12 +79,10 @@
         
         html += "<div class='panel-body'>";
         
-
         var comments_json = JSON.parse(@Html.Raw(HttpUtility.JavaScriptStringEncode(JsonConvert.SerializeObject(Model.comments), addDoubleQuotes: true)));
 
         $.each(comments_json, function (i, comment) { html += comment_template(comment); });
         
-
         html += "</div>";
         html += "</div>";
         html += "</div>";
