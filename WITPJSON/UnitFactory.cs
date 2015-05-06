@@ -12,6 +12,7 @@ namespace WITPJSON
 {
     partial class Unit
     {
+        
 
         private static IEnumerable<Unit> ParseUnitsFromCSV(Type type, string filename)
         {
@@ -192,7 +193,7 @@ namespace WITPJSON
             {
                 Unit u = new Unit();
                 u.type = Unit.Type.AfterAction;
-                u.report = a;
+                u.report = a.TrimEnd(new char[]{'\r','\n',' '});
                 var lines = a.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 lines = lines.Where(s => s != " ").ToArray();
                 var myRegex = new Regex(@"(\d+),(\d+)");

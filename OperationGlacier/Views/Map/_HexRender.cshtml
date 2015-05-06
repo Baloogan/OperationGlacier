@@ -1,11 +1,11 @@
 ﻿@using Newtonsoft.Json
 <style>
     .panel-title a {
-    display: block;
-    padding: 10px 15px;
-    margin: -10px -15px;
-    cursor: pointer;
-}
+        display: block;
+        padding: 10px 15px;
+        margin: -10px -15px;
+        cursor: pointer;
+    }
 </style>
 <script>
 
@@ -58,6 +58,7 @@
         iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
     });
 
+    var group_dot_bases = [];
 
     function load_hexes(turn) {
 
@@ -68,12 +69,10 @@
 
             var x = hex.x;
             var y = hex.y;
-            var lon = x_to_lon(x);
-            var lat = y_to_lat(y);
+            var lon = xy_to_lon(x,y);
+            var lat = xy_to_lat(x,y);
             //var report = item.html;
-            if (isEven(y)) {
-                lon = lon - 0.6563 / 2.0;
-            }
+            
             var base = "";
             var base_tooltip = "";
 
@@ -105,10 +104,13 @@
             var taskforceIcon;
             var lcusIcon;
 
+
+            var is_dot_base = false;
+
             var popupOptions = { maxWidth: 600, maxHeight: 400, };
             $.each(hex.units, function (i, unit) {
                 //populate htmls via that pretentious lib
-
+                
                 if (unit.type_str == "AirGroup") {
                     if (unit.owner == 0) {
                         airbaseIcon = "Japan";
@@ -133,7 +135,11 @@
                     unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
                     base += base_template(unit);
                     base_tooltip = base_tooltip + unit.name;
-
+                    if (unit.row.Port.split(' ')[0] == "0" && unit.row.Airbase.split(' ')[0] == "0") {
+                        is_dot_base = true;
+                    } else {
+                        is_dot_base = false;
+}
                 } else if (unit.type_str == "TaskForce") {
                     if (unit.owner == 0) {
                         taskforceIcon = "Japan";
@@ -190,6 +196,7 @@
                     reports_combatevent += combatevent_template(unit);
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 } else if (unit.type_str == "AfterAction") {
+                    unit.report = unit.report.trim();
                     reports_afteraction.push({ text: afteraction_template(unit), first_line: unit.report.split('\n')[0] });
                     reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
                 } else if (unit.type_str == "OperationalReport") {
@@ -209,14 +216,24 @@
             if ("@Ajax.JavaScriptStringEncode(Model.side)" != "Both" || (baseIcon == "Japan" && turn.side_string == "Japan") || (baseIcon == "Allies" && turn.side_string == "Allies")) {
                 if (base != "") {
                     var pos = [lat + 0.09, lon - 0.09]; //intentionall no nudge_y
-                    if (baseIcon == "Japan") {
-                        L.marker(pos, { icon: baseIcon_j, title: base_tooltip })
-                            .addTo(map)
-                            .bindPopup(base, popupOptions);
+                    if (is_dot_base) {
+                        if (baseIcon == "Japan") {
+                            group_dot_bases.push(L.marker(pos, { icon: baseIcon_j, title: base_tooltip })
+                                    .bindPopup(base, popupOptions));
+                        } else {
+                            group_dot_bases.push(L.marker(pos, { icon: baseIcon_a, title: base_tooltip })
+                                .bindPopup(base, popupOptions));
+                        }
                     } else {
-                        L.marker(pos, { icon: baseIcon_a, title: base_tooltip })
-                            .addTo(map)
-                            .bindPopup(base, popupOptions);
+                        if (baseIcon == "Japan") {
+                            L.marker(pos, { icon: baseIcon_j, title: base_tooltip })
+                                .addTo(map)
+                                .bindPopup(base, popupOptions);
+                        } else {
+                            L.marker(pos, { icon: baseIcon_a, title: base_tooltip })
+                                .addTo(map)
+                                .bindPopup(base, popupOptions);
+                        }
                     }
                 }
             }
@@ -280,7 +297,7 @@
             if (reports_sigint != "" || reports_combatevent != "" || reports_afteraction != "" || reports_operationalreport != "") {
                 reports = "";
                 var accordion = randomString(8);
-                reports += "<div class='panel-group' id='" + accordion + "' style='max-height:400px; overflow:scroll;'>";
+                reports += "<div class='panel-group' id='" + accordion + "' style='max-height:400px; overflow-y:scroll;'>";
                 var accordion_first = " in ";
                 if (reports_sigint != "") {
                     var collapse_sigint = randomString(8);
@@ -288,7 +305,7 @@
                     reports += "<div class='panel-heading'>";
                     reports += "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#" + accordion + "' href='#" + collapse_sigint + "'>Signals Intelligence</a></h4>";
                     reports += "</div>";
-                    reports += "<div id=" + collapse_sigint + " class='panel-collapse collapse " + accordion_first+ "'>";
+                    reports += "<div id=" + collapse_sigint + " class='panel-collapse collapse " + accordion_first + "'>";
                     reports += "<div class='panel-body'>";
                     reports += reports_sigint;
                     reports += "</div>";

@@ -49,6 +49,7 @@
     <Compile Include="Hex.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ScenData.cs" />
     <Compile Include="ShipToClass.cs" />
     <Compile Include="Turn.cs" />
     <Compile Include="Unit.cs" />

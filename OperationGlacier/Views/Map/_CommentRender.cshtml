@@ -16,16 +16,16 @@
             comment_y = comment.y;
             comment_html += comment_template(comment);
         });
-        var circ_lat = y_to_lat(comment_y);
-        var circ_lon = x_to_lon(comment_x);
-        var circ = L.circle([circ_lat,circ_lon ], 0.2, { color: 'red' })
+        var circ_lat = xy_to_lat(comment_x, comment_y);
+        var circ_lon = xy_to_lon(comment_x, comment_y);
+        var circ = L.circle([circ_lat, circ_lon], 0.4, { color: 'red' })
             .addTo(map)
             .bindPopup(comment_html, comments_popupOptions);
         //only open things on screen
         if (map_bounds.contains([circ_lat, circ_lon])) {
             circ.openPopup();
         }
-        
+
     });
 
 </script>

@@ -3,7 +3,7 @@
     ViewBag.Title = Model.side + " " + Model.date_str;
 }
 @Styles.Render("~/Content/leaflet.css")
-@Scripts.Render("~/Scripts/leaflet-src.js")
+@Scripts.Render("~/Scripts/leaflet.js")
 @Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
 <div id="map" style="width: 100%; height: 100%; background: black;"></div>
 <style>
@@ -37,11 +37,14 @@
 </style>
 
 <script>
-    function x_to_lon(x) {
+    function xy_to_lon(x,y) {
         var lon = 0.6563 * x + 15.962;
+        if (isEven(y)) {
+            lon = lon - 0.6563 / 2.0;
+        }
         return lon;
     }
-    function y_to_lat(y) {
+    function xy_to_lat(x,y) {
         var lat = -0.5935 * y - 15.446;
         return lat;
     }
@@ -60,12 +63,12 @@
 
     var map = L.map('map', {
         crs: L.CRS.Simple,
-        center: [y_to_lat(@Model.center_y), x_to_lon(@Model.center_x)],
+        center: [xy_to_lat(@Model.center_x,@Model.center_y), xy_to_lon(@Model.center_x,@Model.center_y)],
         zoom: @Model.center_zoom,
     });
 
     //L.tileLayer('https://secure.baloogancampaign.com:8081/map/render3/{z}/{x}/{y}.png', {
-    L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
+    var topo = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
         attribution: '@Ajax.JavaScriptStringEncode(Model.side) @Ajax.JavaScriptStringEncode(Model.date_str) WitP-AE Topo Map Project',
         continuousWorld: true,
         id: 'map-render3',
@@ -73,7 +76,14 @@
         minZoom: 3,
         noWrap: true,
     }).addTo(map);
-
+    var yamato = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render4/{z}/{x}/{y}.png', {
+        attribution: '@Ajax.JavaScriptStringEncode(Model.side) @Ajax.JavaScriptStringEncode(Model.date_str) Yamato Damashii',
+        continuousWorld: true,
+        id: 'map-render4',
+        maxZoom: 6,
+        minZoom: 3,
+        noWrap: true,
+    });
     map.zoomControl.setPosition('topright');
     map.setMaxBounds([[-150, 0], [0, 190]]);
     L.Circle = L.Circle.extend({
