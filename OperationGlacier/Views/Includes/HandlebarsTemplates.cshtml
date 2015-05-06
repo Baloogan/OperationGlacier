@@ -7,6 +7,8 @@
         </div>
         <div class="panel-body">
             <strong>{{row.Region}} {{row.Type}}</strong>
+            <br/>
+            <strong>HQ: </strong>{{row.HQ}}
             <br />
             <strong>Held by: </strong>{{owner}}
             <br />
@@ -24,7 +26,6 @@
             <br />
             <strong>Garrison: </strong>{{row.Garrison}}
             <strong>TroopCap: </strong>{{row.TroopCap}}
-            <strong>HQ: </strong>{{row.HQ}}
             <br />
             <strong>Japan VP: </strong>{{row.JapanVP}}
             <strong>Allies VP: </strong>{{row.AlliedVP}}
@@ -38,7 +39,9 @@
             <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
         </div>
         <div class="panel-body">
-            <strong>{{row.Nation}} {{row.Type}}</strong> <br /><strong>HQ: </strong>{{row.HQ}}
+            <strong>{{row.Nation}} {{row.Type}}</strong> 
+            <br />
+            <strong>HQ: </strong>{{row.HQ}}
             <br />
             <strong>AV: </strong>{{row.AV}}
             <strong>Nav: </strong>{{row.Nav}}
@@ -130,8 +133,7 @@
 </script>
 <script id="afteraction-template" type="text/x-handlebars-template">
     <div>
-        <pre style="border-style: solid; border-width: 1px;">{{report}}</pre>
-        <br />
+        <pre style="border-style: solid; border-width: 1px;width:100%;">{{report}}</pre>
     </div>
 </script>
 <script id="operationalreport-template" type="text/x-handlebars-template">
@@ -140,7 +142,7 @@
     </div>
 </script>
 <script id="comment-template" type="text/x-handlebars-template">
-    <div class='panel {{#xif " this.Username == 'Baloogan' "}}panel-info{{else}}panel-default{{/xif}}'>
+    <div class='panel {{#xif " this.side_restriction == 'Allies' "}}panel-info{{else}}{{#xif " this.side_restriction == 'Japan' "}}panel-danger{{else}}panel-warning{{/xif}}{{/xif}}'>
         <div class="panel-heading">
             <div style="float:right;"><a href="/OperationGlacier/Unit?tid={{unit_timeline_id}}" target="_blank"><strong>{{unit_name}}</strong></a> Report date: {{date_str}}</div>
             {{Username}}

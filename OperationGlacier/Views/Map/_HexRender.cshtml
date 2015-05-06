@@ -1,7 +1,27 @@
 ﻿@using Newtonsoft.Json
+<style>
+    .panel-title a {
+    display: block;
+    padding: 10px 15px;
+    margin: -10px -15px;
+    cursor: pointer;
+}
+</style>
 <script>
 
+    function randomString(length) {
+        var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
 
+        if (!length) {
+            length = Math.floor(Math.random() * chars.length);
+        }
+
+        var str = '';
+        for (var i = 0; i < length; i++) {
+            str += chars[Math.floor(Math.random() * chars.length)];
+        }
+        return "x" + str;
+    }
     var airbaseIcon_a = L.icon({
         iconUrl: '/OperationGlacier/Content/map_icons/AB' + '' + '.png',
     });
@@ -38,11 +58,11 @@
         iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
     });
 
-    
+
     function load_hexes(turn) {
 
         var hexes = turn.hexes;
-        
+
 
         $.each(hexes, function (i, hex) {
 
@@ -65,7 +85,11 @@
             var navalbase = "";
             var navalbase_tooltip = "";
 
-            var reports = "";
+            //var reports = "";
+            var reports_sigint = "";
+            var reports_combatevent = "";
+            var reports_afteraction = [];
+            var reports_operationalreport = "";
             var reports_tooltip = "";
 
 
@@ -160,16 +184,16 @@
                     lcus += lcu_template(unit);
                     lcus_tooltip = lcus_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "SigInt") {
-                    reports += sigint_template(unit);
+                    reports_sigint += sigint_template(unit);
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 } else if (unit.type_str == "CombatEvent") {
-                    reports += combatevent_template(unit);
+                    reports_combatevent += combatevent_template(unit);
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 } else if (unit.type_str == "AfterAction") {
-                    reports += afteraction_template(unit);
+                    reports_afteraction.push({ text: afteraction_template(unit), first_line: unit.report.split('\n')[0] });
                     reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
                 } else if (unit.type_str == "OperationalReport") {
-                    reports += operationalreport_template(unit);
+                    reports_operationalreport += operationalreport_template(unit);
                     reports_tooltip = reports_tooltip + unit.report + "\n";
                 }
             });
@@ -253,10 +277,73 @@
                         .bindPopup(navalbase, popupOptions);
                 }
             }
-            if (reports != "") {
+            if (reports_sigint != "" || reports_combatevent != "" || reports_afteraction != "" || reports_operationalreport != "") {
+                reports = "";
+                var accordion = randomString(8);
+                reports += "<div class='panel-group' id='" + accordion + "' style='max-height:400px; overflow:scroll;'>";
+                var accordion_first = " in ";
+                if (reports_sigint != "") {
+                    var collapse_sigint = randomString(8);
+                    reports += "<div class='panel panel-default'>";
+                    reports += "<div class='panel-heading'>";
+                    reports += "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#" + accordion + "' href='#" + collapse_sigint + "'>Signals Intelligence</a></h4>";
+                    reports += "</div>";
+                    reports += "<div id=" + collapse_sigint + " class='panel-collapse collapse " + accordion_first+ "'>";
+                    reports += "<div class='panel-body'>";
+                    reports += reports_sigint;
+                    reports += "</div>";
+                    reports += "</div>";
+                    reports += "</div>";
+                    accordion_first = "";
+                }
+                if (reports_combatevent != "") {
+                    var collapse_combatevent = randomString(8);
+                    reports += "<div class='panel panel-default'>";
+                    reports += "<div class='panel-heading'>";
+                    reports += "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#" + accordion + "' href='#" + collapse_combatevent + "'>Combat Events</a></h4>";
+                    reports += "</div>";
+                    reports += "<div id=" + collapse_combatevent + " class='panel-collapse collapse " + accordion_first + "'>";
+                    reports += "<div class='panel-body'>";
+                    reports += reports_combatevent;
+                    reports += "</div>";
+                    reports += "</div>";
+                    reports += "</div>";
+                    accordion_first = "";
+                }
+                $.each(reports_afteraction, function (i, report_aar) {
+                    var collapse_afteraction = randomString(8);
+                    reports += "<div class='panel panel-default'>";
+                    reports += "<div class='panel-heading'>";
+                    reports += "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#" + accordion + "' href='#" + collapse_afteraction + "'>" + report_aar.first_line + "</a></h4>";
+                    reports += "</div>";
+                    reports += "<div id=" + collapse_afteraction + " class='panel-collapse collapse " + accordion_first + "'>";
+                    reports += "<div class='panel-body'>";
+                    reports += report_aar.text;
+                    reports += "</div>";
+                    reports += "</div>";
+                    reports += "</div>";
+                    accordion_first = "";
+                });
+
+                if (reports_operationalreport != "") {
+                    var collapse_operationalreport = randomString(8);
+                    reports += "<div class='panel panel-default'>";
+                    reports += "<div class='panel-heading'>";
+                    reports += "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#" + accordion + "' href='#" + collapse_operationalreport + "'>Operational Reports</a></h4>";
+                    reports += "</div>";
+                    reports += "<div id=" + collapse_operationalreport + " class='panel-collapse collapse " + accordion_first + "'>";
+                    reports += "<div class='panel-body'>";
+                    reports += reports_operationalreport;
+                    reports += "</div>";
+                    reports += "</div>";
+                    reports += "</div>";
+                    accordion_first = "";
+                }
+
+                reports += "</div>";
                 L.marker([lat + 0.35 + nudge_y, lon - 0.08], { icon: reportIcon, title: reports_tooltip })
                     .addTo(map)
-                    .bindPopup(reports, popupOptions);
+                    .bindPopup(reports, { minWidth: 800, maxWidth: 800, maxHeight: 400, minHeight: 400 });
             }
 
         });

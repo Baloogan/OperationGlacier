@@ -61,6 +61,7 @@ namespace OperationGlacier.Models
         public string Username { get; set; }
         public string date_str { get; set; }
         public string unit_timeline_id { get; set; }
+        public string side_restriction { get; set; }
         public string unit_name { get; set; }
         public CommentModel(Comment comment)
         {
@@ -71,6 +72,7 @@ namespace OperationGlacier.Models
             this.unit_timeline_id = comment.unit_timeline_id;
             this.unit_name = comment.unit_name;
             this.Username = comment.Username;
+            this.side_restriction = comment.side_restriction;
         }
     }
 }

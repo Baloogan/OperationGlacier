@@ -26,7 +26,7 @@ namespace OperationGlacier.Controllers
             this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.ApplicationDbContext));
         }
 
-        public ActionResult Index(string side, string date)
+        public ActionResult Index(string side, string date, int? x, int? y)
         {
             var model = new Models.MapModel();
             model.side = side;
@@ -34,6 +34,22 @@ namespace OperationGlacier.Controllers
                 date = "411207"; //lol
             model.date_str = date;
 
+            if (x == null || y == null)
+            {
+                if (model.side == "Allies" || model.side == "Both")
+                {
+                    x = 180;//Pearl Harbor
+                    y = 107;
+                }
+                if (model.side == "Japan")
+                {
+                    x = 114;//Tokyo
+                    y = 60;
+                }
+            }
+            model.center_x = (int)x;
+            model.center_y = (int)y;
+            model.center_zoom = 6;
             ApplicationUser user = null;
             if (Request.IsAuthenticated)
             {
