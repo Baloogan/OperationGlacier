@@ -1,7 +1,7 @@
 ﻿@using Newtonsoft.Json
 @model OperationGlacier.Models.UnitModel
 @{
-    ViewBag.Title = "UNIT_NAME";
+    ViewBag.Title = Model.timeline_id;
 }
 @Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
 @RenderPage("../Includes/HandlebarsTemplates.cshtml")
@@ -90,7 +90,7 @@
         return "";
     }
     function display_timeline(timeline) {
-        document.title = document.title.replace("UNIT_NAME", timeline.name);
+        document.title = document.title.replace("@Model.timeline_id", timeline.name);
         var all_html = "";
 
         timeline.unit_data.reverse();//scroll down = go backwards in time
@@ -106,7 +106,7 @@
     }
     //download the json
     (function () {
-        var link = "/OperationGlacier/GameData/Timeline/" + "@Ajax.JavaScriptStringEncode(Model.timeline_id)" + ".json";
+        var link = "/OperationGlacierGameData/Timeline/" + "@Ajax.JavaScriptStringEncode(Model.timeline_id)" + ".json";
         $.getJSON(link).done(display_timeline);
 
 
