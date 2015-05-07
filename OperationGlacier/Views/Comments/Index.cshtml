@@ -1,102 +1,30 @@
-﻿@model IEnumerable<OperationGlacier.Models.Comment>
-
+﻿@using Newtonsoft.Json
+@model IEnumerable<OperationGlacier.Models.CommentModel>
+@Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
+@RenderPage("../Includes/HandlebarsTemplates.cshtml")
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Recent Comments";
 }
+<div class="row" id="comments">
 
-<h2>Index</h2>
+</div>
+<script>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date_in_game)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.date_in_world)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unit_timeline_id)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unit_side_str)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.message)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ReplyToCommentID)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.side_restriction)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.x)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.y)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unit_name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unit_location)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.unit_report_first_line)
-        </th>
-        <th></th>
-    </tr>
+    var html = "";
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_in_game)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.date_in_world)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit_timeline_id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit_side_str)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.message)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ReplyToCommentID)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.side_restriction)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.x)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.y)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit_name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit_location)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.unit_report_first_line)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CommentID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CommentID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CommentID })
-        </td>
-    </tr>
-}
+    html += "<div class='col-sm-12'>";
 
-</table>
+    html += "<div class='panel panel-default'>";
+        
+    html += "<div class='panel-body'>";
+        
+    var comments_json = JSON.parse(@Html.Raw(HttpUtility.JavaScriptStringEncode(JsonConvert.SerializeObject(Model), addDoubleQuotes: true)));
+
+    $.each(comments_json, function (i, comment) { html += comment_template(comment); });
+        
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";
+    
+    document.querySelector('#comments').innerHTML = html;
+</script>

@@ -28,7 +28,30 @@ namespace OperationGlacier.Controllers
         }
 
         // GET: Comments
-        public async Task<ActionResult> Index()
+        public ActionResult Index()
+        {
+            ApplicationUser user = null;
+            if (Request.IsAuthenticated)
+            {
+                user = UserManager.FindById(User.Identity.GetUserId());
+            }
+            IEnumerable<Comment> comments = db.Comments.OrderByDescending(c => c.date_in_world).Take(15).ToList();
+            if (Request.IsAuthenticated)
+            {
+                if (user.SideRestriction != "Both")
+                {
+                    comments = comments.Where(c => c.side_restriction == user.SideRestriction);
+                }
+            }
+
+            return View(comments
+                .Select(c => new CommentModel(c))
+                .ToList());
+
+        }
+
+        // GET: Comments
+        public async Task<ActionResult> Admin()
         {
             if (!Request.IsAuthenticated)
             {

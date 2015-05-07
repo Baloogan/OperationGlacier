@@ -119,13 +119,17 @@ namespace WITPJSON
                     }
                 }
             }
+            
+            All_Units = Units.ToList();//truely get all! this is used in timelines
 
             Units = Units.Where(u =>
                 string.IsNullOrEmpty(u.location)
                 || !u.location.ToLower().Contains("delay")).ToList();
+            
+            
 
-            All_Units = Units.ToList();
 
+            //order of these foreaches is important, don't change it without pondering consiquences!!!!!
             foreach (var u in Units.Where(unit => unit.type == Unit.Type.AirGroup).ToArray())
             {
                 if (!BaseToHex.is_base(u.location)) // put aircraft into ships
@@ -145,6 +149,24 @@ namespace WITPJSON
                         Units.First(unit => unit.type == Unit.Type.TaskForce && unit.id == int.Parse(u.location.Substring(3)));
                     Units.Remove(u);
                     parent.subunits.Add(u);
+                }
+            }
+            foreach (var u in Units)
+            {
+                foreach (var su in u.subunits)
+                {
+                    su.x = u.x;
+                    su.y = u.y;
+                    foreach (var ssu in su.subunits)
+                    {
+                        ssu.x = u.x;
+                        ssu.y = u.y;
+                        foreach (var sssu in ssu.subunits)//just for damn good measure
+                        {
+                            sssu.x = u.x;
+                            sssu.y = u.y;
+                        }
+                    }
                 }
             }
             Console.WriteLine(" Units: " + Units.Count);

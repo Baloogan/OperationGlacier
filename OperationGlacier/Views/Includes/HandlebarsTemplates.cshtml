@@ -142,7 +142,7 @@
 <script id="comment-template" type="text/x-handlebars-template">
     <div class='panel {{#xif " this.side_restriction == 'Allies' "}}panel-info{{else}}{{#xif " this.side_restriction == 'Japan' "}}panel-danger{{else}}panel-warning{{/xif}}{{/xif}}'>
         <div class="panel-heading">
-            <div style="float:right;"><a href="/OperationGlacier/Unit?tid={{unit_timeline_id}}" target="_blank"><strong>{{unit_name}}</strong></a>{{date_str}}</div>
+            <div style="float:right;"><a href="/OperationGlacier/Unit?tid={{unit_timeline_id}}" target="_blank"><strong>{{unit_name}}</strong></a> <a href="/OperationGlacier/Map?Side={{side_restriction}}&date={{date_str}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_str}}</div>
             {{Username}}
         </div>
         <div class="panel-body">

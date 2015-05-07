@@ -39,7 +39,7 @@ namespace WITPJSON
         public Turn.Side side;
         public string side_str { get { return side.ToString(); } }
         public Dictionary<string, string> row;
-        public Dictionary<string, string> scendata;
+        public Dictionary<string, string> scendata; //only really relevant scendata plz
         public string name;
         public int id;
         public int x, y;

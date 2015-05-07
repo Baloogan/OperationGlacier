@@ -17,6 +17,7 @@ namespace WITPJSON
         internal static string output_directory = null;
         internal static string output_turns_directory { get { return Path.Combine(output_directory, "Turns"); } }
         internal static string output_timelines_directory { get { return Path.Combine(output_directory, "Timeline"); } }
+        internal static string output_scendata_directory { get { return Path.Combine(output_directory, "Scendata"); } }
         public static Random random = new Random();
         private static IEnumerable<Turn> turns;
         private static IEnumerable<UnitTimeline> timelines;
@@ -43,10 +44,13 @@ namespace WITPJSON
                     throw new PlatformNotSupportedException();
             }
 
-            ProcessTurns();
-            RenderTurns();
+            ProcessScendata();
+            RenderScendata();
 
-            //ProcessTimelines();
+            ProcessTurns();
+            //RenderTurns();
+
+            ProcessTimelines();
             //RenderTimelines();
         }
         public static void DeleteDirectory(string path)
@@ -72,6 +76,19 @@ namespace WITPJSON
             {
                 Directory.Delete(path, true);
             }
+        }
+        static void ProcessScendata()
+        {
+            Console.WriteLine("Reading scendata");
+            ScenData.init();
+        }
+        static void RenderScendata()
+        {
+            Console.WriteLine("Rendering scendata");
+            DeleteDirectory(output_timelines_directory);
+            if (!Directory.Exists(Program.output_timelines_directory))
+                Directory.CreateDirectory(Program.output_timelines_directory);
+            ScenData.Render();
         }
         static void RenderTurns()
         {

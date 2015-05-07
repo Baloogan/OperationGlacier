@@ -31,7 +31,7 @@ namespace OperationGlacier.Controllers
             var model = new Models.MapModel();
             model.side = side;
             if (date == "latest")
-                date = "411207"; //lol
+                date = GameState.LatestTurn();
             model.date_str = date;
 
             if (x == null || y == null)
