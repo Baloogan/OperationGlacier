@@ -34,10 +34,19 @@ namespace WITPJSON
             {
                 case Unit.Type.Ship:
                     scendata_shp = ScenData.scendata_shp[unit_data.Last().id];
-                    scendata_cls = ScenData.scendata_cls_lookup[unit_data.Last().row["Class"]];
+                    try
+                    {
+                        scendata_cls = ScenData.scendata_cls_lookup[unit_data.Last().row["Class"]];
+                    }
+                    catch (Exception e)
+                    {
+                        //only a couple fail, I don't care! some brit sub typo error
+                    }
                     //throw new NotImplementedException(); //get class too, parse unit type, and get me the right class!!!
                     break;
                 case Unit.Type.LCU:
+                    if (unit_data.Last().id >= 8500) //magic row from the spreadsheet
+                        break;
                     scendata_loc = ScenData.scendata_loc[unit_data.Last().id];
                     if(scendata_loc["LCUFormationID"] != "0"){
                         scendata_toe = ScenData.scendata_loc[int.Parse(scendata_loc["LCUFormationID"])];
@@ -50,7 +59,14 @@ namespace WITPJSON
                 case Unit.Type.AirGroup:
                     scendata_grp = ScenData.scendata_grp[unit_data.Last().id];
                     scendata_loc = ScenData.scendata_loc[unit_data.Last().id];
-                    scendata_air = ScenData.scendata_air_lookup[unit_data.Last().row["Model"]];
+                    try
+                    {
+                        scendata_air = ScenData.scendata_air_lookup[unit_data.Last().row["Model"]];
+                    }
+                    catch (Exception e)
+                    {
+                        //only a couple fail, I don't care! Dinah'
+                    }
                     break;
                 default:
                     break;
@@ -59,11 +75,59 @@ namespace WITPJSON
         }
         private void get_devices()
         {
-
-            //throw new NotImplementedException(); 
+            List<int> list = null;
+            switch (unit_data[0].type)
+            {
+                case Unit.Type.Ship:
+                    list = device_ids_ship();
+                    break;
+                case Unit.Type.LCU:
+                    list = device_ids_loc();
+                    break;
+                case Unit.Type.Base:
+                    list = device_ids_loc();
+                    break;
+                case Unit.Type.AirGroup:
+                    list = device_ids_air();
+                    break;
+                default:
+                    list = new List<int>();
+                    break;
+            }
+            list = list.Where(l => l != 0).Where(l=>l < 2000).ToList();
+            scendata_dev = new Dictionary<int, Dictionary<string, string>>();
+            foreach (var dev_id in list)
+            {
+                scendata_dev[dev_id] = ScenData.scendata_dev[dev_id];
+            }
         }
-
-        
+        private List<int> device_ids_ship()
+        {
+            if (scendata_cls == null)
+                return new List<int>();
+            return scendata_cls
+                .Where(f => f.Key.Contains("WpnDevID"))
+                .Select(f => int.Parse(f.Value))
+                .ToList();
+        }
+        private List<int> device_ids_loc()
+        {
+            if (scendata_loc == null)
+                return new List<int>();
+            return scendata_loc
+                .Where(f => f.Key.Contains("WpnDevID"))
+                .Select(f => int.Parse(f.Value))
+                .ToList();
+        }
+        private List<int> device_ids_air()
+        {
+            if (scendata_air == null)
+                return new List<int>();
+            return scendata_air
+                .Where(f => f.Key.Contains("WpnDevID"))
+                .Select(f => int.Parse(f.Value))
+                .ToList();
+        }
 
 
         internal static IEnumerable<UnitTimeline> generate_unit_timelines(IEnumerable<Turn> turns)

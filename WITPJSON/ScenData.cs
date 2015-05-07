@@ -86,6 +86,8 @@ namespace WITPJSON
                 {
                     //this is the first one! simple addition!
                     scendata_cls_lookup[a.Value["Name"]] = a.Value;
+                    //PLUS complicated addition (tracker bug maybe?)
+                    scendata_cls_lookup[a.Value["Name"] + " " + a.Value["AvailMonth"] + "/" + a.Value["AvailYear"]] = a.Value;
                 }
             }
 

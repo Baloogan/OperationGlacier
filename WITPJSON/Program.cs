@@ -48,10 +48,10 @@ namespace WITPJSON
             RenderScendata();
 
             ProcessTurns();
-            //RenderTurns();
+            RenderTurns();
 
             ProcessTimelines();
-            //RenderTimelines();
+            RenderTimelines();
         }
         public static void DeleteDirectory(string path)
         {
