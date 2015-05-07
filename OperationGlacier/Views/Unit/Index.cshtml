@@ -25,27 +25,38 @@
             unit.owner = "Allies";
         }
         if (unit.type_str == "AirGroup") {
+
+            unit.airgroup_image_px_x = ((unit.bitmap - 1) % 4) * 150;
+            unit.airgroup_image_px_y = Math.floor(((unit.bitmap - 1) / 4)) * 60;
             html += airgroup_template(unit);
         } else if (unit.type_str == "Base") {
             unit.row.Supply = commaSeparateNumber(unit.row.Supply);
             unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
             html += base_template(unit);
         } else if (unit.type_str == "TaskForce") {
+            /*
             html += taskforce_template(unit);
             html += "<div style='margin-left:20px'>";
             $.each(unit.subunits, function (i, subunit) {
                 html += ship_template(subunit);
                 html += "<div style='margin-left:20px'>";
                 $.each(subunit.subunits, function (i, subsubunit) {
+
+                    subsubunit.airgroup_image_px_x = ((subsubunit.bitmap - 1) % 4) * 150;
+                    subsubunit.airgroup_image_px_y = Math.floor(((subsubunit.bitmap - 1) / 4)) * 60;
                     html += airgroup_template(subsubunit);
                 });
                 html += "</div>";
             });
             html += "</div>";
+            */
         } else if (unit.type_str == "Ship") {
             html += ship_template(unit);
             html += "<div style='margin-left:20px'>";
             $.each(unit.subunits, function (i, subunit) {
+
+                subunit.airgroup_image_px_x = ((subunit.bitmap - 1) % 4) * 150;
+                subunit.airgroup_image_px_y = Math.floor(((subunit.bitmap - 1) / 4)) * 60;
                 html += airgroup_template(subunit);
             });
             html += "</div>";

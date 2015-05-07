@@ -53,5 +53,6 @@ namespace WITPJSON
         public string ship_class;
         public List<Unit> subunits = new List<Unit>();
         public int bitmap;
+        public string bitmap_name;
     }
 }

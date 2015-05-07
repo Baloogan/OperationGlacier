@@ -67,8 +67,11 @@
             <h6><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h6>
         </div>
         <div class="panel-body">
+            <div style="width:150px; height:60px; background: url('https://web196.secure-secure.co.uk/baloogancampaign.com/{{#xif " this.side_str == 'Japan' "}}J{{else}}A{{/xif}}_PlaneSide.png') no-repeat;background-position: -{{airgroup_image_px_x}}px -{{airgroup_image_px_y}}px;">
+            </div>
             <strong>{{row.Nation}} {{row.Model}}</strong>
             <br />
+            <strong>Main Armament: </strong>{{scendata.BiggestDevice}}<br />
             <strong>HQ:</strong> {{row.HQ}}
             <br />
             <strong>Ready/Repair/Reserve/Max:</strong> {{row.Ready}}/{{row.Repair}}/{{row.Reserve}}/{{row.MaxPlanes}}
@@ -79,8 +82,7 @@
             <strong>Exp/Mor/Fat: </strong>{{row.Exp}}/{{row.Morale}}/{{row.Fat}}
             <strong>Kills:</strong> {{row.Kills}}
             <br />
-            <strong>Upgrade:</strong> {{row.Upgrade}}
-            <strong>Withdraw:</strong> {{row.Withdraw}}
+            <strong>Upgrade:</strong> {{row.Upgrade}} {{row.Withdraw}}
             <strong>Leader Air/Insp:</strong> {{row.LeadAir}}/{{row.LeadInsp}}
         </div>
     </div>
@@ -95,7 +97,7 @@
         <div class="panel-body">
             <strong>{{row.Mission}}</strong>
             <br />
-            <div style="width:150px; height:60px; background: url('/OperationGlacier/Content/Images/{{#xif " this.side_str == 'Japan' "}}J{{else}}A{{/xif}}_Mission.png') no-repeat;background-position: 0px -{{taskforce_image_px}}px;">
+            <div style="width:150px; height:60px; background: url('https://web196.secure-secure.co.uk/baloogancampaign.com/{{#xif " this.side_str == 'Japan' "}}J{{else}}A{{/xif}}_Mission.png') no-repeat;background-position: 0px -{{taskforce_image_px}}px;">
             </div>
             <strong>Detect: </strong>{{row.Detect}}
             <br />
@@ -114,11 +116,13 @@
 
         </div>
         <div class="panel-body">
-            <strong>{{ship_class}}</strong><br />
+            <strong>{{row.Nation}} {{row.Class}}-class {{ship_class}}</strong><br />
+            <img src="https://web196.secure-secure.co.uk/baloogancampaign.com/shipside/{{bitmap_name}}" /><br />
+            <strong>Main Armament: </strong>{{scendata.BiggestDevice}}<br />
             <strong>Sys/Flt/Eng/Fire/Wep:</strong> {{row.Sys}}/{{row.Flt}}/{{row.Eng}}/{{row.Fire}}/{{row.Weapon}}
-            <strong>Exp D/N: </strong>{{row.Exp}}
+            <strong>Exp D/N: </strong>{{row.Exp}}<br />
             <strong>AA/ASW/Torp</strong> {{row.AA}}/{{row.ASW}}/{{row.Torp}}<br />
-            {{row.Nation}} {{row.Class}}-class {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
+            {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
         </div>
     </div>
 </script>

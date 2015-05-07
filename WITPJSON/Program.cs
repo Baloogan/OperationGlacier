@@ -32,15 +32,9 @@ namespace WITPJSON
                     japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                     allies_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\AlliesTracker";
                     japan_tracker_directory = @"C:\Dropbox\HistoricalGamer\tracker";
-                    output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
+                    output_directory = @"C:\maps\gamedata_main\GameData\";
                     break;
                 case "WIN-QPCSS4CO8PJ":
-                    allies_archive_directory = @"\\VBOXSVR\archive";
-                    japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
-                    output_directory = @"C:\Dropbox\OperationGlacier\OperationGlacier\GameData\";
-                    throw new PlatformNotSupportedException();
-                //break;
-                default:
                     throw new PlatformNotSupportedException();
             }
             
@@ -48,7 +42,7 @@ namespace WITPJSON
             ProcessTurns();
             ProcessTimelines();
 
-            return;//saftey
+            //return;//saftey
             
             RenderScendata();
 

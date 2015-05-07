@@ -107,7 +107,7 @@
 
             var is_dot_base = false;
 
-            var popupOptions = { maxWidth: 600, maxHeight: 400, };
+            var popupOptions = { minWidth:400, maxWidth: 600, maxHeight: 400, };
             $.each(hex.units, function (i, unit) {
                 //populate htmls via that pretentious lib
                 
@@ -120,6 +120,9 @@
                         airbaseIcon = "Allies";
                         unit.owner = "Allies";
                     }
+
+                    unit.airgroup_image_px_x = ((unit.bitmap-1)%4) * 150;
+                    unit.airgroup_image_px_y = Math.floor(((unit.bitmap - 1) / 4)) * 60;
                     airbase += airgroup_template(unit);
                     airbase_tooltip = airbase_tooltip + unit.name + "\n";
                 } else if (unit.type_str == "Base") {
@@ -231,6 +234,9 @@
                         taskforces += ship_template(subunit);
                         taskforces += "<div style='margin-left:20px'>";
                         $.each(subunit.subunits, function (i, subsubunit) {
+
+                            subsubunit.airgroup_image_px_x = ((subsubunit.bitmap - 1) % 4) * 150;
+                            subsubunit.airgroup_image_px_y = Math.floor(((subsubunit.bitmap - 1) / 4)) * 60;
                             taskforces += airgroup_template(subsubunit);
                         });
                         taskforces += "</div>";
@@ -250,6 +256,9 @@
                     navalbase += ship_template(unit);
                     navalbase += "<div style='margin-left:20px'>";
                     $.each(unit.subunits, function (i, subunit) {
+
+                        subunit.airgroup_image_px_x = ((subunit.bitmap - 1) % 4) * 150;
+                        subunit.airgroup_image_px_y = Math.floor(((subunit.bitmap - 1) / 4)) * 60;
                         navalbase += airgroup_template(subunit);
                     });
                     navalbase += "</div>";

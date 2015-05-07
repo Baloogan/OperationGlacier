@@ -40,6 +40,11 @@ namespace WITPJSON
                         foreach (var u in unit_data)
                         {
                             u.bitmap = int.Parse(scendata_cls["Bitmap"]);//this should go into turn files the way its setup
+                            if(u.side ==Turn.Side.Allies){//AnSide0006.png
+                                u.bitmap_name = "AnSide" + u.bitmap.ToString("0000") + ".png";
+                            }else if(u.side == Turn.Side.Japan){
+                                u.bitmap_name = "JnSide" + u.bitmap.ToString("0000") + ".png";
+                            }
                             u.scendata["Type"] = scendata_cls["Type"];
                             u.scendata["CruiseSpeed"] = scendata_cls["CruiseSpeed"];
                             u.scendata["MaxSpeed"] = scendata_cls["MaxSpeed"];
@@ -56,6 +61,14 @@ namespace WITPJSON
                     if (unit_data.Last().id >= 8500) //magic row from the spreadsheet
                         break;
                     scendata_loc = ScenData.scendata_loc[unit_data.Last().id];
+                    foreach (var u in unit_data)
+                    {
+                        u.scendata["Suffix"] = scendata_loc["Suffix"];
+                        u.scendata["Type"] = scendata_loc["Type"];
+                        u.scendata["Nation"] = scendata_loc["Nation"];
+                        u.scendata["HQtype"] = scendata_loc["HQtype"];
+                        u.scendata["attribute"] = scendata_loc["attribute"];
+                    }
                     if(scendata_loc["LCUFormationID"] != "0"){
                         scendata_toe = ScenData.scendata_loc[int.Parse(scendata_loc["LCUFormationID"])];
                     }
@@ -63,13 +76,45 @@ namespace WITPJSON
                     break;
                 case Unit.Type.Base:
                     scendata_loc = ScenData.scendata_loc[unit_data.Last().id];
+                    foreach (var u in unit_data)
+                    {
+                        u.scendata["Type"] = scendata_loc["Type"];
+                        u.scendata["Suffix"] = scendata_loc["Suffix"];
+                        u.scendata["attribute"] = scendata_loc["attribute"];
+                        if (scendata_loc["DailySupply"] != "0")
+                            u.scendata["DailySupply"] = scendata_loc["DailySupply"];
+                        if (scendata_loc["DailyFuel"] != "0")
+                            u.scendata["DailyFuel"] = scendata_loc["DailyFuel"];
+                        if(scendata_loc["monsoonEff"] != "0")
+                            u.scendata["monsoonEff"] = scendata_loc["monsoonEff"];
+                    }
                     break;
                 case Unit.Type.AirGroup:
                     scendata_grp = ScenData.scendata_grp[unit_data.Last().id];
-                    scendata_loc = ScenData.scendata_loc[unit_data.Last().id];
+                    
                     try
                     {
                         scendata_air = ScenData.scendata_air_lookup[unit_data.Last().row["Model"]];
+                        foreach (var u in unit_data)
+                        {
+                            u.bitmap = int.Parse(scendata_air["Bitmap"]);
+                            
+                            
+                            //u.scendata["mvrAlt"] = scendata_air["mvrAlt"];
+                            //                            u.scendata["mvrAlt2"] = scendata_air["mvrAlt2"];
+                            //u.scendata["mvrAlt3"] = scendata_air["mvrAlt3"];
+                            ////u.scendata["mvrAlt4"] = scendata_air["mvrAlt4"];
+                            //u.scendata["mvrAlt5"] = scendata_air["mvrAlt5"];
+
+                            ////u.scendata["attribute"] = scendata_air["attribute"];
+                            //u.scendata["MaxAltitude"] = scendata_air["MaxAltitude"];
+                            //////u.scendata["MaxSpeed"] = scendata_air["MaxSpeed"];
+                            //u.scendata["CruiseSpeed"] = scendata_air["CruiseSpeed"];
+                            //u.scendata["ClimbRate"] = scendata_air["ClimbRate"];
+                            //u.scendata["Manuever"] = scendata_air["Manuever"];
+
+
+                        }
                     }
                     catch (Exception e)
                     {
