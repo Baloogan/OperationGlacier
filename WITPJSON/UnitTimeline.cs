@@ -132,8 +132,12 @@ namespace WITPJSON
 
         internal static IEnumerable<UnitTimeline> generate_unit_timelines(IEnumerable<Turn> turns)
         {
-            var unit_bag = turns.SelectMany(t => t.All_Units).Where(u => u.type != Unit.Type.AfterAction && u.type != Unit.Type.CombatEvent && u.type != Unit.Type.SigInt && u.type != Unit.Type.OperationalReport && u.type != Unit.Type.TaskForce);
+            var unit_bag = turns
+                .SelectMany(t => t.All_Units)
+                .Where(u => u.type != Unit.Type.AfterAction && u.type != Unit.Type.CombatEvent && u.type != Unit.Type.SigInt && u.type != Unit.Type.OperationalReport && u.type != Unit.Type.TaskForce);
+
             var units = unit_bag.GroupBy(unit => unit.timeline_id);
+
             foreach (var a in units)
             {
                 yield return new UnitTimeline(a);
@@ -141,6 +145,8 @@ namespace WITPJSON
         }
         public void render()
         {
+            var json = Newtonsoft.Json.JsonConvert.SerializeObject(this, Formatting.None);
+            File.WriteAllText(Path.Combine(Program.output_timelines_directory, unit_data.First().timeline_id + ".json"), json);
         }
     }
 }
