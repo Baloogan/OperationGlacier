@@ -39,7 +39,7 @@ namespace WITPJSON
         public Turn.Side side;
         public string side_str { get { return side.ToString(); } }
         public Dictionary<string, string> row;
-        public Dictionary<string, string> scendata; //only really relevant scendata plz
+        public Dictionary<string, string> scendata = new Dictionary<string,string>(); //only really relevant scendata plz
         public string name;
         public int id;
         public int x, y;
@@ -52,5 +52,6 @@ namespace WITPJSON
         public string report;
         public string ship_class;
         public List<Unit> subunits = new List<Unit>();
+        public int bitmap;
     }
 }

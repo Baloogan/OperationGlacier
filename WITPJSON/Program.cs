@@ -43,14 +43,19 @@ namespace WITPJSON
                 default:
                     throw new PlatformNotSupportedException();
             }
-
+            
             ProcessScendata();
+            ProcessTurns();
+            ProcessTimelines();
+
+            return;//saftey
+            
             RenderScendata();
 
-            ProcessTurns();
+            
             RenderTurns();
 
-            ProcessTimelines();
+            
             RenderTimelines();
         }
         public static void DeleteDirectory(string path)

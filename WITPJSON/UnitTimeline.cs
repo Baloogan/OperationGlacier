@@ -37,6 +37,14 @@ namespace WITPJSON
                     try
                     {
                         scendata_cls = ScenData.scendata_cls_lookup[unit_data.Last().row["Class"]];
+                        foreach (var u in unit_data)
+                        {
+                            u.bitmap = int.Parse(scendata_cls["Bitmap"]);//this should go into turn files the way its setup
+                            u.scendata["Type"] = scendata_cls["Type"];
+                            u.scendata["CruiseSpeed"] = scendata_cls["CruiseSpeed"];
+                            u.scendata["MaxSpeed"] = scendata_cls["MaxSpeed"];
+                            u.scendata["Tonnage"] = scendata_cls["Tonnage"];
+                        }
                     }
                     catch (Exception e)
                     {
@@ -72,6 +80,14 @@ namespace WITPJSON
                     break;
             }
             get_devices();
+            var biggest_gun = scendata_dev.OrderByDescending(f => int.Parse(f.Value["Effect"]));
+            if (biggest_gun.Count() > 0)
+            {
+                foreach (var u in unit_data)
+                {
+                    u.scendata["BiggestDevice"] = biggest_gun.First().Value["Name"];
+                }
+            }
         }
         private void get_devices()
         {
