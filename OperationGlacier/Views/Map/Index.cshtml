@@ -75,7 +75,7 @@
         maxZoom: 6,
         minZoom: 3,
         noWrap: true,
-    }).addTo(map);
+    });
     var yamato = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render4/{z}/{x}/{y}.png', {
         attribution: '@Ajax.JavaScriptStringEncode(Model.side) @Ajax.JavaScriptStringEncode(Model.date_str) Yamato Damashii',
         continuousWorld: true,
@@ -83,7 +83,7 @@
         maxZoom: 6,
         minZoom: 3,
         noWrap: true,
-    });
+    }).addTo(map);
     map.zoomControl.setPosition('topright');
     map.setMaxBounds([[-150, 0], [0, 190]]);
     L.Circle = L.Circle.extend({

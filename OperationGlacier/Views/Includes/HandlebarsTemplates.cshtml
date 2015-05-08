@@ -64,7 +64,7 @@
     <div class='panel panel-default'>
         <div class="panel-heading">
             <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
-            <h6><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h6>
+            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
         </div>
         <div class="panel-body">
             <div style="width:150px; height:60px; background: url('https://web196.secure-secure.co.uk/baloogancampaign.com/{{#xif " this.side_str == 'Japan' "}}J{{else}}A{{/xif}}_PlaneSide.png') no-repeat;background-position: -{{airgroup_image_px_x}}px -{{airgroup_image_px_y}}px;">
@@ -91,7 +91,7 @@
     <div class='panel panel-default'>
         <div class="panel-heading">
             <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
-            <h3>{{name}} {{row.Label}}</h3>
+            <h4>{{name}} {{row.Label}}</h4>
 
         </div>
         <div class="panel-body">
@@ -112,7 +112,7 @@
     <div class='panel panel-default'>
         <div class="panel-heading">
             <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
-            <h5><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h5>
+            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
 
         </div>
         <div class="panel-body">
@@ -156,6 +156,40 @@
         </div>
     </div>
 </script>
+<script id="weapon-template" type="text/x-handlebars-template">
+    <li>{{Number}}x <strong>{{Device.Name}}</strong> Ammo: {{Ammo}} Facing: {{Facing}}</li>
+</script>
+<script id="toe-weapon-template" type="text/x-handlebars-template">
+    <li>{{Number}}x <strong>{{Device.Name}}</strong></li>
+</script>
+<script id="ship-class-template" type="text/x-handlebars-template">
+            <strong>Cruise Speed: </strong>{{CruiseSpeed}} kts<br/>
+            <strong>Max Speed: </strong>{{MaxSpeed}} kts<br />
+            <strong>Endurance: </strong>{{Endurance}} nm<br />
+            <strong>Fuel Capacity: </strong>{{Fuel}} tonnes<br />
+            <strong>Durability: </strong>{{Durability}}<br />
+            <strong>BeltArmour: </strong>{{BeltArmour}} mm<br />
+            <strong>DeckArmour: </strong>{{DeckArmour}} mm<br />
+            <strong>TowerArmour: </strong>{{TowerArmour}} mm<br />
+            <strong>Tonnage: </strong>{{Tonnage}} tonnes<br />
+</script>
+<script id="aircraft-class-template" type="text/x-handlebars-template">
+    <strong>Cruise Speed: </strong>{{CruiseSpeed}} kts
+    <br />
+    <strong>Max Speed: </strong>{{MaxSpeed}} kts
+    <br />
+    <strong>Endurance: </strong>{{Endurance}} nm
+    <br />
+    <strong>Durability: </strong>{{Durability}}
+    <br />
+    <strong>NormRange: </strong>{{NormRange}}
+    <br />
+    <strong>ExtRange: </strong>{{ExtRange}}
+    <br />
+    <strong>MaxRange: </strong>{{MaxRange}}
+    <br />
+</script>
+
 <script>
     // for demo: http://jsbin.com/jeqesisa/7/edit
     // for detailed comments, see my SO answer here http://stackoverflow.com/questions/8853396/logical-operator-in-a-handlebars-js-if-conditional/21915381#21915381
@@ -383,6 +417,10 @@
     var airgroup_template = Handlebars.compile($("#airgroup-template").html());
     var taskforce_template = Handlebars.compile($("#taskforce-template").html());
     var ship_template = Handlebars.compile($("#ship-template").html());
+    var weapon_template = Handlebars.compile($("#weapon-template").html());
+    var toe_weapon_template = Handlebars.compile($("#toe-weapon-template").html());
+    var ship_class_template = Handlebars.compile($("#ship-class-template").html());
+    var aircraft_class_template = Handlebars.compile($("#aircraft-class-template").html());
 
     var sigint_template = Handlebars.compile($("#sigint-template").html());
     var combatevent_template = Handlebars.compile($("#combatevent-template").html());
