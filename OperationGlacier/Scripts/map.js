@@ -209,8 +209,8 @@ function load_hexes(turn) {
                     baseIcon = "Allies";
                     unit.owner = "Allies";
                 }
-                unit.row.Supply = commaSeparateNumber(unit.row.Supply);
-                unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
+                unit.row.Supplyc = commaSeparateNumber(unit.row.Supply);
+                unit.row.Fuelc = commaSeparateNumber(unit.row.Fuel);
                 base += base_template(unit);
                 base_tooltip = base_tooltip + unit.name;
                 if (unit.row.Port.split(' ')[0] == "0" && unit.row.Airbase.split(' ')[0] == "0") {

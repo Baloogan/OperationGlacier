@@ -19,8 +19,8 @@
         unit.airgroup_image_px_y = Math.floor(((unit.bitmap - 1) / 4)) * 60;
         html += airgroup_template(unit);
     } else if (unit.type_str == "Base") {
-        unit.row.Supply = commaSeparateNumber(unit.row.Supply);
-        unit.row.Fuel = commaSeparateNumber(unit.row.Fuel);
+        unit.row.Supplyc = commaSeparateNumber(unit.row.Supply);
+        unit.row.Fuelc = commaSeparateNumber(unit.row.Fuel);
         html += base_template(unit);
     } else if (unit.type_str == "Ship") {
         html += ship_template(unit);
@@ -61,7 +61,7 @@ function render_comments(timeline, current_unit) {
 
     html += "<div class='panel-body'>";
 
-   
+
     $.each(comments_json, function (i, comment) { html += comment_template(comment); });
 
     html += "</div>";
@@ -191,7 +191,7 @@ function render_class(timeline, current_unit) {
         html += "</div>";
     } else if (current_unit.type_str == "Base") {
 
-        
+
 
     } else if (current_unit.type_str == "Ship") {
 
@@ -258,7 +258,7 @@ function render_class(timeline, current_unit) {
                 var Wpn = [];
                 Wpn.DevID = timeline.scendata_toe["WpnDevID" + val];
                 //Wpn.Ammo = timeline.scendata_toe["WpnAmmo" + val];
-               // Wpn.Facing = timeline.scendata_toe["WpnFacing" + val];
+                // Wpn.Facing = timeline.scendata_toe["WpnFacing" + val];
                 Wpn.Number = timeline.scendata_toe["WpnNumber" + val];
                 if (Wpn.DevID == 0) {
                     return true;//continue;
@@ -328,17 +328,27 @@ function render_class(timeline, current_unit) {
     return html;
 }
 
-function render_graphs(timeline) {
-    var html = "";
-    return "";
+function render_graph_html(title, id) {
+    html = "";
+    html += "<div class='col-sm-6'>";
+    html += "<div class='panel panel-default'>";
+
+    html += "<div class='panel-heading'><h2>" + title + "</h2></div>";
+
+    html += "<div class='panel-body'>";
+    html += "<div id='" + id + "'></div>";
+    html += "</div>";
+    html += "</div>";
+    html += "</div>";
+
+    return html;
 }
 function display_timeline(timeline) {
     //document.title = document.title.replace(model_timeline_id, timeline.name);
     var all_html = "";
 
     //get the data for the graphs here
-    var graph_html = render_graphs(timeline);
-
+    var units = timeline.unit_data.slice(); // copy array for graphs
 
     timeline.unit_data.reverse();//scroll down = go backwards in time
     var current_unit = timeline.unit_data.shift();
@@ -353,21 +363,156 @@ function display_timeline(timeline) {
     all_html += render_comments(timeline, current_unit);
     document.querySelector('#unit-timeline').innerHTML = all_html;
 
-    all_html += graph_html;
-    document.querySelector('#unit-timeline').innerHTML = all_html;
+    //  all_html += render_graphs_html(timeline, current_unit);
+    //  document.querySelector('#unit-timeline').innerHTML = all_html;
+
+    if (current_unit.type_str == "Base") {
+        all_html += render_graph_html("Supply & Fuel", "supply-fuel-graph");
+    }
+    if (current_unit.type_str == "AirGroup") {
+        all_html += render_graph_html("Ready/Repair/Reserve/Max", "air-group-ready-graph");
+        all_html += render_graph_html("Exp/Mor/Fat", "air-group-exp-mor-fat-graph");
+        all_html += render_graph_html("Pilots", "air-group-pilots-graph");
+        all_html += render_graph_html("Kills", "air-group-kills-graph");
+    }
+    if (current_unit.type_str == "Ship") {
+        all_html += render_graph_html("Ship Damage", "ship-damage-graph");
+    }
 
     if (current_unit.type_str != "Base") {
         all_html += render_class(timeline, current_unit);
         document.querySelector('#unit-timeline').innerHTML = all_html;
     }
+
+
     $.each(timeline.unit_data, function (i, unit) { all_html += render_unit_data_panel(i, unit); document.querySelector('#unit-timeline').innerHTML = all_html; });
 
 
     document.querySelector('#unit-timeline').innerHTML = all_html;
+
+
+    if (current_unit.type_str == "Base") {
+        //supply-fuel-graph
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Turn');
+        data.addColumn('number', 'Supply');
+        data.addColumn('number', 'Fuel');
+
+        $.each(units, function (i, unit) {
+            data.addRows([[i, Number(unit.row.Supply), Number(unit.row.Fuel)]]);
+        });
+
+
+        var options = {
+            hAxis: {
+                title: 'Turn #'
+            },
+            series: {
+                1: { curveType: 'function' }
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('supply-fuel-graph'));
+        chart.draw(data, options);
+    }
+
+    if (current_unit.type_str == "AirGroup") {
+        //supply-fuel-graph
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Turn');
+        data.addColumn('number', 'Ready');
+        data.addColumn('number', 'Repair');
+        data.addColumn('number', 'Reserve');
+        data.addColumn('number', 'Max');
+
+        $.each(units, function (i, unit) {
+            data.addRows([[i, Number(unit.row.Ready), Number(unit.row.Repair), Number(unit.row.Reserve), Number(unit.row.MaxPlanes)]]);
+        });
+
+
+        var options = {
+            hAxis: {
+                title: 'Turn #'
+            },
+            series: {
+                1: { curveType: 'function' }
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('air-group-ready-graph'));
+        chart.draw(data, options);
+
+
+        data = new google.visualization.DataTable();
+        data.addColumn('number', 'Turn');
+        data.addColumn('number', 'Experience');
+        data.addColumn('number', 'Morale');
+        data.addColumn('number', 'Fatigue');
+
+        $.each(units, function (i, unit) {
+            data.addRows([[i, Number(unit.row.Exp), Number(unit.row.Morale), Number(unit.row.Fat)]]);
+        });
+        chart = new google.visualization.LineChart(document.getElementById('air-group-exp-mor-fat-graph'));
+        chart.draw(data, options);
+
+
+
+
+
+
+        data = new google.visualization.DataTable();
+        data.addColumn('number', 'Turn');
+        data.addColumn('number', 'Pilots');
+
+        $.each(units, function (i, unit) {
+            data.addRows([[i, Number(unit.row.Pilots.split(' ')[0])]]);
+        });
+        chart = new google.visualization.LineChart(document.getElementById('air-group-pilots-graph'));
+        chart.draw(data, options);
+
+
+
+
+        data = new google.visualization.DataTable();
+        data.addColumn('number', 'Turn');
+        data.addColumn('number', 'Kills');
+
+        $.each(units, function (i, unit) {
+            data.addRows([[i, Number(unit.row.Kills)]]);
+        });
+        chart = new google.visualization.LineChart(document.getElementById('air-group-kills-graph'));
+        chart.draw(data, options);
+    }
+    if (current_unit.type_str == "Ship") {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Turn');
+        data.addColumn('number', 'Sys');
+        data.addColumn('number', 'Flt');
+        data.addColumn('number', 'Eng');
+        data.addColumn('number', 'Fire');
+        data.addColumn('number', 'Wep');
+
+        $.each(units, function (i, unit) {
+            data.addRows([[i, Number(unit.row.Sys), Number(unit.row.Flt), Number(unit.row.Eng), Number(unit.row.Fire), Number(unit.row.Wep)]]);
+        });
+
+
+        var options = {
+            hAxis: {
+                title: 'Turn #'
+            },
+            series: {
+                1: { curveType: 'function' }
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('ship-damage-graph'));
+        chart.draw(data, options);
+    }
 }
 //download the json
 (function () {
-    var link = "/OperationGlacierGameData/" 
+    var link = "/OperationGlacierGameData/"
         + model_game_name
         + "/Timeline/"
         + model_timeline_id
