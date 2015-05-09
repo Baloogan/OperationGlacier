@@ -203,7 +203,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Scripts\myscripts\baloogan-handlebars.js" />
+    <Content Include="Scripts\baloogan-handlebars.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="BundleTransformer.Configuration.xsd">
@@ -221,11 +221,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\leaflet-src.js" />
     <Content Include="Scripts\leaflet.js" />
-    <Content Include="Scripts\myscripts\map.js" />
+    <Content Include="Scripts\map.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\myscripts\unit.js" />
+    <Content Include="Scripts\unit.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

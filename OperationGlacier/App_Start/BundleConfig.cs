@@ -29,14 +29,14 @@ namespace OperationGlacier
 
             bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
                       "~/Scripts/handlebars-v3.0.1.js",
-                      "~/Scripts/myscripts/baloogan-handlebars.js"));
+                      "~/Scripts/baloogan-handlebars.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/map").Include(
                 "~/Scripts/leaflet.js",
-                      "~/Scripts/myscripts/map.js"));
+                      "~/Scripts/map.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/unit").Include(
-                      "~/Scripts/myscripts/unit.js"));
+                      "~/Scripts/unit.js"));
 
             
             BundleTable.EnableOptimizations = true;
