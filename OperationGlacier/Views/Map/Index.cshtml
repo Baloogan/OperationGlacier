@@ -48,6 +48,17 @@
         var lat = -0.5935 * y - 15.446;
         return lat;
     }
+    function latlon_to_x(lat,lon) {
+        if (isEven(latlon_to_y(lat,lon))) {
+            lon = lon + 0.6563 / 2.0;
+        }
+        var x = (lon - 15.962)/0.6563;
+        return x;
+    }
+    function latlon_to_y(lat,lon) {
+        var y = (lat + 15.446)/(-0.5935);
+        return y;
+    }
     /***  little hack starts here ***/
     L.Map = L.Map.extend({
         openPopup: function (popup) {

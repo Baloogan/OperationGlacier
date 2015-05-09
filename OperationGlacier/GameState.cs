@@ -7,14 +7,26 @@ using Newtonsoft.Json;
 
 namespace OperationGlacier
 {
-    
+
     public class GameState
     {
         public class Game
         {
             public List<string> date_strs { get; set; }
         }
-        private static Dictionary<string, Game> game_name_to_game = new Dictionary<string,Game>();
+        private static Dictionary<string, Game> game_name_to_game = new Dictionary<string, Game>();
+        public static IEnumerable<string> get_date_strs(string game_name)
+        {
+            game_name = get_game_name(game_name);
+            read_game_json(game_name);
+            return game_name_to_game[game_name].date_strs.OrderBy(s => s);
+        }
+        public static IEnumerable<string> get_date_strs_reverse(string game_name)
+        {
+            game_name = get_game_name(game_name);
+            read_game_json(game_name);
+            return game_name_to_game[game_name].date_strs.OrderByDescending(s => s);
+        }
         private static void read_game_json(string game_name)
         {
             if (game_name_to_game.ContainsKey(game_name))
@@ -39,6 +51,8 @@ namespace OperationGlacier
         public static string get_game_name(string game_name)
         {
             if (game_name == null)
+                return "OperationGlacierI";
+            if (game_name == "")
                 return "OperationGlacierI";
             if (game_name == "OperationGlacierI")
                 return "OperationGlacierI";

@@ -310,8 +310,10 @@
         document.querySelector('#unit-timeline').innerHTML = all_html;
         all_html += render_graphs(timeline, current_unit);
         document.querySelector('#unit-timeline').innerHTML = all_html;
-        all_html += render_class(timeline, current_unit);
-        document.querySelector('#unit-timeline').innerHTML = all_html;
+        if (current_unit.type_str != "Base") {
+            all_html += render_class(timeline, current_unit);
+            document.querySelector('#unit-timeline').innerHTML = all_html;
+        }
         $.each(timeline.unit_data, function (i, unit) { all_html += render_unit_data_panel(i, unit); document.querySelector('#unit-timeline').innerHTML = all_html; });
 
 
