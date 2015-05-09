@@ -26,12 +26,16 @@ namespace OperationGlacier.Controllers
             this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.ApplicationDbContext));
         }
 
-        public ActionResult Index(string side, string date, int? x, int? y)
+        public ActionResult Index(string side, string date, int? x, int? y, string game_name)
         {
+            
+                game_name = GameState.get_game_name(game_name);
+            
+            ViewBag.game_name = game_name;
             var model = new Models.MapModel();
             model.side = side;
             if (date == "latest")
-                date = GameState.LatestTurn();
+                date = GameState.LatestTurn(game_name);
             model.date_str = date;
 
             if (x == null || y == null)
@@ -60,7 +64,7 @@ namespace OperationGlacier.Controllers
                 }
             }
             var my_date = WitpUtility.from_date_str(model.date_str);
-            IQueryable<Comment> comments = ApplicationDbContext.Comments.Where(c => c.date_in_game == my_date).OrderBy(c => c.date_in_world);
+            IQueryable<Comment> comments = ApplicationDbContext.Comments.Where(c => c.date_in_game == my_date && c.game_name == game_name).OrderBy(c => c.date_in_world);
             if (Request.IsAuthenticated)
             {
                 if (user.SideRestriction != "Both")

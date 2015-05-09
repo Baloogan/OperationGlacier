@@ -24,15 +24,19 @@ namespace WITPJSON
         private static void Main(string[] args)
         {
             Console.WriteLine("WITPJSON v0.1");
+            const int selection = 1;
             switch (System.Environment.MachineName)
             {
                 case "STONEBURNER":
                     Console.WriteLine("Running on: STONEBURNER");
-                    allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
-                    japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
-                    allies_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\AlliesTracker";
-                    japan_tracker_directory = @"C:\Dropbox\HistoricalGamer\tracker";
-                    output_directory = @"C:\maps\gamedata_main\GameData\";
+                    if (selection == 1)
+                    {
+                        allies_archive_directory = @"B:\War in the Pacific Admiral's Edition\save\archive";
+                        japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
+                        allies_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\AlliesTracker";
+                        japan_tracker_directory = @"C:\Dropbox\HistoricalGamer\tracker";
+                        output_directory = @"C:\maps\gamedata_main\GameData\";
+                    }
                     break;
                 case "WIN-QPCSS4CO8PJ":
                     throw new PlatformNotSupportedException();
@@ -45,12 +49,11 @@ namespace WITPJSON
             //return;//saftey
             
             RenderScendata();
-
-            
             RenderTurns();
-
-            
             RenderTimelines();
+
+            Game game = new Game(turns, timelines);
+            game.Render();
         }
         public static void DeleteDirectory(string path)
         {

@@ -28,14 +28,18 @@ namespace OperationGlacier.Controllers
         }
 
         // GET: Comments
-        public ActionResult Index()
+        public ActionResult Index(string game_name)
         {
+            
+                game_name = GameState.get_game_name(game_name);
+            
+            ViewBag.game_name = game_name;
             ApplicationUser user = null;
             if (Request.IsAuthenticated)
             {
                 user = UserManager.FindById(User.Identity.GetUserId());
             }
-            IEnumerable<Comment> comments = db.Comments.OrderByDescending(c => c.date_in_world).Take(15).ToList();
+            IEnumerable<Comment> comments = db.Comments.Where(c => c.game_name == game_name).OrderByDescending(c => c.date_in_world).Take(15).ToList();
             if (Request.IsAuthenticated)
             {
                 if (user.SideRestriction != "Both")
@@ -82,10 +86,10 @@ namespace OperationGlacier.Controllers
         }
 
         // GET: Comments/Create
-     //   public ActionResult Create()
-      //  {
-      //      return View();
-      //  }
+        //   public ActionResult Create()
+        //  {
+        //      return View();
+        //  }
         /*
          * 
             + "date_string=" + current_unit.date_string
@@ -95,7 +99,7 @@ namespace OperationGlacier.Controllers
             + "&y=" + current_unit.y + "'>Add Comment</a>";
          * 
          * */
-        public ActionResult Create(string date_string, string unit_timeline_id, string unit_location, int x, int y, string unit_name)
+        public ActionResult Create(string date_string, string unit_timeline_id, string unit_location, int x, int y, string unit_name, string game_name)
         {
             if (!Request.IsAuthenticated)
             {
@@ -106,12 +110,13 @@ namespace OperationGlacier.Controllers
                 date_in_world = DateTime.Now,
                 date_in_game = WitpUtility.from_date_str(date_string),
                 unit_timeline_id = unit_timeline_id,
-                x=x,
-                y=y,
+                x = x,
+                y = y,
                 unit_location = unit_location,
-                unit_name = unit_name
+                unit_name = unit_name,
+                game_name = game_name
             };
-            
+
             return View(model);
         }
 
@@ -120,7 +125,7 @@ namespace OperationGlacier.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CommentID,Username,date_in_game,date_in_world,unit_timeline_id,unit_side_str,message,ReplyToCommentID,side_restriction,x,y,unit_name,unit_location,unit_report_first_line")] Comment comment)
+        public async Task<ActionResult> Create([Bind(Include = "CommentID,Username,date_in_game,date_in_world,unit_timeline_id,unit_side_str,message,ReplyToCommentID,side_restriction,x,y,unit_name,unit_location,unit_report_first_line,game_name")] Comment comment)
         {
             if (!Request.IsAuthenticated)
             {
@@ -134,7 +139,7 @@ namespace OperationGlacier.Controllers
             {
                 db.Comments.Add(comment);
                 await db.SaveChangesAsync();
-                return Redirect("/OperationGlacier/Unit?tid=" + comment.unit_timeline_id);
+                return Redirect("/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
             }
 
             return View(comment);
@@ -170,7 +175,7 @@ namespace OperationGlacier.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CommentID,Username,date_in_game,date_in_world,unit_timeline_id,unit_side_str,message,ReplyToCommentID,side_restriction,x,y,unit_name,unit_location,unit_report_first_line")] Comment comment)
+        public async Task<ActionResult> Edit([Bind(Include = "CommentID,Username,date_in_game,date_in_world,unit_timeline_id,unit_side_str,message,ReplyToCommentID,side_restriction,x,y,unit_name,unit_location,unit_report_first_line,game_name")] Comment comment)
         {
             if (!Request.IsAuthenticated)
             {

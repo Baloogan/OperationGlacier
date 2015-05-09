@@ -65,6 +65,7 @@
             + "&x=" + current_unit.x
             + "&y=" + current_unit.y
             + "&unit_name=" + current_unit.name
+            + "&game_name=" + "@HttpUtility.JavaScriptStringEncode(ViewBag.game_name)"
             + "'>Add Comment</a></div>";
         html += "<h2>Comments</h2>";
         html += "</div>";
@@ -204,7 +205,7 @@
             html += "</div>";
             html += "</div>";
         } else if (current_unit.type_str == "Base") {
-            
+
 
 
         } else if (current_unit.type_str == "Ship") {
@@ -282,7 +283,7 @@
                     if (Wpn.Device != null) {
                         html += toe_weapon_template(Wpn);
                     }
-                    
+
 
                 });
                 html += "</ul>";
@@ -312,13 +313,17 @@
         all_html += render_class(timeline, current_unit);
         document.querySelector('#unit-timeline').innerHTML = all_html;
         $.each(timeline.unit_data, function (i, unit) { all_html += render_unit_data_panel(i, unit); document.querySelector('#unit-timeline').innerHTML = all_html; });
-        
-        
+
+
         document.querySelector('#unit-timeline').innerHTML = all_html;
     }
     //download the json
     (function () {
-        var link = "/OperationGlacierGameData/Timeline/" + "@Ajax.JavaScriptStringEncode(Model.timeline_id)" + ".json";
+        var link = "/OperationGlacierGameData/" 
+            + "@ViewBag.game_name"
+            + "/Timeline/"
+            + "@Ajax.JavaScriptStringEncode(Model.timeline_id)"
+            + ".json";
         $.getJSON(link).done(display_timeline);
 
 

@@ -10,8 +10,12 @@ namespace OperationGlacier.Controllers
     public class UnitController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public ActionResult Index(string tid)
+        public ActionResult Index(string tid, string game_name)
         {
+
+            game_name = GameState.get_game_name(game_name);
+
+            ViewBag.game_name = game_name;
             UnitModel model = new UnitModel();
             model.timeline_id = tid;
             model.comments = db.Comments

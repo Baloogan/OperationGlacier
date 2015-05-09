@@ -47,6 +47,9 @@
         <th>
             @Html.DisplayNameFor(model => model.unit_report_first_line)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.game_name)
+        </th>
         <th></th>
     </tr>
 
@@ -90,6 +93,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.unit_report_first_line)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.game_name)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.CommentID }) |

@@ -93,24 +93,24 @@
                         }
                         @if (can_see_allies)
                         {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=latest">Latest Allies Turn</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=latest&game_name=@ViewBag.game_name">Latest Allies Turn</a></li>
                         }
                         @if (can_see_japan)
                         {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=latest">Latest Japanese Turn</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=latest&game_name=@ViewBag.game_name">Latest Japanese Turn</a></li>
                         }
                         @if (can_see_allies && can_see_japan)
                         {
-                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=latest">Latest Combined Turn</a></li>
+                            <li role="presentation"><a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=latest&game_name=@ViewBag.game_name">Latest Combined Turn</a></li>
                         }
                     </ul>
                 </div>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Recent Comments", "Index", "Comments")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li><a href="/OperationGlacier/Home/Index?game_name=@ViewBag.game_name">Home</a></li>
+                    <li><a href="/OperationGlacier/Comments?game_name=@ViewBag.game_name">Recent Comments</a></li>
+                    <li><a href="/OperationGlacier/Home/About?game_name=@ViewBag.game_name">About</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

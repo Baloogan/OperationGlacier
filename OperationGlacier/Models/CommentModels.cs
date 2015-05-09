@@ -52,6 +52,9 @@ namespace OperationGlacier.Models
 
         
         public string unit_report_first_line { get; set; }
+
+        public string game_name { get; set; }
+
     }
     public class CommentModel
     {

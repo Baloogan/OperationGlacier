@@ -1,8 +1,8 @@
 ﻿<script id="base-template" type="text/x-handlebars-template">
     <div class='panel panel-default'>
         <div class="panel-heading">
-            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
-            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
+            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}&game_name=@ViewBag.game_name" target="_blank">View on map</a> {{date_string}}</div>
+            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}&game_name=@ViewBag.game_name" target="_blank">{{name}}</a></h4>
 
         </div>
         <div class="panel-body">
@@ -35,8 +35,8 @@
 <script id="lcu-template" type="text/x-handlebars-template">
     <div class='panel panel-default'>
         <div class="panel-heading">
-            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
-            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
+            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}&game_name=@ViewBag.game_name" target="_blank">View on map</a> {{date_string}}</div>
+            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}&game_name=@ViewBag.game_name" target="_blank">{{name}}</a></h4>
         </div>
         <div class="panel-body">
             <strong>{{row.Nation}} {{row.Type}}</strong>
@@ -63,8 +63,8 @@
 <script id="airgroup-template" type="text/x-handlebars-template">
     <div class='panel panel-default'>
         <div class="panel-heading">
-            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
-            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
+            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}&game_name=@ViewBag.game_name" target="_blank">View on map</a> {{date_string}}</div>
+            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}&game_name=@ViewBag.game_name" target="_blank">{{name}}</a></h4>
         </div>
         <div class="panel-body">
             <div style="width:150px; height:60px; background: url('https://web196.secure-secure.co.uk/baloogancampaign.com/{{#xif " this.side_str == 'Japan' "}}J{{else}}A{{/xif}}_PlaneSide.png') no-repeat;background-position: -{{airgroup_image_px_x}}px -{{airgroup_image_px_y}}px;">
@@ -90,7 +90,7 @@
 <script id="taskforce-template" type="text/x-handlebars-template">
     <div class='panel panel-default'>
         <div class="panel-heading">
-            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
+            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}&game_name=@ViewBag.game_name" target="_blank">View on map</a> {{date_string}}</div>
             <h4>{{name}} {{row.Label}}</h4>
 
         </div>
@@ -111,8 +111,8 @@
 <script id="ship-template" type="text/x-handlebars-template">
     <div class='panel panel-default'>
         <div class="panel-heading">
-            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_string}}</div>
-            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}" target="_blank">{{name}}</a></h4>
+            <div style="float:right;"><a href="/OperationGlacier/Map?Side={{side_str}}&date={{date_string}}&x={{this.x}}&y={{y}}&game_name=@ViewBag.game_name" target="_blank">View on map</a> {{date_string}}</div>
+            <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}&game_name=@ViewBag.game_name" target="_blank">{{name}}</a></h4>
 
         </div>
         <div class="panel-body">
@@ -148,7 +148,7 @@
 <script id="comment-template" type="text/x-handlebars-template">
     <div class='panel {{#xif " this.side_restriction == 'Allies' "}}panel-info{{else}}{{#xif " this.side_restriction == 'Japan' "}}panel-danger{{else}}panel-warning{{/xif}}{{/xif}}'>
         <div class="panel-heading">
-            <div style="float:right;"><a href="/OperationGlacier/Unit?tid={{unit_timeline_id}}" target="_blank"><strong>{{unit_name}}</strong></a> <a href="/OperationGlacier/Map?Side={{side_restriction}}&date={{date_str}}&x={{this.x}}&y={{y}}" target="_blank">View on map</a> {{date_str}}</div>
+            <div style="float:right;"><a href="/OperationGlacier/Unit?tid={{unit_timeline_id}}&game_name=@ViewBag.game_name" target="_blank"><strong>{{unit_name}}</strong></a> <a href="/OperationGlacier/Map?Side={{side_restriction}}&date={{date_str}}&x={{this.x}}&y={{y}}&game_name=@ViewBag.game_name" target="_blank">View on map</a> {{date_str}}</div>
             {{Username}}
         </div>
         <div class="panel-body">
@@ -163,15 +163,24 @@
     <li>{{Number}}x <strong>{{Device.Name}}</strong></li>
 </script>
 <script id="ship-class-template" type="text/x-handlebars-template">
-            <strong>Cruise Speed: </strong>{{CruiseSpeed}} kts<br/>
-            <strong>Max Speed: </strong>{{MaxSpeed}} kts<br />
-            <strong>Endurance: </strong>{{Endurance}} nm<br />
-            <strong>Fuel Capacity: </strong>{{Fuel}} tonnes<br />
-            <strong>Durability: </strong>{{Durability}}<br />
-            <strong>BeltArmour: </strong>{{BeltArmour}} mm<br />
-            <strong>DeckArmour: </strong>{{DeckArmour}} mm<br />
-            <strong>TowerArmour: </strong>{{TowerArmour}} mm<br />
-            <strong>Tonnage: </strong>{{Tonnage}} tonnes<br />
+    <strong>Cruise Speed: </strong>{{CruiseSpeed}} kts
+    <br />
+    <strong>Max Speed: </strong>{{MaxSpeed}} kts
+    <br />
+    <strong>Endurance: </strong>{{Endurance}} nm
+    <br />
+    <strong>Fuel Capacity: </strong>{{Fuel}} tonnes
+    <br />
+    <strong>Durability: </strong>{{Durability}}
+    <br />
+    <strong>BeltArmour: </strong>{{BeltArmour}} mm
+    <br />
+    <strong>DeckArmour: </strong>{{DeckArmour}} mm
+    <br />
+    <strong>TowerArmour: </strong>{{TowerArmour}} mm
+    <br />
+    <strong>Tonnage: </strong>{{Tonnage}} tonnes
+    <br />
 </script>
 <script id="aircraft-class-template" type="text/x-handlebars-template">
     <strong>Cruise Speed: </strong>{{CruiseSpeed}} kts
@@ -182,11 +191,11 @@
     <br />
     <strong>Durability: </strong>{{Durability}}
     <br />
-    <strong>NormRange: </strong>{{NormRange}}
+    <strong>NormRange: </strong>{{NormRange}} nm
     <br />
-    <strong>ExtRange: </strong>{{ExtRange}}
+    <strong>ExtRange: </strong>{{ExtRange}} nm
     <br />
-    <strong>MaxRange: </strong>{{MaxRange}}
+    <strong>MaxRange: </strong>{{MaxRange}} nm
     <br />
 </script>
 
