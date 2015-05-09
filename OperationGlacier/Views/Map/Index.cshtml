@@ -1,10 +1,9 @@
 ﻿@model OperationGlacier.Models.MapModel
+@using Newtonsoft.Json
 @{
     ViewBag.Title = Model.side + " " + Model.date_str;
 }
 @Styles.Render("~/Content/leaflet.css")
-@Scripts.Render("~/Scripts/leaflet.js")
-@Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
 <div id="map" style="width: 100%; height: 100%; background: black;"></div>
 <style>
     body {
@@ -33,97 +32,23 @@
     #wrapper {
         min-height: 100%;
     }
-
+    .panel-title a {
+        display: block;
+        padding: 10px 15px;
+        margin: -10px -15px;
+        cursor: pointer;
+    }
 </style>
 
 <script>
-    function xy_to_lon(x,y) {
-        var lon = 0.6563 * x + 15.962;
-        if (isEven(y)) {
-            lon = lon - 0.6563 / 2.0;
-        }
-        return lon;
-    }
-    function xy_to_lat(x,y) {
-        var lat = -0.5935 * y - 15.446;
-        return lat;
-    }
-    function latlon_to_x(lat,lon) {
-        if (isEven(latlon_to_y(lat,lon))) {
-            lon = lon + 0.6563 / 2.0;
-        }
-        var x = (lon - 15.962)/0.6563;
-        return x;
-    }
-    function latlon_to_y(lat,lon) {
-        var y = (lat + 15.446)/(-0.5935);
-        return y;
-    }
-    /***  little hack starts here ***/
-    L.Map = L.Map.extend({
-        openPopup: function (popup) {
-            //        this.closePopup();  // just comment this
-            this._popup = popup;
-
-            return this.addLayer(popup).fire('popupopen', {
-                popup: this._popup
-            });
-        }
-    }); /***  end of hack ***/
-
-
-    var map = L.map('map', {
-        crs: L.CRS.Simple,
-        center: [xy_to_lat(@Model.center_x,@Model.center_y), xy_to_lon(@Model.center_x,@Model.center_y)],
-        zoom: @Model.center_zoom,
-    });
-
-    //L.tileLayer('https://secure.baloogancampaign.com:8081/map/render3/{z}/{x}/{y}.png', {
-    var topo = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
-        attribution: '@Ajax.JavaScriptStringEncode(Model.side) @Ajax.JavaScriptStringEncode(Model.date_str) WitP-AE Topo Map Project',
-        continuousWorld: true,
-        id: 'map-render3',
-        maxZoom: 6,
-        minZoom: 3,
-        noWrap: true,
-    });
-    var yamato = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render4/{z}/{x}/{y}.png', {
-        attribution: '@Ajax.JavaScriptStringEncode(Model.side) @Ajax.JavaScriptStringEncode(Model.date_str) Yamato Damashii',
-        continuousWorld: true,
-        id: 'map-render4',
-        maxZoom: 6,
-        minZoom: 3,
-        noWrap: true,
-    }).addTo(map);
-    map.zoomControl.setPosition('topright');
-    map.setMaxBounds([[-150, 0], [0, 190]]);
-    L.Circle = L.Circle.extend({
-        projectLatlngs: function () {
-            //this._point = this._map.latLngToLayerPoint(this._latlng);
-            //this._radius = this._mRadius;
-            var lngRadius = this._mRadius,
-                latlng2 = new L.LatLng(this._latlng.lat, this._latlng.lng - lngRadius),
-                point2 = this._map.latLngToLayerPoint(latlng2);
-
-            this._point = this._map.latLngToLayerPoint(this._latlng);
-            this._radius = Math.max(Math.round(this._point.x - point2.x), 1);
-        },
-
-        getBounds: function () {
-            var radius = this._mRadius,
-                latlng = this._latlng,
-                sw = new L.LatLng(latlng.lat - radius, latlng.lng - radius),
-                ne = new L.LatLng(latlng.lat + radius, latlng.lng + radius);
-
-            return new L.LatLngBounds(sw, ne);
-        }
-    });
-    function isEven(n) {
-        return n == parseFloat(n) ? !(n % 2) : void 0;
-    }
+    var model_side = "@Ajax.JavaScriptStringEncode(Model.side)";
+    var model_date = "@Ajax.JavaScriptStringEncode(Model.date_str)";
+    var model_center_x = @Model.center_x;
+    var model_center_y = @Model.center_y;
+    var model_center_zoom = @Model.center_zoom;
+    var comments_json = JSON.parse(@Html.Raw(HttpUtility.JavaScriptStringEncode(JsonConvert.SerializeObject(Model.comments), addDoubleQuotes: true)));
+    var game_name = "@ViewBag.game_name";
 </script>
 
 @RenderPage("../Includes/HandlebarsTemplates.cshtml")
-@RenderPage("_HexRender.cshtml")
-@RenderPage("_CommentRender.cshtml")
-@RenderPage("_DownloadTurns.cshtml")
+@Scripts.Render("~/bundles/map")
