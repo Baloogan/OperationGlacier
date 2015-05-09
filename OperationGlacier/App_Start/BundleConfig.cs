@@ -39,7 +39,7 @@ namespace OperationGlacier
                       "~/Scripts/unit.js"));
 
             
-            BundleTable.EnableOptimizations = true;
+            //BundleTable.EnableOptimizations = true;
         }
     }
 }

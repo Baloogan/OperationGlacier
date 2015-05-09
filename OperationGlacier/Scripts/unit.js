@@ -69,10 +69,7 @@ function render_comments(timeline, current_unit) {
     html += "</div>";
     return html;
 }
-function render_graphs(timeline, current_unit) {
-    var html = "";
-    return "";
-}
+
 function render_class(timeline, current_unit) {
     html = "";
     html += "<div class='col-sm-6'>";
@@ -194,7 +191,7 @@ function render_class(timeline, current_unit) {
         html += "</div>";
     } else if (current_unit.type_str == "Base") {
 
-
+        
 
     } else if (current_unit.type_str == "Ship") {
 
@@ -253,15 +250,15 @@ function render_class(timeline, current_unit) {
             html += "<div class='panel-heading'><h2>" + timeline.scendata_toe["Name"] + " TOE</h2></div>";
 
             html += "<div class='panel-body'>";
-            var vals = ["", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", ];
+            var vals = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", ];
 
             html += "<ul>";
 
             $.each(vals, function (i, val) {
                 var Wpn = [];
                 Wpn.DevID = timeline.scendata_toe["WpnDevID" + val];
-                Wpn.Ammo = timeline.scendata_toe["WpnAmmo" + val];
-                Wpn.Facing = timeline.scendata_toe["WpnFacing" + val];
+                //Wpn.Ammo = timeline.scendata_toe["WpnAmmo" + val];
+               // Wpn.Facing = timeline.scendata_toe["WpnFacing" + val];
                 Wpn.Number = timeline.scendata_toe["WpnNumber" + val];
                 if (Wpn.DevID == 0) {
                     return true;//continue;
@@ -277,27 +274,88 @@ function render_class(timeline, current_unit) {
             html += "</ul>";
             html += "</div>";
             html += "</div>";
+        } else { //if no scendata_toe (this unit is then implicit)
+            html += "<div class='panel-heading'><h2>TOE</h2></div>";
+
+            html += "<div class='panel-body'>";
+            var vals = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", ];
+
+            html += "<ul>";
+            if (timeline.scendata_loc["TOEDevID1"] != 0) { // check implicit toe
+                $.each(vals, function (i, val) {
+                    var Wpn = [];
+                    Wpn.DevID = timeline.scendata_loc["TOEDevID" + val];
+                    //Wpn.Ammo = timeline.scendata_toe["WpnAmmo" + val];
+                    // Wpn.Facing = timeline.scendata_toe["WpnFacing" + val];
+                    Wpn.Number = timeline.scendata_loc["TOENumber" + val];
+                    if (Wpn.DevID == 0) {
+                        return true;//continue;
+                    }
+
+                    Wpn.Device = timeline.scendata_dev[Wpn.DevID];
+                    if (Wpn.Device != null) {
+                        html += toe_weapon_template(Wpn);
+                    }
+
+
+                });
+            } else { // fallback to just reading out what I started with >_> witpae is nuts
+                $.each(vals, function (i, val) {
+                    var Wpn = [];
+                    Wpn.DevID = timeline.scendata_loc["WpnDevID" + val];
+                    //Wpn.Ammo = timeline.scendata_toe["WpnAmmo" + val];
+                    // Wpn.Facing = timeline.scendata_toe["WpnFacing" + val];
+                    Wpn.Number = timeline.scendata_loc["WpnNumber" + val];
+                    if (Wpn.DevID == 0) {
+                        return true;//continue;
+                    }
+
+                    Wpn.Device = timeline.scendata_dev[Wpn.DevID];
+                    if (Wpn.Device != null) {
+                        html += toe_weapon_template(Wpn);
+                    }
+
+
+                });
+            }
+            html += "</ul>";
+            html += "</div>";
+            html += "</div>";
         }
     }
     html += "</div>";
     html += "</div>";
     return html;
 }
+
+function render_graphs(timeline) {
+    var html = "";
+    return "";
+}
 function display_timeline(timeline) {
     //document.title = document.title.replace(model_timeline_id, timeline.name);
     var all_html = "";
 
+    //get the data for the graphs here
+    var graph_html = render_graphs(timeline);
+
+
     timeline.unit_data.reverse();//scroll down = go backwards in time
     var current_unit = timeline.unit_data.shift();
+
+
 
     all_html += render_unit_data_panel(-1, current_unit);
     document.querySelector('#unit-timeline').innerHTML = all_html;
     //PUT GRAPHS IN HERE, SUPPLY ETC!
     //comments too!
+
     all_html += render_comments(timeline, current_unit);
     document.querySelector('#unit-timeline').innerHTML = all_html;
-    all_html += render_graphs(timeline, current_unit);
+
+    all_html += graph_html;
     document.querySelector('#unit-timeline').innerHTML = all_html;
+
     if (current_unit.type_str != "Base") {
         all_html += render_class(timeline, current_unit);
         document.querySelector('#unit-timeline').innerHTML = all_html;

@@ -46,9 +46,9 @@ namespace WITPJSON
             ProcessTurns();
             ProcessTimelines();
 
-            //RenderScendata();
-            //RenderTurns();
-            //RenderTimelines();
+            RenderScendata();
+            RenderTurns();
+            RenderTimelines();
 
             Game game = new Game(turns, timelines);
             game.Render();
