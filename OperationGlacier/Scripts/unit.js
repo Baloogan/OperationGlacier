@@ -284,7 +284,7 @@ function render_class(timeline, current_unit) {
     return html;
 }
 function display_timeline(timeline) {
-    document.title = document.title.replace("@Model.timeline_id", timeline.name);
+    //document.title = document.title.replace(model_timeline_id, timeline.name);
     var all_html = "";
 
     timeline.unit_data.reverse();//scroll down = go backwards in time

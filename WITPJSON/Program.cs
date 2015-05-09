@@ -46,14 +46,15 @@ namespace WITPJSON
             ProcessTurns();
             ProcessTimelines();
 
-            //return;//saftey
-            
-            RenderScendata();
-            RenderTurns();
-            RenderTimelines();
+            //RenderScendata();
+            //RenderTurns();
+            //RenderTimelines();
 
             Game game = new Game(turns, timelines);
             game.Render();
+
+            TimelineIndex ti = new TimelineIndex(timelines);
+            ti.Render();
         }
         public static void DeleteDirectory(string path)
         {

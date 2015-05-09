@@ -10,6 +10,7 @@ namespace OperationGlacier.Controllers
     public class UnitController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        
         public ActionResult Index(string tid, string game_name)
         {
 
@@ -18,6 +19,7 @@ namespace OperationGlacier.Controllers
             ViewBag.game_name = game_name;
             UnitModel model = new UnitModel();
             model.timeline_id = tid;
+            model.name = GameState.get_name_from_timeline_id(game_name, tid);
             model.comments = db.Comments
                 .Where(c => c.unit_timeline_id == tid)
                 .OrderBy(c => c.date_in_world)

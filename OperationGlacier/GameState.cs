@@ -10,6 +10,32 @@ namespace OperationGlacier
 
     public class GameState
     {
+
+        public class TimelineIndex
+        {
+            public Dictionary<string, string> timeline_id_to_name;
+        }
+        public static Dictionary<string, TimelineIndex> timeline_indexes = new Dictionary<string,TimelineIndex>();
+
+        public static TimelineIndex get_timeline_index(string game_name)
+        {
+            game_name = get_game_name(game_name);
+            if (timeline_indexes.ContainsKey(game_name))
+            {
+                return timeline_indexes[game_name];
+            }
+
+            const string game_data_root = @"C:\inetpub\GameData";
+            string filename = Path.Combine(game_data_root, game_name, "TimelineIndex.json");
+            TimelineIndex t = Newtonsoft.Json.JsonConvert.DeserializeObject<TimelineIndex>(File.ReadAllText(filename));
+            timeline_indexes[game_name] = t;
+
+            return t;
+        }
+        public static string get_name_from_timeline_id(string game_name, string timeline_id)
+        {
+            return get_timeline_index(game_name).timeline_id_to_name[timeline_id];
+        }
         public class Game
         {
             public List<string> date_strs { get; set; }
@@ -17,35 +43,30 @@ namespace OperationGlacier
         private static Dictionary<string, Game> game_name_to_game = new Dictionary<string, Game>();
         public static IEnumerable<string> get_date_strs(string game_name)
         {
-            game_name = get_game_name(game_name);
-            read_game_json(game_name);
-            return game_name_to_game[game_name].date_strs.OrderBy(s => s);
+            return get_game_json(game_name).date_strs.OrderBy(s => s);
         }
         public static IEnumerable<string> get_date_strs_reverse(string game_name)
         {
-            game_name = get_game_name(game_name);
-            read_game_json(game_name);
-            return game_name_to_game[game_name].date_strs.OrderByDescending(s => s);
+            return get_game_json(game_name).date_strs.OrderByDescending(s => s);
         }
-        private static void read_game_json(string game_name)
+        private static Game get_game_json(string game_name)
         {
+            game_name = get_game_name(game_name);
             if (game_name_to_game.ContainsKey(game_name))
             {
-                return;
+                return game_name_to_game[game_name];
             }
+
             const string game_data_root = @"C:\inetpub\GameData";
             string game_filename = Path.Combine(game_data_root, game_name, "Game.json");
-
             Game game = Newtonsoft.Json.JsonConvert.DeserializeObject<Game>(File.ReadAllText(game_filename));
             game_name_to_game[game_name] = game;
 
+            return game;
         }
         public static string LatestTurn(string game_name)
         {
-            game_name = get_game_name(game_name);
-            read_game_json(game_name);
-
-            return game_name_to_game[game_name].date_strs.Last();
+            return get_date_strs_reverse(game_name).First();
         }
 
         public static string get_game_name(string game_name)

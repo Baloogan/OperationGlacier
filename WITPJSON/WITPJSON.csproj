@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScenData.cs" />
     <Compile Include="ShipToClass.cs" />
+    <Compile Include="TimelineIndex.cs" />
     <Compile Include="Turn.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="UnitFactory.cs" />
