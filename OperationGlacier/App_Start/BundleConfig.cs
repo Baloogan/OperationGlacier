@@ -33,10 +33,10 @@ namespace OperationGlacier
 
             bundles.Add(new ScriptBundle("~/bundles/map").Include(
                       "~/Scripts/leaflet.js",
-                      "~/Scripts/map.js"));
+                      "~/Scripts/baloogan-map.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/unit").Include(
-                      "~/Scripts/unit.js"));
+                      "~/Scripts/baloogan-unit.js"));
 
             
             //BundleTable.EnableOptimizations = true;
