@@ -180,11 +180,6 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="baloogan_chatDB.cs" />
-    <Compile Include="baloogan_chatDBGenerated.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>baloogan_chatDBGenerated.tt</DependentUpon>
-    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -207,10 +202,6 @@
     <Compile Include="WitpUtility.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="baloogan_chatDBGenerated.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>baloogan_chatDBGenerated.generated.cs</LastGenOutput>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.dynatable.css" />
@@ -221,6 +212,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="LinqToDB.Templates\CopyMe.MySql.tt.txt" />
     <Content Include="Scripts\baloogan-handlebars.js" />
+    <Content Include="Scripts\baloogan-map-main.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="BundleTransformer.Configuration.xsd">
@@ -260,11 +252,11 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\leaflet-src.js" />
     <Content Include="Scripts\leaflet.js" />
-    <Content Include="Scripts\map.js" />
+    <Content Include="Scripts\baloogan-map-common.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\unit.js" />
+    <Content Include="Scripts\baloogan-unit.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
