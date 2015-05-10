@@ -151,12 +151,17 @@ namespace WITPJSON
                 {
                     available = available.Where(f=>f.Value["Type"] == "0"); //only take MGs and cannons
                 }
+                if (unit_data[0].scendata["Type"].Contains("Torpedo")) //Torpedo bombers
+                {
+                    available = available.Where(f => f.Value["Type"] == "16");//only look at torps
+                }
+                
             }
             else if (unit_data[0].type == Unit.Type.Ship)
             {
                 if (unit_data[0].name.Contains("SS") || unit_data[0].name.Contains("T"))
                 {
-                    //include torps
+                    available = available.Where(f => f.Value["Type"] == "16");//only look at torps
                 }
                 else
                 {
