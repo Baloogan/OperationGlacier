@@ -35,7 +35,7 @@ namespace WITPJSON
                         japan_archive_directory = @"C:\Dropbox\HistoricalGamer\archive";
                         allies_tracker_directory = @"B:\War in the Pacific Admiral's Edition\tracker\AlliesTracker";
                         japan_tracker_directory = @"C:\Dropbox\HistoricalGamer\tracker";
-                        output_directory = @"C:\maps\gamedata_main\GameData\";
+                        output_directory = @"B:\OperationGlacierTransfer\OperationGlacierI";
                     }
                     break;
                 case "WIN-QPCSS4CO8PJ":

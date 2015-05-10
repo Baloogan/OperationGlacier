@@ -98,7 +98,25 @@ namespace WITPJSON
                         foreach (var u in unit_data)
                         {
                             u.bitmap = int.Parse(scendata_air["Bitmap"]);
-                            
+                            //u.scendata["Type"] = scendata_air["Type"];
+                            //0	        1	            2       	    3	        4           	5       6	        7	                8           9	    10     	    11	            12
+                            //fighter	fighter bomber	night fighter	dive bomber	level bomber	recon	jet fighter	electronic warfare	transport	patrol	float plane	float fighter	torpedo bomber
+                            switch (scendata_air["Type"])
+                            {
+                                case "0": u.scendata["Type"] = "Fighter";break;
+                                case "1": u.scendata["Type"] = "Fighter Bomber"; break;
+                                case "2": u.scendata["Type"] = "Night Fighter"; break;
+                                case "3": u.scendata["Type"] = "Dive Bomber"; break;
+                                case "4": u.scendata["Type"] = "Level Bomber"; break;
+                                case "5": u.scendata["Type"] = "Recon"; break;
+                                case "6": u.scendata["Type"] = "Jet Fighter"; break;
+                                case "7": u.scendata["Type"] = "Electronic Warfare"; break;
+                                case "8": u.scendata["Type"] = "Transport"; break;
+                                case "9": u.scendata["Type"] = "Patrol"; break;
+                                case "10": u.scendata["Type"] = "Float Plane"; break;
+                                case "11": u.scendata["Type"] = "Float Fighter"; break;
+                                case "12": u.scendata["Type"] = "Torpedo Bomber"; break;
+                            }
                             
                             //u.scendata["mvrAlt"] = scendata_air["mvrAlt"];
                             //                            u.scendata["mvrAlt2"] = scendata_air["mvrAlt2"];
@@ -125,12 +143,32 @@ namespace WITPJSON
                     break;
             }
             get_devices();
-            var biggest_gun = scendata_dev.OrderByDescending(f => int.Parse(f.Value["Effect"]));
-            if (biggest_gun.Count() > 0)
+
+            var available = scendata_dev.AsQueryable();
+            if (unit_data[0].type == Unit.Type.AirGroup)
+            {
+                if (unit_data[0].scendata["Type"].Contains("Fighter")) //fighters
+                {
+                    available = available.Where(f=>f.Value["Type"] == "0"); //only take MGs and cannons
+                }
+            }
+            else if (unit_data[0].type == Unit.Type.Ship)
+            {
+                if (unit_data[0].name.Contains("SS") || unit_data[0].name.Contains("T"))
+                {
+                    //include torps
+                }
+                else
+                {
+                    available = available.Where(f => f.Value["Type"] != "16");//exclude torps
+                }
+            }
+            available = available.OrderByDescending(f => int.Parse(f.Value["Effect"]));
+            if (available.Count() > 0)
             {
                 foreach (var u in unit_data)
                 {
-                    u.scendata["BiggestDevice"] = biggest_gun.First().Value["Name"];
+                    u.scendata["BiggestDevice"] = available.First().Value["Name"];
                 }
             }
         }

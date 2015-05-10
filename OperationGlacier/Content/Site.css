@@ -22,3 +22,36 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.handlebars-value-warning {color:red;}
+
+
+ .noselect {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .logo-operation-glacier {
+            cursor: pointer;
+            background-image: url(https://i.imgur.com/RXzCraP.png);
+            background-repeat: no-repeat;
+            background-size: contain;
+            padding-left: 55px;
+        }
+
+        .dropdown-menu > li > a {
+            display: block;
+            padding: 3px 20px;
+            clear: both;
+            font-weight: normal;
+            line-height: 1.428571429;
+            color: #FFFFFF;
+            white-space: nowrap;
+        }
+        .dropdown-menu > .nav-header{
+            color: #FFFFFF;
+        }

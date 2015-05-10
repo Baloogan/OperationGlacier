@@ -206,11 +206,13 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.dynatable.css" />
     <Content Include="Content\leaflet.css" />
+    <Content Include="Content\map.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="LinqToDB.Templates\CopyMe.MySql.tt.txt" />
+    <Content Include="Scripts\baloogan-common.js" />
     <Content Include="Scripts\baloogan-handlebars.js" />
     <Content Include="Scripts\baloogan-map-main.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -241,6 +243,7 @@
     <Content Include="LinqToDB.Templates\!ReadMe.LinqToDB.md" />
     <Content Include="LinqToDB.Templates\LinqToDB.MySql.Tools.ttinclude" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\google-analytics.js" />
     <Content Include="Scripts\handlebars-v3.0.1.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

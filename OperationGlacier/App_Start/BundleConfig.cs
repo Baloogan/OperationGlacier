@@ -26,20 +26,29 @@ namespace OperationGlacier
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+            bundles.Add(new StyleBundle("~/Content/map-css").Include(
+                      "~/Content/leaflet.css",
+                      "~/Content/map.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
                       "~/Scripts/handlebars-v3.0.1.js",
                       "~/Scripts/baloogan-handlebars.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/map-main").Include(
-                      "~/Scripts/leaflet.js",
+                    "~/Scripts/baloogan-common.js",
+                "~/Scripts/leaflet.js",
                       "~/Scripts/baloogan-map-common.js",
                       "~/Scripts/baloogan-map-main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/unit").Include(
+                "~/Scripts/baloogan-common.js",
                       "~/Scripts/baloogan-unit.js"));
 
-            
+
+            bundles.Add(new ScriptBundle("~/bundles/ga").Include(
+                      "~/Scripts/google-analytics.js"));
+
+
             //BundleTable.EnableOptimizations = true;
         }
     }

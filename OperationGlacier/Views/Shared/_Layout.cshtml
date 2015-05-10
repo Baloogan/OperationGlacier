@@ -18,51 +18,7 @@
     <title>@ViewBag.Title - Operation Glacier</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-    <!-- Google Analytics -->
-    <script>
-        (function (i, s, o, g, r, a, m) {
-            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
-                (i[r].q = i[r].q || []).push(arguments)
-            }, i[r].l = 1 * new Date(); a = s.createElement(o),
-            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
-
-        ga('create', 'UA-42979588-1', 'auto');
-        ga('send', 'pageview');
-
-    </script>
-    <!-- End Google Analytics -->
-    <style>
-        .noselect {
-            -webkit-touch-callout: none;
-            -webkit-user-select: none;
-            -khtml-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-        }
-
-        .logo-operation-glacier {
-            cursor: pointer;
-            background-image: url(https://i.imgur.com/RXzCraP.png);
-            background-repeat: no-repeat;
-            background-size: contain;
-            padding-left: 55px;
-        }
-
-        .dropdown-menu > li > a {
-            display: block;
-            padding: 3px 20px;
-            clear: both;
-            font-weight: normal;
-            line-height: 1.428571429;
-            color: #FFFFFF;
-            white-space: nowrap;
-        }
-        .dropdown-menu > .nav-header{
-            color: #FFFFFF;
-        }
-    </style>
+    @Scripts.Render("~/bundles/ga")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">

@@ -14,21 +14,17 @@
         unit.owner = "Allies";
     }
     if (unit.type_str == "AirGroup") {
-
-        unit.airgroup_image_px_x = ((unit.bitmap - 1) % 4) * 150;
-        unit.airgroup_image_px_y = Math.floor(((unit.bitmap - 1) / 4)) * 60;
+        unit = AirGroupUnit(unit);
         html += airgroup_template(unit);
     } else if (unit.type_str == "Base") {
-        unit.row.Supplyc = commaSeparateNumber(unit.row.Supply);
-        unit.row.Fuelc = commaSeparateNumber(unit.row.Fuel);
+        unit = BaseUnit(unit);
         html += base_template(unit);
     } else if (unit.type_str == "Ship") {
         html += ship_template(unit);
         html += "<div style='margin-left:20px'>";
         $.each(unit.subunits, function (i, subunit) {
 
-            subunit.airgroup_image_px_x = ((subunit.bitmap - 1) % 4) * 150;
-            subunit.airgroup_image_px_y = Math.floor(((subunit.bitmap - 1) / 4)) * 60;
+            subunit = AirGroupUnit(subunit);
             html += airgroup_template(subunit);
         });
         html += "</div>";

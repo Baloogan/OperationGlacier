@@ -3,42 +3,9 @@
 @{
     ViewBag.Title = Model.side + " " + Model.date_str;
 }
-@Styles.Render("~/Content/leaflet.css")
+@Styles.Render("~/Content/map-css")
 <div id="map" style="width: 100%; height: 100%; background: black;"></div>
-<style>
-    body {
-        background: black;
-    }
 
-    .container {
-        margin-left: 0px;
-        margin-right: 0px;
-        width: 100%;
-        max-width: none;
-        background: black;
-        height: 100%;
-    }
-
-    .body-content {
-        padding: 0;
-    }
-
-    html, body {
-        height: 100%;
-        margin: 0;
-        padding-bottom: 0;
-    }
-
-    #wrapper {
-        min-height: 100%;
-    }
-    .panel-title a {
-        display: block;
-        padding: 10px 15px;
-        margin: -10px -15px;
-        cursor: pointer;
-    }
-</style>
 
 <script>
     var model_side = "@Ajax.JavaScriptStringEncode(Model.side)";

@@ -43,7 +43,7 @@ var map = L.map('map', {
 
 //L.tileLayer('https://secure.baloogancampaign.com:8081/map/render3/{z}/{x}/{y}.png', {
 var topo = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
-    attribution: model_side + model_date + ' WitP-AE Topo Map Project',
+    attribution: "<a href='http://baloogan.com'>Written by Baloogan</a> (<a href='https://twitter.com/baloogancamp'>@BalooganCamp</a>) leafletjs " + model_side + " " + model_date + ' Map:WitP-AE Topo Map Project',
     continuousWorld: true,
     id: 'map-render3',
     maxZoom: 6,
@@ -51,7 +51,7 @@ var topo = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/
     noWrap: true,
 });
 var yamato = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render4/{z}/{x}/{y}.png', {
-    attribution: model_side + model_date + ' Yamato Damashii',
+    attribution: "<a href='http://baloogan.com'>Written by Baloogan</a> (<a href='https://twitter.com/baloogancamp'>@BalooganCamp</a>) leafletjs " + model_side + " " + model_date + ' Map:Yamato Damashii',
     continuousWorld: true,
     id: 'map-render4',
     maxZoom: 6,
@@ -84,24 +84,6 @@ L.Circle = L.Circle.extend({
 
 
 
-
-function isEven(n) {
-    return n == parseFloat(n) ? !(n % 2) : void 0;
-}
-
-function randomString(length) {
-    var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXTZabcdefghiklmnopqrstuvwxyz'.split('');
-
-    if (!length) {
-        length = Math.floor(Math.random() * chars.length);
-    }
-
-    var str = '';
-    for (var i = 0; i < length; i++) {
-        str += chars[Math.floor(Math.random() * chars.length)];
-    }
-    return "x" + str;
-}
 var airbaseIcon_a = L.icon({
     iconUrl: '/OperationGlacier/Content/map_icons/AB' + '' + '.png',
 });

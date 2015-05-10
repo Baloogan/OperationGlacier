@@ -67,16 +67,16 @@
             <h4><a href="/OperationGlacier/Unit?tid={{timeline_id}}&game_name=@ViewBag.game_name" target="_blank">{{name}}</a></h4>
         </div>
         <div class="panel-body">
+            <strong>{{row.Nation}} {{row.Model}} {{scendata.Type}}</strong>
             <div style="width:150px; height:60px; background: url('https://web196.secure-secure.co.uk/baloogancampaign.com/{{#xif " this.side_str == 'Japan' "}}J{{else}}A{{/xif}}_PlaneSide.png') no-repeat;background-position: -{{airgroup_image_px_x}}px -{{airgroup_image_px_y}}px;">
             </div>
-            <strong>{{row.Nation}} {{row.Model}}</strong>
             <br />
             <strong>Main Armament: </strong>{{scendata.BiggestDevice}}<br />
             <strong>HQ:</strong> {{row.HQ}}
             <br />
-            <strong>Ready/Repair/Reserve/Max:</strong> {{row.Ready}}/{{row.Repair}}/{{row.Reserve}}/{{row.MaxPlanes}}
+            <strong>Ready / Repair / Reserve / Max:</strong> {{row.Ready}} / {{row.Repair}} / {{row.Reserve}} / {{row.MaxPlanes}}
             <br />
-            <strong>CAP/LRCAP/ASW/Search/Train/Rest:</strong> {{row.CAP}}/{{row.LRCAP}}/{{row.ASW}}/{{row.Search}}/{{row.Train}}/{{row.Rest}}
+            <strong>CAP / LRCAP / ASW / Search / Train / Rest:</strong> {{row.CAP}} / {{row.LRCAP}} / {{row.ASW}} / {{row.Search}} / {{row.Train}} / {{row.Rest}}
             <br />
             <strong>Pilots:</strong> {{row.Pilots}}
             <strong>Exp/Mor/Fat: </strong>{{row.Exp}}/{{row.Morale}}/{{row.Fat}}
@@ -119,9 +119,29 @@
             <strong>{{row.Nation}} {{row.Class}}-class {{ship_class}}</strong><br />
             <img src="https://web196.secure-secure.co.uk/baloogancampaign.com/shipside/{{bitmap_name}}" /><br />
             <strong>Main Armament: </strong>{{scendata.BiggestDevice}}<br />
-            <strong>Sys/Flt/Eng/Fire/Wep:</strong> {{row.Sys}}/{{row.Flt}}/{{row.Eng}}/{{row.Fire}}/{{row.Weapon}}
-            <strong>Exp D/N: </strong>{{row.Exp}}<br />
-            <strong>AA/ASW/Torp</strong> {{row.AA}}/{{row.ASW}}/{{row.Torp}}<br />
+            <strong>
+            {{#xif " window.Number(this.row.Sys) < 10 "}}Sys{{else}}<span class="handlebars-value-warning">Sys</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Flt) < 10 "}}Flt{{else}}<span class="handlebars-value-warning">Flt</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Eng) < 10 "}}Eng{{else}}<span class="handlebars-value-warning">Eng</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Fire) < 10 "}}Fire{{else}}<span class="handlebars-value-warning">Fire</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Weapon) < 10 "}}Wep{{else}}<span class="handlebars-value-warning">Wep</span>{{/xif}}
+            :</strong> 
+            {{#xif " window.Number(this.row.Sys) < 10 "}}{{row.Sys}}{{else}}<span class="handlebars-value-warning">{{row.Sys}}</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Flt) < 10 "}}{{row.Flt}}{{else}}<span class="handlebars-value-warning">{{row.Flt}}</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Eng) < 10 "}}{{row.Eng}}{{else}}<span class="handlebars-value-warning">{{row.Eng}}</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Fire) < 10 "}}{{row.Fire}}{{else}}<span class="handlebars-value-warning">{{row.Fire}}</span>{{/xif}}
+            /
+            {{#xif " window.Number(this.row.Weapon) < 10 "}}{{row.Weapon}}{{else}}<span class="handlebars-value-warning">{{row.Weapon}}</span>{{/xif}}
+            <br />
+            <strong>Exp D/N: </strong>{{row.Exp}}
+            <strong>AA / ASW / Torp</strong> {{row.AA}} / {{row.ASW}} / {{row.Torp}}<br />
             {{#xif " this.row.Air != '0' "}}
             <strong>Air Capacity: </strong>{{x "window.Math.round(window.Number(this.row.Air) * 0.01 *  window.Number(this.row.Planes)) "}} / {{row.Air}}<br />
             {{#xif " this.row.AirSortie != '0' "}}
@@ -131,7 +151,7 @@
             <strong>Torps: </strong>{{row.AirTorps}}% <br />
             {{/xif}}
             {{/xif}}
-            {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}}/{{row.Cargo2}}/{{row.Liquid}} {{row.Cargo1}}
+            {{row.Withdraw}} <strong>T/C/L:</strong> {{row.Troop}} / {{row.Cargo2}} / {{row.Liquid}} {{row.Cargo1}}
         </div>
     </div>
 </script>

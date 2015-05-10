@@ -1,0 +1,33 @@
+﻿
+    body {
+        background: black;
+    }
+
+    .container {
+        margin-left: 0px;
+        margin-right: 0px;
+        width: 100%;
+        max-width: none;
+        background: black;
+        height: 100%;
+    }
+
+    .body-content {
+        padding: 0;
+    }
+
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding-bottom: 0;
+    }
+
+    #wrapper {
+        min-height: 100%;
+    }
+    .panel-title a {
+        display: block;
+        padding: 10px 15px;
+        margin: -10px -15px;
+        cursor: pointer;
+    }
