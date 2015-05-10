@@ -55,3 +55,15 @@ textarea {
         .dropdown-menu > .nav-header{
             color: #FFFFFF;
         }
+
+
+
+        .unit-table{
+            border: 1px solid #aaa;
+        }
+        .unit-table th{
+            border: 1px solid #aaa; font-weight:bold;text-align: center;
+        }
+        .unit-table td{
+            border: 1px solid #aaa;text-align: center;
+        }

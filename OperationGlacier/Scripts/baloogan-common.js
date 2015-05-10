@@ -17,7 +17,9 @@ function randomString(length) {
     }
     return "x" + str;
 }
-
+function javascript_is_retarded(unit) {
+    return new Date(Number(unit.date.substring(0, 4)), Number(unit.date.substring(5, 7)) - 1, Number(unit.date.substring(8, 10)));
+}
 function AirGroupUnit(unit) {
 
     unit.airgroup_image_px_x = ((unit.bitmap - 1) % 4) * 150;

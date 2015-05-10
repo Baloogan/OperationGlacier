@@ -390,18 +390,18 @@ function display_timeline(timeline) {
     if (current_unit.type_str == "Base") {
         //supply-fuel-graph
         var data = new google.visualization.DataTable();
-        data.addColumn('number', 'Turn');
+        data.addColumn('date', 'Turn');
         data.addColumn('number', 'Supply');
         data.addColumn('number', 'Fuel');
 
         $.each(units, function (i, unit) {
-            data.addRows([[i, Number(unit.row.Supply), Number(unit.row.Fuel)]]);
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Supply), Number(unit.row.Fuel)]]);
         });
 
 
         var options = {
             hAxis: {
-                title: 'Turn #'
+                title: 'Date'
             },
             series: {
                 1: { curveType: 'function' }
@@ -415,14 +415,14 @@ function display_timeline(timeline) {
     if (current_unit.type_str == "AirGroup") {
         //supply-fuel-graph
         var data = new google.visualization.DataTable();
-        data.addColumn('number', 'Turn');
+        data.addColumn('date', 'Turn');
         data.addColumn('number', 'Ready');
         data.addColumn('number', 'Repair');
         data.addColumn('number', 'Reserve');
         data.addColumn('number', 'Max');
 
         $.each(units, function (i, unit) {
-            data.addRows([[i, Number(unit.row.Ready), Number(unit.row.Repair), Number(unit.row.Reserve), Number(unit.row.MaxPlanes)]]);
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Ready), Number(unit.row.Repair), Number(unit.row.Reserve), Number(unit.row.MaxPlanes)]]);
         });
 
 
@@ -440,13 +440,13 @@ function display_timeline(timeline) {
 
 
         data = new google.visualization.DataTable();
-        data.addColumn('number', 'Turn');
+        data.addColumn('date', 'Turn');
         data.addColumn('number', 'Experience');
         data.addColumn('number', 'Morale');
         data.addColumn('number', 'Fatigue');
 
         $.each(units, function (i, unit) {
-            data.addRows([[i, Number(unit.row.Exp), Number(unit.row.Morale), Number(unit.row.Fat)]]);
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Exp), Number(unit.row.Morale), Number(unit.row.Fat)]]);
         });
         chart = new google.visualization.LineChart(document.getElementById('air-group-exp-mor-fat-graph'));
         chart.draw(data, options);
@@ -457,11 +457,11 @@ function display_timeline(timeline) {
 
 
         data = new google.visualization.DataTable();
-        data.addColumn('number', 'Turn');
+        data.addColumn('date', 'Turn');
         data.addColumn('number', 'Pilots');
 
         $.each(units, function (i, unit) {
-            data.addRows([[i, Number(unit.row.Pilots.split(' ')[0])]]);
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Pilots.split(' ')[0])]]);
         });
         chart = new google.visualization.LineChart(document.getElementById('air-group-pilots-graph'));
         chart.draw(data, options);
@@ -470,18 +470,18 @@ function display_timeline(timeline) {
 
 
         data = new google.visualization.DataTable();
-        data.addColumn('number', 'Turn');
+        data.addColumn('date', 'Turn');
         data.addColumn('number', 'Kills');
 
         $.each(units, function (i, unit) {
-            data.addRows([[i, Number(unit.row.Kills)]]);
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Kills)]]);
         });
         chart = new google.visualization.LineChart(document.getElementById('air-group-kills-graph'));
         chart.draw(data, options);
     }
     if (current_unit.type_str == "Ship") {
         var data = new google.visualization.DataTable();
-        data.addColumn('number', 'Turn');
+        data.addColumn('date', 'Turn');
         data.addColumn('number', 'Sys');
         data.addColumn('number', 'Flt');
         data.addColumn('number', 'Eng');
@@ -489,7 +489,7 @@ function display_timeline(timeline) {
         data.addColumn('number', 'Wep');
 
         $.each(units, function (i, unit) {
-            data.addRows([[i, Number(unit.row.Sys), Number(unit.row.Flt), Number(unit.row.Eng), Number(unit.row.Fire), Number(unit.row.Wep)]]);
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Sys), Number(unit.row.Flt), Number(unit.row.Eng), Number(unit.row.Fire), Number(unit.row.Wep)]]);
         });
 
 
