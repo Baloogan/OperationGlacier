@@ -139,6 +139,8 @@ namespace OperationGlacier.Controllers
             {
                 db.Comments.Add(comment);
                 await db.SaveChangesAsync();
+                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier","**"+ comment.Username + ":** " + comment.message + " on " + comment.unit_name + " https://secure.baloogancampaign.com:8081/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
+                
                 return Redirect("/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
             }
 
@@ -191,7 +193,7 @@ namespace OperationGlacier.Controllers
             {
                 db.Entry(comment).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Admin");
             }
             return View(comment);
         }
@@ -239,7 +241,7 @@ namespace OperationGlacier.Controllers
             Comment comment = await db.Comments.FindAsync(id);
             db.Comments.Remove(comment);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction("Admin");
         }
 
         protected override void Dispose(bool disposing)

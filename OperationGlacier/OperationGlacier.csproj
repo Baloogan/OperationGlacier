@@ -49,7 +49,13 @@
     <Reference Include="EcmaScript.NET">
       <HintPath>..\packages\EcmaScript.Net.1.0.1.0\lib\net20\EcmaScript.NET.dll</HintPath>
     </Reference>
+    <Reference Include="linq2db">
+      <HintPath>..\packages\linq2db.1.0.7.1\lib\net45\linq2db.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.9.6\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -173,6 +179,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="baloogan_chatDB.cs" />
+    <Compile Include="baloogan_chatDBGenerated.generated.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>baloogan_chatDBGenerated.tt</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -195,6 +207,10 @@
     <Compile Include="WitpUtility.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="baloogan_chatDBGenerated.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>baloogan_chatDBGenerated.generated.cs</LastGenOutput>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery.dynatable.css" />
@@ -203,12 +219,35 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="LinqToDB.Templates\CopyMe.MySql.tt.txt" />
     <Content Include="Scripts\baloogan-handlebars.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="BundleTransformer.Configuration.xsd">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="LinqToDB.Templates\Validation.ttinclude" />
+    <Content Include="LinqToDB.Templates\T4Model.ttinclude" />
+    <Content Include="LinqToDB.Templates\PluralizationService.ttinclude" />
+    <Content Include="LinqToDB.Templates\NotifyPropertyChanged.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.Tools.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.Sybase.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.SqlServer.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.SQLite.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.SqlCe.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.PostgreSQL.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.Oracle.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.MySql.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.Informix.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.Firebird.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.DB2.ttinclude" />
+    <Content Include="LinqToDB.Templates\LinqToDB.Access.ttinclude" />
+    <Content Include="LinqToDB.Templates\EditableObject.ttinclude" />
+    <Content Include="LinqToDB.Templates\DataModel.ttinclude" />
+    <Content Include="LinqToDB.Templates\DataAnnotations.ttinclude" />
+    <Content Include="LinqToDB.Templates\!ReadMe.LinqToDB.md" />
+    <Content Include="LinqToDB.Templates\LinqToDB.MySql.Tools.ttinclude" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\handlebars-v3.0.1.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />

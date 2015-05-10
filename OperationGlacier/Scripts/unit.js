@@ -54,7 +54,7 @@ function render_comments(timeline, current_unit) {
         + "&x=" + current_unit.x
         + "&y=" + current_unit.y
         + "&unit_name=" + current_unit.name
-        + "&game_name=" + "@HttpUtility.JavaScriptStringEncode(ViewBag.game_name)"
+        + "&game_name=" + model_game_name
         + "'>Add Comment</a></div>";
     html += "<h2>Comments</h2>";
     html += "</div>";
