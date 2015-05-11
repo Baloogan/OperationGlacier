@@ -212,9 +212,9 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="LinqToDB.Templates\CopyMe.MySql.tt.txt" />
-    <Content Include="Scripts\baloogan-common.js" />
-    <Content Include="Scripts\baloogan-handlebars.js" />
-    <Content Include="Scripts\baloogan-map-main.js" />
+    <Content Include="Scripts\baloogan\baloogan-common.js" />
+    <Content Include="Scripts\baloogan\baloogan-handlebars.js" />
+    <Content Include="Scripts\baloogan\baloogan-map-main.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="BundleTransformer.Configuration.xsd">
@@ -255,11 +255,19 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\leaflet-src.js" />
     <Content Include="Scripts\leaflet.js" />
-    <Content Include="Scripts\baloogan-map-common.js" />
+    <Content Include="Scripts\baloogan\baloogan-map-common.js" />
+    <Content Include="Scripts\markdown\core.js" />
+    <Content Include="Scripts\markdown\dialects\dialect_helpers.js" />
+    <Content Include="Scripts\markdown\dialects\gruber.js" />
+    <Content Include="Scripts\markdown\dialects\maruku.js" />
+    <Content Include="Scripts\markdown\markdown.js" />
+    <Content Include="Scripts\markdown\markdown_helpers.js" />
+    <Content Include="Scripts\markdown\parser.js" />
+    <Content Include="Scripts\markdown\render_tree.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Scripts\baloogan-unit.js" />
+    <Content Include="Scripts\baloogan\baloogan-unit.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

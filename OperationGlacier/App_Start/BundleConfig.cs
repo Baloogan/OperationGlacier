@@ -32,17 +32,19 @@ namespace OperationGlacier
 
             bundles.Add(new ScriptBundle("~/bundles/handlebars").Include(
                       "~/Scripts/handlebars-v3.0.1.js",
-                      "~/Scripts/baloogan-handlebars.js"));
+                      "~/Scripts/baloogan/baloogan-handlebars.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/map-main").Include(
-                    "~/Scripts/baloogan-common.js",
-                "~/Scripts/leaflet.js",
-                      "~/Scripts/baloogan-map-common.js",
-                      "~/Scripts/baloogan-map-main.js"));
+                      "~/Scripts/baloogan/baloogan-common.js",
+                      "~/Scripts/leaflet.js",
+                      "~/Scripts/markdown/markdown.js",
+                      "~/Scripts/baloogan/baloogan-map-common.js",
+                      "~/Scripts/baloogan/baloogan-map-main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/unit").Include(
-                "~/Scripts/baloogan-common.js",
-                      "~/Scripts/baloogan-unit.js"));
+                      "~/Scripts/baloogan/baloogan-common.js",
+                      "~/Scripts/markdown/markdown.js",
+                      "~/Scripts/baloogan/baloogan-unit.js"));
 
 
             bundles.Add(new ScriptBundle("~/bundles/ga").Include(

@@ -7,10 +7,6 @@ using System.Threading.Tasks;
 using LinqToDB.DataProvider.SQLite;
 using LinqToDB.DataProvider.MySql;
 using LinqToDB;
-using System;
-using System.Linq;
-
-using LinqToDB;
 using LinqToDB.Mapping;
 
 namespace AutoBaloogan
