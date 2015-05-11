@@ -322,6 +322,7 @@ $.each(comments_json, function (i, comment_group) {
     $.each(comment_group, function (i, comment) {
         comment_x = comment.x;
         comment_y = comment.y;
+        comment.message = marked(comment.message);
         comment_html += comment_template(comment);
     });
     var circ_lat = xy_to_lat(comment_x, comment_y);

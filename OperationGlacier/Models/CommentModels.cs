@@ -68,8 +68,10 @@ namespace OperationGlacier.Models
         public string side_restriction { get; set; }
         public string unit_name { get; set; }
         public string game_name { get; set; }
+        public int CommentID { get; set; }
         public CommentModel(Comment comment)
         {
+            this.CommentID = comment.CommentID;
             this.x = comment.x;
             this.y = comment.y;
             this.message = comment.message;

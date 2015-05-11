@@ -1,6 +1,6 @@
 ﻿@using Newtonsoft.Json
 @model IEnumerable<OperationGlacier.Models.CommentModel>
-@Scripts.Render("~/Scripts/handlebars-v3.0.1.js")
+@Scripts.Render("~/bundles/handlebars")
 @RenderPage("../Includes/HandlebarsTemplates.cshtml")
 @{
     ViewBag.Title = "Recent Comments";
@@ -20,7 +20,7 @@
         
     var comments_json = JSON.parse(@Html.Raw(HttpUtility.JavaScriptStringEncode(JsonConvert.SerializeObject(Model), addDoubleQuotes: true)));
 
-    $.each(comments_json, function (i, comment) { html += comment_template(comment); });
+    $.each(comments_json, function (i, comment) { comment.message = marked(comment.message); html += comment_template(comment); });
         
     html += "</div>";
     html += "</div>";

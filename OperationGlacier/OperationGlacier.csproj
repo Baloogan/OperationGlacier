@@ -258,6 +258,7 @@
     <Content Include="Scripts-baloogan\baloogan-map-common.js" />
     <Content Include="Scripts\marked.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\require.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts-baloogan\baloogan-unit.js" />

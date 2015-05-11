@@ -36,6 +36,9 @@
     html += "</div>";
     return html;
 }
+
+
+
 function render_comments(timeline, current_unit) {
     var html = "";
 
@@ -57,8 +60,9 @@ function render_comments(timeline, current_unit) {
 
     html += "<div class='panel-body'>";
 
+    
 
-    $.each(comments_json, function (i, comment) { html += comment_template(comment); });
+    $.each(comments_json, function (i, comment) { comment.message = marked(comment.message); html += comment_template(comment); });
 
     html += "</div>";
     html += "</div>";

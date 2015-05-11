@@ -150,16 +150,6 @@ namespace OperationGlacier.Controllers
         // GET: Comments/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
-            if (!Request.IsAuthenticated)
-            {
-                return RedirectToAction("Login", "Account");
-            }
-            var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user.UserName != "Baloogan")
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -184,7 +174,7 @@ namespace OperationGlacier.Controllers
                 return RedirectToAction("Login", "Account");
             }
             var user = UserManager.FindById(User.Identity.GetUserId());
-            if (user.UserName != "Baloogan")
+            if (user.UserName != comment.Username)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -193,7 +183,7 @@ namespace OperationGlacier.Controllers
             {
                 db.Entry(comment).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Admin");
+                return RedirectToAction("Index");
             }
             return View(comment);
         }
