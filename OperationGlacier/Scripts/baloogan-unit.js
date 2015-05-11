@@ -489,7 +489,7 @@ function display_timeline(timeline) {
         data.addColumn('number', 'Wep');
 
         $.each(units, function (i, unit) {
-            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Sys), Number(unit.row.Flt), Number(unit.row.Eng), Number(unit.row.Fire), Number(unit.row.Wep)]]);
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Sys.split(' ')[0]), Number(unit.row.Flt.split(' ')[0]), Number(unit.row.Eng.split(' ')[0]), Number(unit.row.Fire.split(' ')[0]), Number(unit.row.Weapon.split(' ')[0])]]);
         });
 
 

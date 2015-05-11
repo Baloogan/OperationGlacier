@@ -1,7 +1,7 @@
 ﻿@model OperationGlacier.Models.MapModel
 @using Newtonsoft.Json
 @{
-    ViewBag.Title = Model.side + " " + Model.date_str;
+    ViewBag.Title = @WitpUtility.from_date_str(Model.date_str).ToLongDateString();
 }
 @Styles.Render("~/Content/map-css")
 <div id="map" style="width: 100%; height: 100%; background: black;"></div>

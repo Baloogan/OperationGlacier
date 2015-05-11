@@ -59,7 +59,7 @@
                             foreach (string date_str in GameState.get_date_strs_reverse(ViewBag.game_name))
                             {
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=@date_str&game_name=@ViewBag.game_name">@date_str</a>
+                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
                                 </li>
                             }
                         }
@@ -76,7 +76,7 @@
                             foreach (string date_str in GameState.get_date_strs_reverse(ViewBag.game_name))
                             {
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=@date_str&game_name=@ViewBag.game_name">@date_str</a>
+                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
                                 </li>
                             }
                         }
@@ -89,7 +89,7 @@
                             foreach (string date_str in GameState.get_date_strs_reverse(ViewBag.game_name))
                             {
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=@date_str&game_name=@ViewBag.game_name">@date_str</a>
+                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
                                 </li>
                             }
                         }
