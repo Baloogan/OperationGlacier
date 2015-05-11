@@ -37,13 +37,13 @@ namespace OperationGlacier
             bundles.Add(new ScriptBundle("~/bundles/map-main").Include(
                       "~/Scripts-baloogan/baloogan-common.js",
                       "~/Scripts/leaflet.js",
-                      "~/Scripts/markdown/markdown.js",
+                      "~/Scripts/marked.js",
                       "~/Scripts-baloogan/baloogan-map-common.js",
                       "~/Scripts-baloogan/baloogan-map-main.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/unit").Include(
                       "~/Scripts-baloogan/baloogan-common.js",
-                      "~/Scripts/markdown/markdown.js",
+                      "~/Scripts/marked.js",
                       "~/Scripts-baloogan/baloogan-unit.js"));
 
 
