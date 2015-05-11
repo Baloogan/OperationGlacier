@@ -6,51 +6,52 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using System.Web.Mvc;
 
+using System.Text.RegularExpressions;
 namespace OperationGlacier.Models
 {
     public class Comment
     {
 
-        
+
         public int CommentID { get; set; }
 
-        
+
         public string Username { get; set; }
 
-        
-        public DateTime date_in_game{get;set;}
 
-        
+        public DateTime date_in_game { get; set; }
+
+
         public DateTime date_in_world { get; set; }
 
-        
+
         public string unit_timeline_id { get; set; }
 
-        
+
         public string unit_side_str { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string message { get; set; }
 
-        
+
         public int ReplyToCommentID { get; set; }
 
-        
+
         public string side_restriction { get; set; }
 
-        
+
         public int x { get; set; }
 
-        
+
         public int y { get; set; }
 
-        
+
         public string unit_name { get; set; }
 
-        
+
         public string unit_location { get; set; }
 
-        
+
         public string unit_report_first_line { get; set; }
 
         public string game_name { get; set; }
@@ -66,6 +67,7 @@ namespace OperationGlacier.Models
         public string unit_timeline_id { get; set; }
         public string side_restriction { get; set; }
         public string unit_name { get; set; }
+        public string game_name { get; set; }
         public CommentModel(Comment comment)
         {
             this.x = comment.x;
@@ -76,6 +78,31 @@ namespace OperationGlacier.Models
             this.unit_name = comment.unit_name;
             this.Username = comment.Username;
             this.side_restriction = comment.side_restriction;
+            this.game_name = comment.game_name;
+            this.render_message();
+        }
+        private void render_message()
+        {
+            //get_timeline_reverse_index
+            var myRegex = new Regex(@"\[(.+?)\]");
+
+            string text = this.message;
+            var matches = myRegex.Matches(text);
+            
+            foreach (Match match in matches)
+            {
+                string a = match.Value.Substring(1, match.Value.Length - 2);
+                //text = text + " | " + match.Value + ",'" + a +"'";
+
+                if (GameState.get_timeline_reverse_index(game_name).ContainsKey(a))
+                {
+                    string timeline_id = GameState.get_timeline_reverse_index(game_name)[a];
+                    string result = "<a href='#'>" + a + "</a>";
+                    text = text.Replace(match.Value, result);
+                }
+            }
+            this.message = text;
+
         }
     }
 }
