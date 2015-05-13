@@ -378,8 +378,13 @@ function display_timeline(timeline) {
     if (current_unit.type_str == "Ship") {
         all_html += render_graph_html("Ship Damage", "ship-damage-graph");
     }
-
-    if (current_unit.type_str != "Base") {
+    if (current_unit.type_str == "LCU") {
+        all_html += render_graph_html("Vital Statistics", "lcu1-graph");
+        all_html += render_graph_html("Assault Value", "lcu2-graph");
+        all_html += render_graph_html("Base Load", "lcu3-graph");
+        all_html += render_graph_html("Supply", "lcu4-graph");
+    }
+if (current_unit.type_str != "Base") {
         all_html += render_class(timeline, current_unit);
         document.querySelector('#unit-timeline').innerHTML = all_html;
     }
@@ -405,7 +410,7 @@ function display_timeline(timeline) {
 
         var options = {
             hAxis: {
-                title: 'Date'
+                title: 'Turn'
             },
             series: {
                 1: { curveType: 'function' }
@@ -432,7 +437,7 @@ function display_timeline(timeline) {
 
         var options = {
             hAxis: {
-                title: 'Turn #'
+                title: 'Turn'
             },
             series: {
                 1: { curveType: 'function' }
@@ -499,7 +504,7 @@ function display_timeline(timeline) {
 
         var options = {
             hAxis: {
-                title: 'Turn #'
+                title: 'Turn'
             },
             series: {
                 1: { curveType: 'function' }
@@ -507,6 +512,77 @@ function display_timeline(timeline) {
         };
 
         var chart = new google.visualization.LineChart(document.getElementById('ship-damage-graph'));
+        chart.draw(data, options);
+    }
+    if (current_unit.type_str == "LCU") {
+        var data = new google.visualization.DataTable();
+        data.addColumn('date', 'Turn');
+        data.addColumn('number', 'Experience');
+        data.addColumn('number', 'Morale');
+        data.addColumn('number', 'Disruption');
+        data.addColumn('number', 'Fatigue');
+
+
+        $.each(units, function (i, unit) {
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Exp), Number(unit.row.Morale), Number(unit.row.Disr), Number(unit.row.Fat)]]);
+            });
+                
+        var options = {
+            hAxis: {
+                title: 'Turn'
+            },
+            series: {
+                1: { curveType: 'function' }
+            }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('lcu1-graph'));
+        chart.draw(data, options);
+
+
+
+
+        data = new google.visualization.DataTable();
+        data.addColumn('date', 'Turn');
+        data.addColumn('number', 'AV');
+
+
+        $.each(units, function (i, unit) {
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.AV)]]);
+            });
+                
+        chart = new google.visualization.LineChart(document.getElementById('lcu2-graph'));
+        chart.draw(data, options);
+
+
+        
+
+
+        data = new google.visualization.DataTable();
+        data.addColumn('date', 'Turn');
+        data.addColumn('number', 'Load');
+
+
+        $.each(units, function (i, unit) {
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.BaseLoad)]]);
+            });
+                
+        chart = new google.visualization.LineChart(document.getElementById('lcu3-graph'));
+        chart.draw(data, options);
+
+
+
+data = new google.visualization.DataTable();
+        data.addColumn('date', 'Turn');
+        data.addColumn('number', 'Supply');
+        data.addColumn('number', 'Max');
+
+
+        $.each(units, function (i, unit) {
+            data.addRows([[javascript_is_retarded(unit), Number(unit.row.Supply.split(' ')[0]), Number(unit.row.Supply.split(' ')[2]) ]]);
+            });
+                
+        chart = new google.visualization.LineChart(document.getElementById('lcu4-graph'));
         chart.draw(data, options);
     }
 }

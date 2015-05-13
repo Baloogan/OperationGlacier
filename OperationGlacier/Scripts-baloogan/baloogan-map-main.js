@@ -45,6 +45,7 @@ function load_hexes(turn) {
         var taskforceIcon;
         var lcusIcon;
 
+        var ship_total = 0;
 
         var is_dot_base = false;
 
@@ -105,6 +106,7 @@ function load_hexes(turn) {
                 taskforces += "</div>";
                 taskforces_tooltip = taskforces_tooltip + unit.name + "\n";
             } else if (unit.type_str == "Ship") {
+                ship_total += 1;
                 if (unit.owner == 0) {
                     navalbaseIcon = "Japan";
                     unit.owner = "Japan";
@@ -148,6 +150,8 @@ function load_hexes(turn) {
                 reports_tooltip = reports_tooltip + unit.report + "\n";
             }
         });
+
+        
 
         var nudge_y = 0.0;
         if (model_side == "Both") {
