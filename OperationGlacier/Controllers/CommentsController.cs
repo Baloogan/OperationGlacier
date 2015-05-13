@@ -139,7 +139,10 @@ namespace OperationGlacier.Controllers
             {
                 db.Comments.Add(comment);
                 await db.SaveChangesAsync();
-                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier","**"+ comment.Username + ":** " + comment.message + " on " + comment.unit_name + " https://secure.baloogancampaign.com:8081/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
+                string t_1 = "**" + comment.Username + "** comments on **" + comment.unit_name + "** https://secure.baloogancampaign.com:8081/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name;
+                string t_2 = comment.message;
+                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", t_1);
+                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", t_2);
                 
                 return Redirect("/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
             }
@@ -178,7 +181,12 @@ namespace OperationGlacier.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
-
+            if (user.UserName != "Baloogan")
+            {
+                Comment orig_comment = await db.Comments.FindAsync(comment.CommentID);
+                orig_comment.message = comment.message;
+                comment = orig_comment; // only allow editing of the message for those jersk who will hack my form :(
+            }
             if (ModelState.IsValid)
             {
                 db.Entry(comment).State = System.Data.Entity.EntityState.Modified;

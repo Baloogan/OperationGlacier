@@ -1,4 +1,6 @@
-﻿using OperationGlacier.Models;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using OperationGlacier.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,8 +13,26 @@ namespace OperationGlacier.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
         
+        protected UserManager<ApplicationUser> UserManager { get; set; }
+
+        public UnitController()
+        {
+            this.UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(this.db));
+        }
+
         public ActionResult Index(string tid, string game_name)
         {
+
+            if (Request.IsAuthenticated)
+            {
+                ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+                if (tid.Contains("Allies"))
+                    if (user.SideRestriction == "Japan")
+                        return Index(tid.Replace("Allies", "Japan"), game_name);
+                if (tid.Contains("Japan"))
+                    if (user.SideRestriction == "Allies")
+                        return Index(tid.Replace("Japan", "Allies"), game_name);
+            }
 
             game_name = GameState.get_game_name(game_name);
 

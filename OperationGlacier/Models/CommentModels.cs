@@ -90,9 +90,13 @@ namespace OperationGlacier.Models
 
             string text = this.message;
             var matches = myRegex.Matches(text);
-            
+            var already_done = new List<string>();
             foreach (Match match in matches)
             {
+                if (already_done.Contains(match.Value))
+                {
+                    continue;
+                }
                 string a = match.Value.Substring(1, match.Value.Length - 2);
                 //text = text + " | " + match.Value + ",'" + a +"'";
 
@@ -100,6 +104,7 @@ namespace OperationGlacier.Models
                 {
                     string timeline_id = GameState.get_timeline_reverse_index(game_name)[a];
                     string result = match.Value + "(https://secure.baloogancampaign.com:8081/OperationGlacier/Unit?tid=" + timeline_id + "&game_name=" + game_name + ")";
+                    already_done.Add(match.Value);
                     text = text.Replace(match.Value, result);
                 }
             }
