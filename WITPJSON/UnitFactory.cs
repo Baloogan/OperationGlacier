@@ -115,7 +115,7 @@ namespace WITPJSON
                     }
                     if (u.type == Type.TaskForce)
                     {
-                        u.name = "TF" + (u.id - 8400).ToString();
+                        u.name = "TF" + (u.id - 8000).ToString();
                     }
                     yield return u;
                 }
