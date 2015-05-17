@@ -341,7 +341,24 @@ $.each(comments_json, function (i, comment_group) {
 
 });
 
-
+function draw_circle(x, y,text) {
+    var circ_lat = xy_to_lat(x, y);
+    var circ_lon = xy_to_lon(x, y);
+    var circ = L.circle([circ_lat, circ_lon], 0.4, { color: 'yellow' })
+        .addTo(map)
+        .bindPopup(text, comments_popupOptions)
+    .openPopup();
+}
+function draw_patrol(ax,ay,bx,by,cx,cy){
+    draw_circle(ax, ay, "1");
+    draw_circle(bx, by, "2");
+    draw_circle(cx, cy, "3");
+}
+function parse_patrol(s) {
+    var regexp = /(\d+),(\d+).+?(\d+),(\d+).+?(\d+),(\d+)/;
+    var m = regexp.exec(s);
+    draw_patrol(m[1], m[2], m[3], m[4], m[5], m[6]);
+}
 
 (function () {
 

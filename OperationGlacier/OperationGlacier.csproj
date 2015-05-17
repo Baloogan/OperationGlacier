@@ -256,6 +256,7 @@
     <Content Include="Scripts\leaflet-src.js" />
     <Content Include="Scripts\leaflet.js" />
     <Content Include="Scripts-baloogan\baloogan-map-common.js" />
+    <Content Include="Scripts\leaflet.textpath.js" />
     <Content Include="Scripts\marked.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\require.js" />
