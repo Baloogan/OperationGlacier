@@ -176,7 +176,7 @@ namespace OperationGlacier.Controllers
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
-
+                    AutoBaloogan.baloogan_chatDB.transmit("operation-glaicer", "New account registered: " + user.UserName + " restricted to " + user.SideRestriction);
                     return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
@@ -412,6 +412,15 @@ namespace OperationGlacier.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult LogOff()
         {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            if (user.UserName == "Baloogan")
+            {
+                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", "Baloogan has logged off. Hope he doesn't look at the Japanese maps!");
+            }
+            if (user.UserName == "TheHistoricalGamer")
+            {
+                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", "TheHistoricalGamer has logged off. Hope he doesn't look at the Allied maps!");
+            }
             AuthenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }

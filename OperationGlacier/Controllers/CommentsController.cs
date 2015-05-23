@@ -139,10 +139,14 @@ namespace OperationGlacier.Controllers
             {
                 db.Comments.Add(comment);
                 await db.SaveChangesAsync();
-                string t_1 = "**" + comment.Username + "** comments on **" + comment.unit_name + "** https://secure.baloogancampaign.com:8081/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name;
+                string t_1 = "**" + comment.Username + "** comments on **" + comment.unit_name + "** http://operationglacier.baloogancampaign.com/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name;
                 string t_2 = comment.message;
-                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", t_1);
-                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", t_2);
+                string room = "";
+                if (comment.side_restriction == "Allies") room = "og-allies";
+                if (comment.side_restriction == "Japan") room = "og-japan";
+                AutoBaloogan.baloogan_chatDB.transmit(room, t_1);
+                AutoBaloogan.baloogan_chatDB.transmit(room, t_2);
+                AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", "A comment was posted by " + comment.Username + " for " + comment.side_restriction + " eyes only.");
                 
                 return Redirect("/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
             }

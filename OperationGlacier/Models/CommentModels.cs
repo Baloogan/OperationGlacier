@@ -103,7 +103,7 @@ namespace OperationGlacier.Models
                 if (GameState.get_timeline_reverse_index(game_name).ContainsKey(a))
                 {
                     string timeline_id = GameState.get_timeline_reverse_index(game_name)[a];
-                    string result = match.Value + "(https://secure.baloogancampaign.com:8081/OperationGlacier/Unit?tid=" + timeline_id + "&game_name=" + game_name + ")";
+                    string result = match.Value + "(http://operationglacier.baloogancampaign.com/Unit?tid=" + timeline_id + "&game_name=" + game_name + ")";
                     already_done.Add(match.Value);
                     text = text.Replace(match.Value, result);
                 }

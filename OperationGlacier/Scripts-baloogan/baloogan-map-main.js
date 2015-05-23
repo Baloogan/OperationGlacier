@@ -354,10 +354,15 @@ function draw_patrol(ax,ay,bx,by,cx,cy){
     draw_circle(bx, by, "2");
     draw_circle(cx, cy, "3");
 }
+function draw_patrol(ax, ay, bx, by) {
+    draw_circle(ax, ay, "1");
+    draw_circle(bx, by, "2");
+}
 function parse_patrol(s) {
-    var regexp = /(\d+),(\d+).+?(\d+),(\d+).+?(\d+),(\d+)/;
+    //var regexp = /(\d+),(\d+).+?(\d+),(\d+).+?(\d+),(\d+)/;
+    var regexp = /(\d+),(\d+).+?(\d+),(\d+)/;
     var m = regexp.exec(s);
-    draw_patrol(m[1], m[2], m[3], m[4], m[5], m[6]);
+    draw_patrol(m[1], m[2], m[3], m[4]);
 }
 
 (function () {

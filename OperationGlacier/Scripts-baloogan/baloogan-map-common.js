@@ -41,7 +41,6 @@ var map = L.map('map', {
     zoom: model_center_zoom,
 });
 
-//L.tileLayer('https://secure.baloogancampaign.com:8081/map/render3/{z}/{x}/{y}.png', {
 var topo = L.tileLayer('https://web196.secure-secure.co.uk/baloogancampaign.com/render3/{z}/{x}/{y}.png', {
     attribution: "<a href='http://baloogan.com'>Written by Baloogan</a> (<a href='https://twitter.com/baloogancamp'>@BalooganCamp</a>) leafletjs " + model_side + " " + model_date + ' Map:WitP-AE Topo Map Project',
     continuousWorld: true,
