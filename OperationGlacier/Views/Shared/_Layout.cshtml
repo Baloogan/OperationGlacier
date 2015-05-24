@@ -54,12 +54,12 @@
                         {
                             <li class="nav-header" style="color: #AAAAAA;">Allies</li>
                             <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=latest&game_name=@ViewBag.game_name">Latest Turn</a>
+                                <a role="menuitem" tabindex="-1" href="/Map?side=Allies&date=latest&game_name=@ViewBag.game_name">Latest Turn</a>
                             </li>
                             foreach (string date_str in GameState.get_date_strs_reverse(ViewBag.game_name))
                             {
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Allies&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
+                                    <a role="menuitem" tabindex="-1" href="/Map?side=Allies&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
                                 </li>
                             }
                         }
@@ -71,12 +71,12 @@
                         {
                             <li class="nav-header" style="color: #AAAAAA;">Japan</li>
                             <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=latest&game_name=@ViewBag.game_name">Latest Turn</a>
+                                <a role="menuitem" tabindex="-1" href="/Map?side=Japan&date=latest&game_name=@ViewBag.game_name">Latest Turn</a>
                             </li>
                             foreach (string date_str in GameState.get_date_strs_reverse(ViewBag.game_name))
                             {
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Japan&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
+                                    <a role="menuitem" tabindex="-1" href="/Map?side=Japan&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
                                 </li>
                             }
                         }
@@ -84,12 +84,12 @@
                         {
                             <li class="nav-header" style="color: #AAAAAA;">Combined</li>
                             <li role="presentation">
-                                <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=latest&game_name=@ViewBag.game_name">Latest Turn</a>
+                                <a role="menuitem" tabindex="-1" href="/Map?side=Both&date=latest&game_name=@ViewBag.game_name">Latest Turn</a>
                             </li>
                             foreach (string date_str in GameState.get_date_strs_reverse(ViewBag.game_name))
                             {
                                 <li role="presentation">
-                                    <a role="menuitem" tabindex="-1" href="/OperationGlacier/Map?side=Both&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
+                                    <a role="menuitem" tabindex="-1" href="/Map?side=Both&date=@date_str&game_name=@ViewBag.game_name">@WitpUtility.from_date_str(date_str).ToLongDateString()</a>
                                 </li>
                             }
                         }
@@ -98,9 +98,9 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="/OperationGlacier/Home/Index?game_name=@ViewBag.game_name">Home</a></li>
-                    <li><a href="/OperationGlacier/Comments?game_name=@ViewBag.game_name">Recent Comments</a></li>
-                    <li><a href="/OperationGlacier/Home/About?game_name=@ViewBag.game_name">About</a></li>
+                    <li><a href="/Home/Index?game_name=@ViewBag.game_name">Home</a></li>
+                    <li><a href="/Comments?game_name=@ViewBag.game_name">Recent Comments</a></li>
+                    <li><a href="/Home/About?game_name=@ViewBag.game_name">About</a></li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>

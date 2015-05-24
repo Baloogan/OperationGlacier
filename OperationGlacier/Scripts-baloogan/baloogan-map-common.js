@@ -84,39 +84,39 @@ L.Circle = L.Circle.extend({
 
 
 var airbaseIcon_a = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/AB' + '' + '.png',
+    iconUrl: '/Content/map_icons/AB' + '' + '.png',
 });
 var navalbaseIcon_a = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/NB' + '' + '.png',
+    iconUrl: '/Content/map_icons/NB' + '' + '.png',
 });
 var taskforceIcon_a = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/TF' + '' + '.png',
+    iconUrl: '/Content/map_icons/TF' + '' + '.png',
 });
 var lcuIcon_a = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/LCU' + '' + '.png',
+    iconUrl: '/Content/map_icons/LCU' + '' + '.png',
 });
 
 var airbaseIcon_j = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/AB' + 'j' + '.png',
+    iconUrl: '/Content/map_icons/AB' + 'j' + '.png',
 });
 var navalbaseIcon_j = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/NB' + 'j' + '.png',
+    iconUrl: '/Content/map_icons/NB' + 'j' + '.png',
 });
 var taskforceIcon_j = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/TF' + 'j' + '.png',
+    iconUrl: '/Content/map_icons/TF' + 'j' + '.png',
 });
 var lcuIcon_j = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/LCU' + 'j' + '.png',
+    iconUrl: '/Content/map_icons/LCU' + 'j' + '.png',
 });
 
 var baseIcon_a = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/USBase.png',
+    iconUrl: '/Content/map_icons/USBase.png',
 });
 var baseIcon_j = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/JABase.png',
+    iconUrl: '/Content/map_icons/JABase.png',
 });
 var reportIcon = L.icon({
-    iconUrl: '/OperationGlacier/Content/map_icons/Report.png',
+    iconUrl: '/Content/map_icons/Report.png',
 });
 
 

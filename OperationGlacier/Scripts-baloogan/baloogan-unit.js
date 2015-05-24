@@ -46,7 +46,7 @@ function render_comments(timeline, current_unit) {
 
     html += "<div class='panel panel-default'>";
     html += "<div class='panel-heading'>";
-    html += "<div style='float:right;'><a href='/OperationGlacier/Comments/Create?"
+    html += "<div style='float:right;'><a href='/Comments/Create?"
         + "date_string=" + current_unit.date_string
         + "&unit_timeline_id=" + current_unit.timeline_id
         + "&unit_location=" + current_unit.location
@@ -588,7 +588,7 @@ data = new google.visualization.DataTable();
 }
 //download the json
 (function () {
-    var link = "/OperationGlacierGameData/"
+    var link = "/GameData/"
         + model_game_name
         + "/Timeline/"
         + model_timeline_id
