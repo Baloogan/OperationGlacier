@@ -119,14 +119,14 @@ namespace WITPJSON
                     }
                 }
             }
-            
+
             All_Units = Units.ToList();//truely get all! this is used in timelines
 
             Units = Units.Where(u =>
                 string.IsNullOrEmpty(u.location)
                 || !u.location.ToLower().Contains("delay")).ToList();
-            
-            
+
+
 
 
             //order of these foreaches is important, don't change it without pondering consiquences!!!!!
@@ -221,6 +221,15 @@ namespace WITPJSON
                 File.WriteAllText(output_filename + turn.file_index.ToString() + ".json", json);
             }
             Console.WriteLine(" Rendering complete!");
+            if (!Directory.Exists(Program.output_events_directory))
+            {
+                Directory.CreateDirectory(Program.output_events_directory);
+            }
+
+            foreach (var a in this.All_Units.Where(u => u.type == Unit.Type.AfterAction))
+            {
+                File.WriteAllText(Path.Combine(Program.output_events_directory, a.hash + ".json"), Newtonsoft.Json.JsonConvert.SerializeObject(a, Formatting.None));
+            }
 
         }
     }

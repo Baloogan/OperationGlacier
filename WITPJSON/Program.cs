@@ -15,6 +15,7 @@ namespace WITPJSON
         internal static string japan_archive_directory = null;
         internal static string japan_tracker_directory = null;
         internal static string output_directory = null;
+        internal static string output_events_directory { get { return Path.Combine(output_directory, "Events"); } }
         internal static string output_turns_directory { get { return Path.Combine(output_directory, "Turns"); } }
         internal static string output_timelines_directory { get { return Path.Combine(output_directory, "Timeline"); } }
         internal static string output_scendata_directory { get { return Path.Combine(output_directory, "Scendata"); } }

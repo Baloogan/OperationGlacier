@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Microsoft.VisualBasic.FileIO;
 
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
 
 namespace WITPJSON
 {
@@ -179,7 +180,21 @@ namespace WITPJSON
                 yield return u;
             }
         }
+        public static string CalculateMD5Hash(string input)
+        {
+            // step 1, calculate MD5 hash from input
+            MD5 md5 = System.Security.Cryptography.MD5.Create();
+            byte[] inputBytes = System.Text.Encoding.ASCII.GetBytes(input);
+            byte[] hash = md5.ComputeHash(inputBytes);
 
+            // step 2, convert byte array to hex string
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < hash.Length; i++)
+            {
+                sb.Append(hash[i].ToString("x2"));
+            }
+            return sb.ToString();
+        }
         internal static IEnumerable<Unit> ParseAfterActionReports(string AfterActionReports_filename)
         {
             Console.WriteLine("  ParseAfterActionReports...");
@@ -194,6 +209,7 @@ namespace WITPJSON
                 Unit u = new Unit();
                 u.type = Unit.Type.AfterAction;
                 u.report = a.TrimEnd(new char[]{'\r','\n',' '});
+                u.hash = CalculateMD5Hash(u.report);
                 var lines = a.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
                 lines = lines.Where(s => s != " ").ToArray();
                 var myRegex = new Regex(@"(\d+),(\d+)");

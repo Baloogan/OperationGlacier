@@ -35,6 +35,7 @@ namespace WITPJSON
             AfterAction,
             OperationalReport
         }
+        public string hash { get; set; }
         public string timeline_id { get { return side_str + "_" + type_str + "_" + id; } }
         public Turn.Side side;
         public string side_str { get { return side.ToString(); } }
