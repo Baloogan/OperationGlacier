@@ -143,7 +143,7 @@ function load_hexes(turn) {
                 reports_tooltip = reports_tooltip + unit.report + "\n";
             } else if (unit.type_str == "AfterAction") {
                 unit.report = unit.report.trim();
-                reports_afteraction.push({ text: afteraction_template(unit), first_line: unit.report.split('\n')[0] });
+                reports_afteraction.push({ hash:unit.hash, text: afteraction_template(unit), first_line: unit.report.split('\n')[0] });
                 reports_tooltip = reports_tooltip + unit.report.split('\n')[0] + "\n";
             } else if (unit.type_str == "OperationalReport") {
                 reports_operationalreport += operationalreport_template(unit);
@@ -279,7 +279,8 @@ function load_hexes(turn) {
                 var collapse_afteraction = randomString(8);
                 reports += "<div class='panel panel-default'>";
                 reports += "<div class='panel-heading'>";
-                reports += "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#" + accordion + "' href='#" + collapse_afteraction + "'>" + report_aar.first_line + "</a></h4>";
+                reports += "<a href='/GameData/" + game_name + "/Events/" + report_aar.hash + ".html' style='float:right;' target='_blank'>view</a>";
+                reports += "<h4 class='panel-title'><a data-toggle='collapse' data-parent='#" + accordion + "' href='#" + collapse_afteraction + "'>" + report_aar.first_line + "</a> </h4>";
                 reports += "</div>";
                 reports += "<div id=" + collapse_afteraction + " class='panel-collapse collapse " + accordion_first + "'>";
                 reports += "<div class='panel-body'>";

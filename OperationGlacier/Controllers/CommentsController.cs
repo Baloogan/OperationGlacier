@@ -148,7 +148,7 @@ namespace OperationGlacier.Controllers
                 AutoBaloogan.baloogan_chatDB.transmit(room, t_2);
                 AutoBaloogan.baloogan_chatDB.transmit("operation-glacier", "A comment was posted by " + comment.Username + " for " + comment.side_restriction + " eyes only.");
                 
-                return Redirect("/OperationGlacier/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
+                return Redirect("/Unit?tid=" + comment.unit_timeline_id + "&game_name=" + comment.game_name);
             }
 
             return View(comment);
