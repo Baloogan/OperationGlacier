@@ -85,31 +85,34 @@ namespace OperationGlacier.Models
         }
         private void render_message()
         {
-            //get_timeline_reverse_index
-            var myRegex = new Regex(@"\[(.+?)\]");
-
-            string text = this.message;
-            var matches = myRegex.Matches(text);
-            var already_done = new List<string>();
-            foreach (Match match in matches)
+            if (this.message != null)
             {
-                if (already_done.Contains(match.Value))
-                {
-                    continue;
-                }
-                string a = match.Value.Substring(1, match.Value.Length - 2);
-                //text = text + " | " + match.Value + ",'" + a +"'";
 
-                if (GameState.get_timeline_reverse_index(game_name).ContainsKey(a))
+                //get_timeline_reverse_index
+                var myRegex = new Regex(@"\[(.+?)\]");
+
+                string text = this.message;
+                var matches = myRegex.Matches(text);
+                var already_done = new List<string>();
+                foreach (Match match in matches)
                 {
-                    string timeline_id = GameState.get_timeline_reverse_index(game_name)[a];
-                    string result = match.Value + "(http://operationglacier.baloogancampaign.com/Unit?tid=" + timeline_id + "&game_name=" + game_name + ")";
-                    already_done.Add(match.Value);
-                    text = text.Replace(match.Value, result);
+                    if (already_done.Contains(match.Value))
+                    {
+                        continue;
+                    }
+                    string a = match.Value.Substring(1, match.Value.Length - 2);
+                    //text = text + " | " + match.Value + ",'" + a +"'";
+
+                    if (GameState.get_timeline_reverse_index(game_name).ContainsKey(a))
+                    {
+                        string timeline_id = GameState.get_timeline_reverse_index(game_name)[a];
+                        string result = match.Value + "(http://operationglacier.baloogancampaign.com/Unit?tid=" + timeline_id + "&game_name=" + game_name + ")";
+                        already_done.Add(match.Value);
+                        text = text.Replace(match.Value, result);
+                    }
                 }
+                this.message = text;
             }
-            this.message = text;
-
         }
     }
 }
