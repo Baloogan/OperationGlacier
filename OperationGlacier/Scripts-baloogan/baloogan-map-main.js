@@ -368,9 +368,10 @@ function parse_patrol(s) {
 
 (function () {
 
-    var speed_fac = 3.0 / 16.0;
-    var initial = 2000;
+    
     if (model_side == "Both") {
+        var speed_fac = 1.0;
+        var initial = 2000;
         var link1 = '/GameData/' + game_name + '/Turns/' + 'Allies' + '/' + model_date + '/Turn';
         setTimeout(function () { $.getJSON(link1 + '0.json').done(load_hexes); }, 0000 * speed_fac + initial);
         setTimeout(function () { $.getJSON(link1 + '1.json').done(load_hexes); }, 1000 * speed_fac + initial);
@@ -389,6 +390,7 @@ function parse_patrol(s) {
         setTimeout(function () { $.getJSON(link1 + '14.json').done(load_hexes); }, 14000 * speed_fac + initial);
         setTimeout(function () { $.getJSON(link1 + '15.json').done(load_hexes); }, 15000 * speed_fac + initial);
 
+        initial = 2500;
         var link2 = '/GameData/' + game_name + '/Turns/' + 'Japan' + '/' + model_date + '/Turn';
         setTimeout(function () { $.getJSON(link2 + '0.json').done(load_hexes); }, 0000 * speed_fac + initial);
         setTimeout(function () { $.getJSON(link2 + '1.json').done(load_hexes); }, 1000 * speed_fac + initial);
@@ -407,6 +409,8 @@ function parse_patrol(s) {
         setTimeout(function () { $.getJSON(link2 + '14.json').done(load_hexes); }, 14000 * speed_fac + initial);
         setTimeout(function () { $.getJSON(link2 + '15.json').done(load_hexes).done(final); }, 15000 * speed_fac + initial);
     } else {
+        var speed_fac = 0.5;
+        var initial = 2000;
         var link = '/GameData/' + game_name + '/Turns/' + model_side + '/' + model_date + '/Turn';
         setTimeout(function () { $.getJSON(link + '0.json').done(load_hexes); }, 0000 * speed_fac + initial);
         setTimeout(function () { $.getJSON(link + '1.json').done(load_hexes); }, 1000 * speed_fac + initial);
