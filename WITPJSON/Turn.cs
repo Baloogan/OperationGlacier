@@ -136,6 +136,11 @@ namespace WITPJSON
                 if (!BaseToHex.is_base(u.location)) // put aircraft into ships
                 {
                     //these ships might be subunits, so do before putting ships into tfs
+                    if (u.location.Contains("Unknown base"))
+                    {
+                        Units.Remove(u);
+                        continue;
+                    }
                     Unit parent =
                         Units.First(unit => unit.type == Unit.Type.Ship && unit.name == u.location);
                     Units.Remove(u);
