@@ -12,7 +12,7 @@ namespace OperationGlacier.Controllers
     public class UnitController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        
+
         protected UserManager<ApplicationUser> UserManager { get; set; }
 
         public UnitController()
@@ -40,13 +40,20 @@ namespace OperationGlacier.Controllers
             UnitModel model = new UnitModel();
             model.timeline_id = tid;
             model.name = GameState.get_name_from_timeline_id(game_name, tid);
-            model.comments = db.Comments
+            var z = db.Comments
                 .Where(c => c.unit_timeline_id == tid)
-                .OrderBy(c => c.date_in_world)
-                .ToList()//actually important.
-                .Select(c => new CommentModel(c))
-                .ToList();
+                .OrderBy(c => c.date_in_world);
+            var zz = z.ToList();//actually important.
 
+            if (Request.IsAuthenticated)
+            {
+                ApplicationUser user = UserManager.FindById(User.Identity.GetUserId());
+                zz = zz.Where(c => c.side_restriction == user.SideRestriction).ToList();
+            }
+
+            var zzz = zz.Select(c => new CommentModel(c)).ToList();
+
+            model.comments = zzz;
             return View(model);
         }
 
