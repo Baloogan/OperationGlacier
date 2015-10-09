@@ -45,6 +45,7 @@ namespace WITPJSON
         public List<Unit> All_Units;
 
         public string date_string { get { return string.Format("{0:00}{1:00}{2:00}", date.Year - 1900, date.Month, date.Day); } }
+        public string event_date_string { get { var nd = date.AddDays(-1); return string.Format("{0:00}{1:00}{2:00}", nd.Year - 1900, nd.Month, nd.Day); } }
 
         [JsonIgnore]
         public string tracker_directory
@@ -79,13 +80,13 @@ namespace WITPJSON
             }
         }
         [JsonIgnore]
-        public string CombatEvents_filename { get { return Path.Combine(archive_directory, string.Format("Combat_Events_{0}.txt", date_string)); } }
+        public string CombatEvents_filename { get { return Path.Combine(archive_directory, string.Format("Combat_Events_{0}.txt", event_date_string)); } }
         [JsonIgnore]
-        public string AfterActionReports_filename { get { return Path.Combine(archive_directory, string.Format("combatreport_{0}.txt", date_string)); } }
+        public string AfterActionReports_filename { get { return Path.Combine(archive_directory, string.Format("combatreport_{0}.txt", event_date_string)); } }
         [JsonIgnore]
-        public string SigInts_filename { get { return Path.Combine(archive_directory, string.Format("{0}sigint_{1}.txt", side_initial, date_string)); } }
+        public string SigInts_filename { get { return Path.Combine(archive_directory, string.Format("{0}sigint_{1}.txt", side_initial, event_date_string)); } }
         [JsonIgnore]
-        public string OperationReports_filename { get { return Path.Combine(archive_directory, string.Format("{0}operationsreport_{1}.txt", side_initial, date_string)); } }
+        public string OperationReports_filename { get { return Path.Combine(archive_directory, string.Format("{0}operationsreport_{1}.txt", side_initial, event_date_string)); } }
 
         public Turn(Side side, DateTime date)
         {

@@ -121,10 +121,10 @@ namespace WITPJSON
         static void ProcessTurns()
         {
             Console.WriteLine("Processing turns");
-            var allies_days = GetDays(allies_archive_directory).Distinct();
+            var allies_days = GetDays(allies_tracker_directory).Distinct();
             var allies_turns = allies_days.Select(t => new Turn(Turn.Side.Allies, t) { file_index = -1 });
             Console.WriteLine(allies_turns.Count() + " allied turns found");
-            var japan_days = GetDays(japan_archive_directory).Distinct();
+            var japan_days = GetDays(japan_tracker_directory).Distinct();
             var japan_turns = japan_days.Select(t => new Turn(Turn.Side.Japan, t) { file_index = -1 });
             Console.WriteLine(japan_turns.Count() + " japan turns found");
             turns = allies_turns.Concat(japan_turns).ToList();
@@ -135,11 +135,11 @@ namespace WITPJSON
         }
         static IEnumerable<DateTime> GetDays(string directory)
         {
-            var dir = Directory.EnumerateFiles(directory).ToList();
-            var myRegex = new Regex(@"_(\d\d)(\d\d)(\d\d)\.txt");
-            foreach (var filename in dir)
+            var dir = Directory.EnumerateDirectories(directory).ToList();
+            var myRegex = new Regex(@"(\d\d)(\d\d)(\d\d)");
+            foreach (var dirname in dir)
             {
-                var m = myRegex.Match(filename);
+                var m = myRegex.Match(dirname);
                 var year = int.Parse(m.Groups[1].Value) + 1900;
                 var month = int.Parse(m.Groups[2].Value);
                 var day = int.Parse(m.Groups[3].Value);
